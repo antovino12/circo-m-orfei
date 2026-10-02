@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Circo M. Orfei di Castrignano Production - System RP</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
             --bg-main: #0b0e14;
@@ -72,7 +72,7 @@
         }
 
         .brand-title h1 {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 800;
             letter-spacing: 1px;
             color: var(--accent-gold);
@@ -88,14 +88,14 @@
 
         .header-stats {
             display: flex;
-            gap: 1.5rem;
+            gap: 1.25rem;
             align-items: center;
         }
 
         .stat-badge {
             background: rgba(255,255,255,0.04);
             border: 1px solid var(--border-color);
-            padding: 0.5rem 1rem;
+            padding: 0.5rem 0.85rem;
             border-radius: 8px;
             display: flex;
             align-items: center;
@@ -138,7 +138,6 @@
             width: 100%;
         }
 
-        /* Views management */
         .view-panel {
             display: none;
         }
@@ -153,7 +152,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* HOME TILE GRID (Square layout) */
+        /* HOME TILE GRID */
         .grid-home {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -227,7 +226,7 @@
             color: var(--accent-gold);
         }
 
-        /* Banner Controllo Giornaliero in Home */
+        /* Banner Controllo Giornaliero */
         .day-control-banner {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
@@ -286,7 +285,6 @@
             box-shadow: 0 0 15px var(--accent-gold-glow);
         }
 
-        /* UI SECTION HEADERS */
         .section-header {
             display: flex;
             justify-content: space-between;
@@ -311,7 +309,7 @@
             color: var(--text-muted);
         }
 
-        /* TWO COLUMN LAYOUT FOR CASSA (Exact Match to Reference Screenshot) */
+        /* LAYOUT CASSA */
         .cassa-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -394,51 +392,56 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
-        /* Touch Ticket Selectors */
-        .ticket-selector-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 0.75rem;
-        }
-
-        .ticket-box {
+        /* Selettori Biglietti per Settore (Intero/Ridotto) */
+        .ticket-sector-block {
             background: #090d14;
             border: 1px solid var(--border-color);
             border-radius: 10px;
-            padding: 0.75rem;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            gap: 0.5rem;
+            padding: 0.85rem;
+            margin-bottom: 0.5rem;
         }
 
-        .ticket-box .title {
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
-        }
-
-        .ticket-box .price {
-            font-size: 0.9rem;
+        .sector-title {
+            font-size: 0.8rem;
             font-weight: 800;
             color: var(--accent-gold);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .tariff-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.3rem 0;
+        }
+
+        .tariff-label {
+            font-size: 0.8rem;
+            color: var(--text-main);
+        }
+
+        .tariff-price {
+            font-size: 0.8rem;
+            color: var(--text-muted);
             font-family: 'JetBrains Mono', monospace;
+            margin-right: 0.5rem;
         }
 
         .ticket-controls {
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 0.5rem;
+            gap: 0.4rem;
         }
 
         .btn-ctrl {
             background: var(--bg-card-hover);
             border: 1px solid var(--border-color);
             color: #fff;
-            width: 28px;
-            height: 28px;
+            width: 26px;
+            height: 26px;
             border-radius: 6px;
             font-weight: 800;
             cursor: pointer;
@@ -452,14 +455,14 @@
             color: var(--accent-gold);
         }
 
-        .ticket-box .count {
-            font-size: 1rem;
+        .count-val {
+            font-size: 0.9rem;
             font-weight: 700;
             font-family: 'JetBrains Mono', monospace;
-            width: 24px;
+            width: 20px;
+            text-align: center;
         }
 
-        /* Totals Block */
         .totals-block {
             background: #090d14;
             border: 1px solid var(--border-color);
@@ -491,85 +494,96 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
-        /* SIAE SCONTRINO LIVE (Receipt Canvas) */
-        .siae-receipt {
-            background: #f8fafc;
-            color: #0f172a;
+        /* REALISTIC SIAE TICKET (Matching User Screenshot Style) */
+        .siae-receipt-wrapper {
+            background: #000;
+            padding: 1rem;
             border-radius: 12px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .siae-receipt {
+            background: #fdfdfd;
+            color: #111;
+            width: 100%;
+            max-width: 420px;
             padding: 1.5rem;
             font-family: 'JetBrains Mono', monospace;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-            border: 2px dashed #cbd5e1;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            border-top: 5px solid var(--accent-gold);
+            border-bottom: 5px dashed #cbd5e1;
             position: relative;
         }
 
         .siae-header {
             text-align: center;
-            border-bottom: 2px solid #0f172a;
-            padding-bottom: 1rem;
-            margin-bottom: 1rem;
+            border-bottom: 1px dashed #333;
+            padding-bottom: 0.75rem;
+            margin-bottom: 0.75rem;
         }
 
         .siae-header h4 {
             font-size: 1.1rem;
             font-weight: 800;
             letter-spacing: 1px;
+            color: #000;
         }
 
         .siae-header p {
-            font-size: 0.7rem;
-            color: #475569;
+            font-size: 0.65rem;
+            color: #444;
+            line-height: 1.3;
         }
 
         .siae-body {
             display: flex;
             flex-direction: column;
-            gap: 0.75rem;
-            font-size: 0.8rem;
-            min-height: 120px;
+            gap: 0.5rem;
+            font-size: 0.75rem;
+            min-height: 100px;
         }
 
         .siae-item-row {
             display: flex;
             justify-content: space-between;
+            border-bottom: 1px dotted #ccc;
+            padding-bottom: 0.25rem;
         }
 
         .siae-footer {
-            border-top: 2px solid #0f172a;
-            padding-top: 1rem;
-            margin-top: 1rem;
+            border-top: 1px dashed #333;
+            padding-top: 0.75rem;
+            margin-top: 0.75rem;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
         }
 
         .siae-total {
             width: 100%;
             display: flex;
             justify-content: space-between;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
             font-weight: 800;
+            color: #000;
         }
 
         .qr-mock {
-            width: 70px;
-            height: 70px;
+            width: 80px;
+            height: 80px;
             background: #000;
-            padding: 5px;
+            padding: 4px;
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 3px;
-            margin: 0.5rem 0;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2px;
+            margin: 0.4rem 0;
         }
 
-        .qr-cell {
-            background: #fff;
-        }
-
-        .qr-cell:nth-child(2n) {
-            background: #000;
-        }
+        .qr-cell { background: #fff; }
+        .qr-cell:nth-child(2n) { background: #000; }
+        .qr-cell:nth-child(3n) { background: #fff; }
 
         /* TABLES & LISTS */
         .custom-table {
@@ -595,7 +609,6 @@
             text-transform: uppercase;
         }
 
-        /* Status Badges */
         .status-tag {
             padding: 0.25rem 0.6rem;
             border-radius: 20px;
@@ -608,7 +621,7 @@
         .status-tag.warn { background: rgba(234, 179, 8, 0.15); color: var(--warning); border: 1px solid var(--warning); }
         .status-tag.danger { background: rgba(239, 68, 68, 0.15); color: var(--danger); border: 1px solid var(--danger); }
 
-        /* FORM CONTROLS */
+        /* FORMS & MODALS */
         .form-group {
             display: flex;
             flex-direction: column;
@@ -636,14 +649,13 @@
             border-color: var(--accent-gold);
         }
 
-        /* MODAL */
         .modal-overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             backdrop-filter: blur(5px);
             display: none;
             justify-content: center;
@@ -651,16 +663,14 @@
             z-index: 1000;
         }
 
-        .modal-overlay.active {
-            display: flex;
-        }
+        .modal-overlay.active { display: flex; }
 
         .modal-box {
             background: var(--bg-card);
             border: 1px solid var(--accent-gold);
             border-radius: 16px;
             width: 90%;
-            max-width: 550px;
+            max-width: 500px;
             padding: 2rem;
             box-shadow: 0 10px 40px rgba(0,0,0,0.8);
         }
@@ -673,21 +683,15 @@
         <div class="brand-container">
             <div class="brand-logo">🎪</div>
             <div class="brand-title">
-                <h1>M. Orfei</h1>
-                <p>Castrignano Production RP</p>
+                <h1>CIRCO M. ORFEI</h1>
+                <p>CASTRIGNANO PRODUCTION RP</p>
             </div>
         </div>
 
         <div class="header-stats">
-            <div class="stat-badge">
-                💰 Cassa: <span class="val" id="head-cassa">€ 0.00</span>
-            </div>
-            <div class="stat-badge">
-                📍 Piazza: <span class="val" id="head-piazza">N/D</span>
-            </div>
-            <div class="stat-badge">
-                🐾 Animali: <span class="val" id="head-animali">0</span>
-            </div>
+            <div class="stat-badge">💰 Cassa: <span class="val" id="head-cassa">€ 1359.00</span></div>
+            <div class="stat-badge">📍 Piazza: <span class="val" id="head-piazza">Castrignano</span></div>
+            <div class="stat-badge">🐾 Animali: <span class="val" id="head-animali">3</span></div>
             <button class="nav-btn" onclick="showView('home')">🏠 Home</button>
         </div>
     </header>
@@ -698,46 +702,45 @@
         <!-- VIEW 1: HOME PANEL -->
         <div id="view-home" class="view-panel active">
             
-            <!-- Day & Weather Control Banner -->
             <div class="day-control-banner">
                 <div class="day-info">
                     <div class="day-item">
-                        <label>Giorno Corrente</label>
+                        <label>Giorno della Settimana</label>
                         <span id="current-day-display">Lunedì</span>
                     </div>
                     <div class="day-item">
                         <label>Meteo Attuale (FS22)</label>
                         <select id="weather-select" class="form-control" onchange="updateWeather()">
-                            <option value="Soleggiato ☀️">Soleggiato ☀️ (+20% Spettatori)</option>
+                            <option value="Soleggiato ☀️">Soleggiato ☀️ (+20% Affluenza)</option>
                             <option value="Nuvoloso ⛅">Nuvoloso ⛅ (Standard)</option>
-                            <option value="Pioggia 🌧️">Pioggia 🌧️ (-30% Spettatori)</option>
-                            <option value="Temporale 🌩️">Temporale 🌩️ (-60% Spettatori)</option>
+                            <option value="Pioggia 🌧️">Pioggia 🌧️ (-30% Affluenza)</option>
+                            <option value="Temporale 🌩️">Temporale 🌩️ (-60% Affluenza)</option>
                         </select>
                     </div>
                     <div class="day-item">
-                        <label>Limite Vendite Giornaliero</label>
+                        <label>Capienza Limite Vendite</label>
                         <span id="daily-limit-display">300 Posti</span>
                     </div>
                 </div>
                 <button class="btn-gold" onclick="nextDay()">⏭️ Avanza Giorno</button>
             </div>
 
-            <!-- Tile Grid -->
+            <!-- Home Tiles Grid -->
             <div class="grid-home">
                 <div class="tile-card" onclick="showView('cassa')">
                     <div>
                         <div class="tile-icon">🎟️</div>
                         <div class="tile-title">Sportello POS SIAE</div>
-                        <div class="tile-desc">Gestione biglietteria live, vendita ai clienti allo sportello, emissione scontrino fiscale e calcolo del resto.</div>
+                        <div class="tile-desc">Gestione vendita biglietti con clienti allo sportello, emissione scontrino fiscale e calcolo del resto.</div>
                     </div>
-                    <div class="tile-footer">Apre Biglietteria ➔</div>
+                    <div class="tile-footer">Apri Cassa ➔</div>
                 </div>
 
                 <div class="tile-card" onclick="showView('veterinaria')">
                     <div>
                         <div class="tile-icon">🦁</div>
                         <div class="tile-title">Anagrafica Veterinaria</div>
-                        <div class="tile-desc">Libretti sanitari dei singoli animali, microchip, vaccinazioni, dieta agricola FS22 e Modello IV per il trasporto.</div>
+                        <div class="tile-desc">Libretti sanitari degli animali, codici BDN, dieta agricola FS22 e Modello IV per i trasporti.</div>
                     </div>
                     <div class="tile-footer">Gestisci Animali ➔</div>
                 </div>
@@ -746,7 +749,7 @@
                     <div>
                         <div class="tile-icon">📜</div>
                         <div class="tile-title">Portale Burocrazia</div>
-                        <div class="tile-desc">Rilascio Licenze Comunali, TOSAP/TARI, nullaosta Vigili del Fuoco, permessi ASL e ispezioni di piazza.</div>
+                        <div class="tile-desc">Rilascio licenze comunali, TOSAP/TARI, permessi Vigili del Fuoco, ASL e controlli di piazza.</div>
                     </div>
                     <div class="tile-footer">Apri Pratiche ➔</div>
                 </div>
@@ -755,7 +758,7 @@
                     <div>
                         <div class="tile-icon">🎪</div>
                         <div class="tile-title">Gestione Piazze & Mappe</div>
-                        <div class="tile-desc">Pianificazione tournée nelle mappe di Farming Simulator, prenotazione terreni e caricamento planimetrie.</div>
+                        <div class="tile-desc">Programmazione tournée nelle mappe FS22, prenotazione suolo e pianificazione spettacoli.</div>
                     </div>
                     <div class="tile-footer">Vedi Piazze ➔</div>
                 </div>
@@ -764,81 +767,124 @@
                     <div>
                         <div class="tile-icon">⚙️</div>
                         <div class="tile-title">Pannello Direzione Admin</div>
-                        <div class="tile-desc">Controllo finanziario globale, modifica prezzi listino, simulatore di imprevisti e reset dati di gioco.</div>
+                        <div class="tile-desc">Controllo finanziario totale, modifica listino prezzi, imprevisti e reset salvataggi.</div>
                     </div>
                     <div class="tile-footer">Pannello Admin ➔</div>
                 </div>
             </div>
         </div>
 
-        <!-- VIEW 2: SPORTELLES CASSA POS SIAE -->
+        <!-- VIEW 2: BIGLIETTERIA & SPORTELLO POS SIAE -->
         <div id="view-cassa" class="view-panel">
             <div class="section-header">
                 <div class="section-title">
-                    <h2>🎟️ Biglietteria & Sportello POS SIAE</h2>
-                    <p>Gestione emissione tagliandi fiscali in tempo reale con clienti RP</p>
+                    <h2>🎟️ BIGLIETTERIA & SPORTELLO POS SIAE</h2>
+                    <p>Gestione emissione tagliandi fiscali per il pubblico</p>
                 </div>
-                <button class="nav-btn" onclick="showView('home')">← Torna alla Home</button>
+                <button class="nav-btn" onclick="showView('home')">Indietro</button>
             </div>
 
             <div class="cassa-grid">
-                <!-- Left Panel: Client & Order Controls -->
+                <!-- Left Panel: Client Dialog & Controls -->
                 <div class="cassa-card">
                     <div class="cassa-card-header">
-                        <h3>👤 Cliente alla Cassa</h3>
+                        <h3>👤 CLIENTE ALLA CASSA</h3>
                         <button class="btn-gold" style="padding:0.4rem 0.8rem; font-size:0.8rem;" onclick="generateClient()">🔄 Nuovo Cliente</button>
                     </div>
 
                     <div class="client-speech">
-                        <p class="lbl">Richiesta del cliente:</p>
-                        <p class="text" id="client-dialog">"Nessun cliente attualmente allo sportello."</p>
+                        <p class="label">Richiesta del cliente:</p>
+                        <p class="text" id="client-dialog">"Generazione cliente in corso..."</p>
                     </div>
 
                     <div class="client-details">
                         <div class="detail-item">
                             <p class="lbl">Metodo Preferito:</p>
-                            <p class="val" id="client-method" style="color:#fff;">--</p>
+                            <p class="val" id="client-method">CONTANTI</p>
                         </div>
                         <div class="detail-item">
                             <p class="lbl">Banconota Fornita:</p>
-                            <p class="val" id="client-cash">€ 0.00</p>
+                            <p class="val" id="client-cash">€ 50.00</p>
                         </div>
                     </div>
 
-                    <p style="font-size:0.8rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">Seleziona Biglietti per l'Ordine:</p>
-                    
-                    <!-- Ticket Selector Grid -->
-                    <div class="ticket-selector-grid">
-                        <!-- Poltrona VIP -->
-                        <div class="ticket-box">
-                            <span class="title">Poltrona VIP</span>
-                            <span class="price" id="price-vip">€ 25.00</span>
-                            <div class="ticket-controls">
-                                <button class="btn-ctrl" onclick="changeTicket('vip', -1)">-</button>
-                                <span class="count" id="cnt-vip">0</span>
-                                <button class="btn-ctrl" onclick="changeTicket('vip', 1)">+</button>
+                    <p style="font-size:0.8rem; font-weight:700; color:var(--text-muted); text-transform:uppercase;">SELEZIONA BIGLIETTI PER L'ORDINE:</p>
+
+                    <!-- Sector Selectors -->
+                    <div class="ticket-sector-block">
+                        <div class="sector-title"><span>POLTRONA VIP</span></div>
+                        <div class="tariff-row">
+                            <span class="tariff-label">Intero</span>
+                            <div style="display:flex; align-items:center;">
+                                <span class="tariff-price" id="pr-vip-int">€ 25.00</span>
+                                <div class="ticket-controls">
+                                    <button class="btn-ctrl" onclick="changeTicket('vip_int', -1)">-</button>
+                                    <span class="count-val" id="cnt-vip_int">0</span>
+                                    <button class="btn-ctrl" onclick="changeTicket('vip_int', 1)">+</button>
+                                </div>
                             </div>
                         </div>
-
-                        <!-- Tribuna -->
-                        <div class="ticket-box">
-                            <span class="title">Tribuna</span>
-                            <span class="price" id="price-tribuna">€ 18.00</span>
-                            <div class="ticket-controls">
-                                <button class="btn-ctrl" onclick="changeTicket('tribuna', -1)">-</button>
-                                <span class="count" id="cnt-tribuna">0</span>
-                                <button class="btn-ctrl" onclick="changeTicket('tribuna', 1)">+</button>
+                        <div class="tariff-row">
+                            <span class="tariff-label">Ridotto (&lt;11 anni)</span>
+                            <div style="display:flex; align-items:center;">
+                                <span class="tariff-price" id="pr-vip-rid">€ 18.00</span>
+                                <div class="ticket-controls">
+                                    <button class="btn-ctrl" onclick="changeTicket('vip_rid', -1)">-</button>
+                                    <span class="count-val" id="cnt-vip_rid">0</span>
+                                    <button class="btn-ctrl" onclick="changeTicket('vip_rid', 1)">+</button>
+                                </div>
                             </div>
                         </div>
+                    </div>
 
-                        <!-- Gradinata -->
-                        <div class="ticket-box">
-                            <span class="title">Gradinata</span>
-                            <span class="price" id="price-gradinata">€ 12.00</span>
-                            <div class="ticket-controls">
-                                <button class="btn-ctrl" onclick="changeTicket('gradinata', -1)">-</button>
-                                <span class="count" id="cnt-gradinata">0</span>
-                                <button class="btn-ctrl" onclick="changeTicket('gradinata', 1)">+</button>
+                    <div class="ticket-sector-block">
+                        <div class="sector-title"><span>TRIBUNA</span></div>
+                        <div class="tariff-row">
+                            <span class="tariff-label">Intero</span>
+                            <div style="display:flex; align-items:center;">
+                                <span class="tariff-price" id="pr-tribuna-int">€ 18.00</span>
+                                <div class="ticket-controls">
+                                    <button class="btn-ctrl" onclick="changeTicket('tribuna_int', -1)">-</button>
+                                    <span class="count-val" id="cnt-tribuna_int">0</span>
+                                    <button class="btn-ctrl" onclick="changeTicket('tribuna_int', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tariff-row">
+                            <span class="tariff-label">Ridotto (&lt;11 anni)</span>
+                            <div style="display:flex; align-items:center;">
+                                <span class="tariff-price" id="pr-tribuna-rid">€ 12.00</span>
+                                <div class="ticket-controls">
+                                    <button class="btn-ctrl" onclick="changeTicket('tribuna_rid', -1)">-</button>
+                                    <span class="count-val" id="cnt-tribuna_rid">0</span>
+                                    <button class="btn-ctrl" onclick="changeTicket('tribuna_rid', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="ticket-sector-block">
+                        <div class="sector-title"><span>GRADINATA</span></div>
+                        <div class="tariff-row">
+                            <span class="tariff-label">Intero</span>
+                            <div style="display:flex; align-items:center;">
+                                <span class="tariff-price" id="pr-gradinata-int">€ 12.00</span>
+                                <div class="ticket-controls">
+                                    <button class="btn-ctrl" onclick="changeTicket('gradinata_int', -1)">-</button>
+                                    <span class="count-val" id="cnt-gradinata_int">0</span>
+                                    <button class="btn-ctrl" onclick="changeTicket('gradinata_int', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tariff-row">
+                            <span class="tariff-label">Ridotto (&lt;11 anni)</span>
+                            <div style="display:flex; align-items:center;">
+                                <span class="tariff-price" id="pr-gradinata-rid">€ 8.00</span>
+                                <div class="ticket-controls">
+                                    <button class="btn-ctrl" onclick="changeTicket('gradinata_rid', -1)">-</button>
+                                    <span class="count-val" id="cnt-gradinata_rid">0</span>
+                                    <button class="btn-ctrl" onclick="changeTicket('gradinata_rid', 1)">+</button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -847,50 +893,54 @@
                     <div class="totals-block">
                         <div class="total-row">
                             <span>Totale Calcolato:</span>
-                            <span class="val" id="order-total-display" style="font-weight:700; color:#fff;">€ 0.00</span>
+                            <span class="val" id="order-total-display">€ 0.00</span>
                         </div>
                         <div class="total-row">
-                            <span>Resto da Dare:</span>
-                            <span class="val" id="order-change-display" style="font-weight:700; color:var(--warning);">€ 0.00</span>
+                            <span>Resto da dare:</span>
+                            <span class="val" id="order-change-display" style="color:var(--warning);">€ 0.00</span>
                         </div>
                     </div>
 
                     <button class="btn-gold" style="width:100%; justify-content:center; padding:1rem;" onclick="processSale()">🖨️ Emetti Biglietto SIAE</button>
                 </div>
 
-                <!-- Right Panel: Live Receipt Display (Matching User Screenshot) -->
+                <!-- Right Panel: Ultra-Realistic SIAE Receipt Display -->
                 <div class="cassa-card">
                     <div class="cassa-card-header">
-                        <h3>🧾 Ultime Emissioni & Ricevuta SIAE Live</h3>
+                        <h3>🧾 ULTIME EMISSIONI & RICEVUTA SIAE LIVE</h3>
                     </div>
 
-                    <div class="siae-receipt" id="siae-receipt-box">
-                        <div class="siae-header">
-                            <h4>CIRCO M. ORFEI</h4>
-                            <p>CASTRIGNANO PRODUCTION - SIAE REG. #849204</p>
-                            <p id="receipt-date">DATA: --/--/---- --:--</p>
-                        </div>
+                    <div class="siae-receipt-wrapper">
+                        <div class="siae-receipt" id="siae-receipt-box">
+                            <div class="siae-header">
+                                <h4>CIRCO M. ORFEI</h4>
+                                <p>CASTRIGNANO PRODUCTION - SIAE REG. #849204</p>
+                                <p>C.F. / P.IVA: 09283740192 - T.U.L.P.S. ART. 68</p>
+                                <p id="receipt-date">DATA: --/--/---- --:--</p>
+                            </div>
 
-                        <div class="siae-body" id="receipt-items">
-                            <p style="text-align:center; color:#64748b; font-style:italic; margin-top:2rem;">Nessun biglietto ancora emesso.</p>
-                        </div>
+                            <div class="siae-body" id="receipt-items">
+                                <p style="text-align:center; color:#666; font-style:italic; margin-top:2rem;">Nessun biglietto ancora emesso.</p>
+                            </div>
 
-                        <div class="siae-footer">
-                            <div class="siae-total">
-                                <span>TOTALE FISCALE:</span>
-                                <span id="receipt-total-val">€ 0.00</span>
+                            <div class="siae-footer">
+                                <div class="siae-total">
+                                    <span>TOTALE FISCALE:</span>
+                                    <span id="receipt-total-val">€ 0.00</span>
+                                </div>
+                                <div style="width:100%; display:flex; justify-content:space-between; font-size:0.6rem; color:#333;">
+                                    <span>CODICE UNIVOCO SIAE:</span>
+                                    <span id="receipt-siae-code">SIAE-00000000</span>
+                                </div>
+                                
+                                <div class="qr-mock">
+                                    <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+                                    <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+                                    <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+                                    <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
+                                </div>
+                                <p style="font-size:0.55rem; color:#444; text-align:center;">BIGLIETTO VALIDO ESCLUSIVAMENTE PER LA DATA ED ORA DI EMISSIONE FISCALE - CIRCO M. ORFEI RP</p>
                             </div>
-                            <div style="width:100%; display:flex; justify-content:space-between; font-size:0.65rem; color:#475569;">
-                                <span>CODICE UNIVOCO SIAE:</span>
-                                <span id="receipt-siae-code">SIAE-00000000</span>
-                            </div>
-                            
-                            <div class="qr-mock">
-                                <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
-                                <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
-                                <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
-                            </div>
-                            <p style="font-size:0.6rem; color:#64748b;">BIGLIETTO VALIDO ESCLUSIVAMENTE PER LA DATA DI EMISSIONE</p>
                         </div>
                     </div>
                 </div>
@@ -906,23 +956,23 @@
                 </div>
                 <div>
                     <button class="btn-gold" onclick="openModal('modal-animal')">➕ Aggiungi Animale</button>
-                    <button class="nav-btn" onclick="showView('home')">← Home</button>
+                    <button class="nav-btn" onclick="showView('home')">Indietro</button>
                 </div>
             </div>
 
             <table class="custom-table">
                 <thead>
                     <tr>
-                        <th>Nome / ID</th>
+                        <th>Nome / Identificativo</th>
                         <th>Specie / Razza</th>
-                        <th>N° Microchip BDN</th>
+                        <th>Microchip BDN</th>
                         <th>Stato Salute</th>
-                        <th>Dieta Giornaliera FS22</th>
+                        <th>Dieta FS22</th>
                         <th>Azioni</th>
                     </tr>
                 </thead>
                 <tbody id="animal-table-body">
-                    <!-- Popolated via JS -->
+                    <!-- Populated via JS -->
                 </tbody>
             </table>
         </div>
@@ -932,40 +982,37 @@
             <div class="section-header">
                 <div class="section-title">
                     <h2>📜 Portale Burocrazia & Enti Pubblici</h2>
-                    <p>Gestione autorizzazioni comunali, Modello 4 ASL e licenze pubblico spettacolo</p>
+                    <p>Autorizzazioni comunali, Modello IV ASL e Nullaosta di Pubblico Spettacolo</p>
                 </div>
-                <button class="nav-btn" onclick="showView('home')">← Home</button>
+                <button class="nav-btn" onclick="showView('home')">Indietro</button>
             </div>
 
             <div class="grid-home" style="aspect-ratio:auto;">
                 <div class="cassa-card">
-                    <h3>🏛️ Comune & TOSAP</h3>
-                    <p style="font-size:0.85rem; color:var(--text-muted);">Occupazione suolo pubblico per la piazza attiva.</p>
+                    <h3>🏛️️ Comune & TOSAP/TARI</h3>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Occupazione suolo pubblico per la piazza corrente.</p>
                     <div style="margin-top:1rem;">
-                        <p class="lbl">Stato Licenza:</p>
-                        <span class="status-tag ok" id="tosap-status">Convalidata</span>
+                        <span class="status-tag ok" id="tosap-status">Licenza Convalidata</span>
                     </div>
-                    <button class="btn-gold" style="margin-top:1rem;" onclick="payTosap()">Paga TOSAP (€ 150.00)</button>
+                    <button class="btn-gold" style="margin-top:1rem;" onclick="payTosap()">Paga Tassa TOSAP (€ 150.00)</button>
                 </div>
 
                 <div class="cassa-card">
                     <h3>🚒 Vigili del Fuoco</h3>
-                    <p style="font-size:0.85rem; color:var(--text-muted);">Collaudo ignifugo tendone e uscite di sicurezza.</p>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Verifica idoneità tendone, uscite di sicurezza e collaudo ignifugo.</p>
                     <div style="margin-top:1rem;">
-                        <p class="lbl">Permesso VV.F.:</p>
-                        <span class="status-tag ok" id="vvf-status">Approvato</span>
+                        <span class="status-tag ok" id="vvf-status">Nullaosta Valido</span>
                     </div>
                     <button class="btn-gold" style="margin-top:1rem;" onclick="requestVvf()">Richiedi Ispezione</button>
                 </div>
 
                 <div class="cassa-card">
                     <h3>🩺 ASL Veterinario</h3>
-                    <p style="font-size:0.85rem; color:var(--text-muted);">Verifica idoneità serraglio e registro passaporti.</p>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Controllo benessere animale, stalle e Modello IV Elettronico.</p>
                     <div style="margin-top:1rem;">
-                        <p class="lbl">Nullaosta Sanitario:</p>
-                        <span class="status-tag ok" id="asl-status">Approvato</span>
+                        <span class="status-tag ok" id="asl-status">Serraglio Idoneo</span>
                     </div>
-                    <button class="btn-gold" style="margin-top:1rem;" onclick="checkAsl()">Verifica Registro Animali</button>
+                    <button class="btn-gold" style="margin-top:1rem;" onclick="checkAsl()">Ispezione ASL</button>
                 </div>
             </div>
         </div>
@@ -975,11 +1022,11 @@
             <div class="section-header">
                 <div class="section-title">
                     <h2>🎪 Gestione Piazze & Mappe FS22</h2>
-                    <p>Programmazione tappe della tournée cirtense</p>
+                    <p>Pianificazione tappe e piazze di tournée</p>
                 </div>
                 <div>
                     <button class="btn-gold" onclick="openModal('modal-piazza')">➕ Nuova Piazza</button>
-                    <button class="nav-btn" onclick="showView('home')">← Home</button>
+                    <button class="nav-btn" onclick="showView('home')">Indietro</button>
                 </div>
             </div>
 
@@ -1004,14 +1051,14 @@
             <div class="section-header">
                 <div class="section-title">
                     <h2>⚙️ Pannello Direzione Admin</h2>
-                    <p>Gestione globale dei bilanci, simulatore imprevisti e configurazione</p>
+                    <p>Controllo finanziario globale, listini e simulatore imprevisti</p>
                 </div>
-                <button class="nav-btn" onclick="showView('home')">← Home</button>
+                <button class="nav-btn" onclick="showView('home')">Indietro</button>
             </div>
 
             <div class="cassa-grid">
                 <div class="cassa-card">
-                    <h3>💰 Modifica Cassa Diretta</h3>
+                    <h3>💰 Modifica Cassa Circo</h3>
                     <div class="form-group">
                         <label>Importo Cassa (€):</label>
                         <input type="number" id="admin-cassa-input" class="form-control" value="1359.00">
@@ -1021,33 +1068,33 @@
 
                 <div class="cassa-card">
                     <h3>⚠️ Simulatore Imprevisti RP</h3>
-                    <p style="font-size:0.85rem; color:var(--text-muted);">Lancia eventi casuali durante il gioco su FS22.</p>
-                    <button class="btn-gold" style="background:var(--danger); color:#fff;" onclick="triggerEvent()">🎲 Estrai Evento Imprevisto</button>
+                    <p style="font-size:0.85rem; color:var(--text-muted);">Estrai eventi casuali durante il gioco su FS22.</p>
+                    <button class="btn-gold" style="background:var(--danger); color:#fff;" onclick="triggerEvent()">🎲 Estrai Evento Casual</button>
                 </div>
             </div>
         </div>
 
     </main>
 
-    <!-- MODAL ADD ANIMAL -->
+    <!-- MODALS -->
     <div class="modal-overlay" id="modal-animal">
         <div class="modal-box">
-            <h3 style="color:var(--accent-gold); margin-bottom:1rem;">➕ Inserisci Animale in Anagrafica</h3>
+            <h3 style="color:var(--accent-gold); margin-bottom:1rem;">➕ Inserisci Animale</h3>
             <div class="form-group">
-                <label>Nome / Identificativo:</label>
+                <label>Nome Animale:</label>
                 <input type="text" id="add-anim-name" class="form-control" placeholder="es. Sultan">
             </div>
             <div class="form-group">
                 <label>Specie:</label>
-                <input type="text" id="add-anim-species" class="form-control" placeholder="es. Tigre del Bengala, Cavallo, Cammello">
+                <input type="text" id="add-anim-species" class="form-control" placeholder="es. Tigre, Cavallo">
             </div>
             <div class="form-group">
                 <label>Codice Microchip BDN:</label>
                 <input type="text" id="add-anim-chip" class="form-control" placeholder="es. IT092837492">
             </div>
             <div class="form-group">
-                <label>Fabbisogno Fieno/Cibo (FS22 kg/giorno):</label>
-                <input type="text" id="add-anim-diet" class="form-control" placeholder="es. 20kg Fieno, 5kg Carote">
+                <label>Dieta FS22 (kg/giorno):</label>
+                <input type="text" id="add-anim-diet" class="form-control" placeholder="es. 20kg Fieno">
             </div>
             <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-top:1.5rem;">
                 <button class="nav-btn" onclick="closeModal('modal-animal')">Annulla</button>
@@ -1056,21 +1103,20 @@
         </div>
     </div>
 
-    <!-- MODAL ADD PIAZZA -->
     <div class="modal-overlay" id="modal-piazza">
         <div class="modal-box">
-            <h3 style="color:var(--accent-gold); margin-bottom:1rem;">➕ Registra Nuova Piazza</h3>
+            <h3 style="color:var(--accent-gold); margin-bottom:1rem;">➕ Nuova Piazza</h3>
             <div class="form-group">
-                <label>Nome Piazza / Location:</label>
-                <input type="text" id="add-piazza-name" class="form-control" placeholder="es. Castrignano del Capo Campo Nord">
+                <label>Nome Location / Campo:</label>
+                <input type="text" id="add-piazza-name" class="form-control" placeholder="es. Piazzale Campo Sportivo">
             </div>
             <div class="form-group">
-                <label>Comune della Mappa:</label>
-                <input type="text" id="add-piazza-comune" class="form-control" placeholder="es. Castrignano">
+                <label>Comune:</label>
+                <input type="text" id="add-piazza-comune" class="form-control" placeholder="es. Castrignano del Capo">
             </div>
             <div class="form-group">
-                <label>Capienza Limite Tenda:</label>
-                <input type="number" id="add-piazza-cap" class="form-control" value="400">
+                <label>Capienza Tenda:</label>
+                <input type="number" id="add-piazza-cap" class="form-control" value="350">
             </div>
             <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-top:1.5rem;">
                 <button class="nav-btn" onclick="closeModal('modal-piazza')">Annulla</button>
@@ -1081,27 +1127,33 @@
 
     <!-- JAVASCRIPT ENGINE -->
     <script>
-        // GLOBAL STATE
         let state = {
             cassa: 1359.00,
             currentDayIdx: 0,
             days: ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"],
             weather: "Soleggiato ☀️",
-            activePiazza: "Castrignano del Capo",
-            ticketsSoldToday: 0,
-            prices: { vip: 25.00, tribuna: 18.00, gradinata: 12.00 },
-            currentOrder: { vip: 0, tribuna: 0, gradinata: 0 },
+            activePiazza: "Castrignano",
+            prices: {
+                vip_int: 25.00, vip_rid: 18.00,
+                tribuna_int: 18.00, tribuna_rid: 12.00,
+                gradinata_int: 12.00, gradinata_rid: 8.00
+            },
+            currentOrder: {
+                vip_int: 0, vip_rid: 0,
+                tribuna_int: 0, tribuna_rid: 0,
+                gradinata_int: 0, gradinata_rid: 0
+            },
             currentClient: null,
             animals: [
-                { id: 1, name: "Rajah", species: "Tigre", chip: "IT900293841", status: "Sano", diet: "15kg Carne" },
-                { id: 2, name: "Thunder", species: "Cavallo Arabo", chip: "IT882930192", status: "Sano", diet: "20kg Fieno" }
+                { id: 1, name: "Sultan", species: "Tigre del Bengala", chip: "IT900293841", status: "Sano", diet: "15kg Carne" },
+                { id: 2, name: "Thunder", species: "Cavallo Arabo", chip: "IT882930192", status: "Sano", diet: "20kg Fieno" },
+                { id: 3, name: "Kaiser", species: "Leone Africano", chip: "IT773920193", status: "Sano", diet: "18kg Carne" }
             ],
             piazze: [
-                { id: 1, name: "Piazza Centrale", comune: "Castrignano del Capo", cap: 350, active: true }
+                { id: 1, name: "Piazzale Molo", comune: "Castrignano del Capo", cap: 350, active: true }
             ]
         };
 
-        // INITIALIZATION
         window.onload = function() {
             loadLocalStorage();
             updateUI();
@@ -1113,10 +1165,8 @@
             document.getElementById('head-piazza').innerText = state.activePiazza;
             document.getElementById('head-animali').innerText = state.animals.length;
             document.getElementById('current-day-display').innerText = state.days[state.currentDayIdx];
-            
-            // Daily Limit Calc
-            let baseLimit = 300;
-            if(state.currentDayIdx >= 4) baseLimit = 500; // Weekend
+
+            let baseLimit = state.currentDayIdx >= 4 ? 500 : 300;
             if(state.weather.includes("Pioggia")) baseLimit = Math.floor(baseLimit * 0.7);
             if(state.weather.includes("Temporale")) baseLimit = Math.floor(baseLimit * 0.4);
             document.getElementById('daily-limit-display').innerText = `${baseLimit} Posti`;
@@ -1126,16 +1176,13 @@
             saveLocalStorage();
         }
 
-        // VIEW ROUTING
         function showView(viewId) {
             document.querySelectorAll('.view-panel').forEach(el => el.classList.remove('active'));
             document.getElementById(`view-${viewId}`).classList.add('active');
         }
 
-        // DAY & WEATHER ENGINE
         function nextDay() {
             state.currentDayIdx = (state.currentDayIdx + 1) % 7;
-            state.ticketsSoldToday = 0;
             alert(`🗓️ Giornata avanzata a: ${state.days[state.currentDayIdx]}`);
             updateUI();
         }
@@ -1145,7 +1192,6 @@
             updateUI();
         }
 
-        // CASSA TICKETING SYSTEM
         function changeTicket(type, delta) {
             if(state.currentOrder[type] + delta >= 0) {
                 state.currentOrder[type] += delta;
@@ -1155,9 +1201,10 @@
         }
 
         function calculateOrderTotal() {
-            let total = (state.currentOrder.vip * state.prices.vip) +
-                        (state.currentOrder.tribuna * state.prices.tribuna) +
-                        (state.currentOrder.gradinata * state.prices.gradinata);
+            let total = 0;
+            for(let key in state.currentOrder) {
+                total += state.currentOrder[key] * state.prices[key];
+            }
 
             document.getElementById('order-total-display').innerText = `€ ${total.toFixed(2)}`;
 
@@ -1169,31 +1216,43 @@
             }
         }
 
-        const clientNames = ["Famiglia Rossi", "Marco Bianchi", "Giulia Verdi", "Luca Neri", "Elena Sarti"];
+        const clientNames = ["Famiglia Rossi", "Marco Bianchi", "Giulia Verdi", "Luca Neri", "Elena Sarti", "Roberto Russo"];
+        const sectors = [
+            { id: "vip", name: "Poltrona VIP" },
+            { id: "tribuna", name: "Tribuna" },
+            { id: "gradinata", name: "Gradinata" }
+        ];
+
         function generateClient() {
             let name = clientNames[Math.floor(Math.random() * clientNames.length)];
-            let isCash = Math.random() > 0.4;
+            let sector = sectors[Math.floor(Math.random() * sectors.length)];
+            let numInt = Math.floor(Math.random() * 3) + 1;
+            let numRid = Math.random() > 0.5 ? Math.floor(Math.random() * 2) + 1 : 0;
+            let isCash = Math.random() > 0.3;
             let method = isCash ? "CONTANTI" : "CARTA / POS";
             let cashArr = [20, 50, 100];
             let cash = isCash ? cashArr[Math.floor(Math.random() * cashArr.length)] : 0;
 
-            state.currentClient = { name, method, cash };
-            state.currentOrder = { vip: 0, tribuna: 0, gradinata: 0 };
-            
-            document.getElementById('cnt-vip').innerText = "0";
-            document.getElementById('cnt-tribuna').innerText = "0";
-            document.getElementById('cnt-gradinata').innerText = "0";
+            state.currentClient = { name, sector: sector.name, numInt, numRid, method, cash };
 
-            document.getElementById('client-dialog').innerText = `"${name}: Salve! Vorrei dei biglietti per lo spettacolo, per favore."`;
+            for(let key in state.currentOrder) {
+                state.currentOrder[key] = 0;
+                let el = document.getElementById(`cnt-${key}`);
+                if(el) el.innerText = "0";
+            }
+
+            let speech = `"${name}: Salve! Vorrei ${numInt} Interi${numRid > 0 ? ' e ' + numRid + ' Ridotti (<11 anni)' : ''} in ${sector.name}, per favore."`;
+            document.getElementById('client-dialog').innerText = speech;
             document.getElementById('client-method').innerText = method;
             document.getElementById('client-cash').innerText = isCash ? `€ ${cash.toFixed(2)}` : "N/D";
             calculateOrderTotal();
         }
 
         function processSale() {
-            let total = (state.currentOrder.vip * state.prices.vip) +
-                        (state.currentOrder.tribuna * state.prices.tribuna) +
-                        (state.currentOrder.gradinata * state.prices.gradinata);
+            let total = 0;
+            for(let key in state.currentOrder) {
+                total += state.currentOrder[key] * state.prices[key];
+            }
 
             if(total === 0) {
                 alert("⚠️ Seleziona almeno un biglietto da emettere!");
@@ -1203,24 +1262,25 @@
             state.cassa += total;
             updateUI();
 
-            // Render SIAE Receipt
             let now = new Date();
             document.getElementById('receipt-date').innerText = `DATA: ${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
-            
+
             let html = '';
-            if(state.currentOrder.vip > 0) html += `<div class="siae-item-row"><span>${state.currentOrder.vip}x POLTRONA VIP</span><span>€ ${(state.currentOrder.vip*state.prices.vip).toFixed(2)}</span></div>`;
-            if(state.currentOrder.tribuna > 0) html += `<div class="siae-item-row"><span>${state.currentOrder.tribuna}x TRIBUNA</span><span>€ ${(state.currentOrder.tribuna*state.prices.tribuna).toFixed(2)}</span></div>`;
-            if(state.currentOrder.gradinata > 0) html += `<div class="siae-item-row"><span>${state.currentOrder.gradinata}x GRADINATA</span><span>€ ${(state.currentOrder.gradinata*state.prices.gradinata).toFixed(2)}</span></div>`;
+            if(state.currentOrder.vip_int > 0) html += `<div class="siae-item-row"><span>${state.currentOrder.vip_int}x POLTRONA VIP (INT)</span><span>€ ${(state.currentOrder.vip_int*state.prices.vip_int).toFixed(2)}</span></div>`;
+            if(state.currentOrder.vip_rid > 0) html += `<div class="siae-item-row"><span>${state.currentOrder.vip_rid}x POLTRONA VIP (RID)</span><span>€ ${(state.currentOrder.vip_rid*state.prices.vip_rid).toFixed(2)}</span></div>`;
+            if(state.currentOrder.tribuna_int > 0) html += `<div class="siae-item-row"><span>${state.currentOrder.tribuna_int}x TRIBUNA (INT)</span><span>€ ${(state.currentOrder.tribuna_int*state.prices.tribuna_int).toFixed(2)}</span></div>`;
+            if(state.currentOrder.tribuna_rid > 0) html += `<div class="siae-item-row"><span>${state.currentOrder.tribuna_rid}x TRIBUNA (RID)</span><span>€ ${(state.currentOrder.tribuna_rid*state.prices.tribuna_rid).toFixed(2)}</span></div>`;
+            if(state.currentOrder.gradinata_int > 0) html += `<div class="siae-item-row"><span>${state.currentOrder.gradinata_int}x GRADINATA (INT)</span><span>€ ${(state.currentOrder.gradinata_int*state.prices.gradinata_int).toFixed(2)}</span></div>`;
+            if(state.currentOrder.gradinata_rid > 0) html += `<div class="siae-item-row"><span>${state.currentOrder.gradinata_rid}x GRADINATA (RID)</span><span>€ ${(state.currentOrder.gradinata_rid*state.prices.gradinata_rid).toFixed(2)}</span></div>`;
 
             document.getElementById('receipt-items').innerHTML = html;
             document.getElementById('receipt-total-val').innerText = `€ ${total.toFixed(2)}`;
             document.getElementById('receipt-siae-code').innerText = `SIAE-${Math.floor(Math.random()*89999999 + 10000000)}`;
 
-            alert("✅ Biglietto Fiscale SIAE Emesso con successo!");
+            alert("✅ Biglietto SIAE C1 emesso con successo!");
             generateClient();
         }
 
-        // ANIMAL REGISTRY
         function renderAnimals() {
             let tbody = document.getElementById('animal-table-body');
             tbody.innerHTML = '';
@@ -1256,7 +1316,6 @@
             updateUI();
         }
 
-        // PIAZZE REGISTRY
         function renderPiazze() {
             let tbody = document.getElementById('piazze-table-body');
             tbody.innerHTML = '';
@@ -1289,7 +1348,6 @@
             updateUI();
         }
 
-        // BUROCRACY & ADMIN
         function payTosap() {
             state.cassa -= 150;
             alert("✅ Tassa TOSAP pagata al Comune.");
@@ -1308,17 +1366,15 @@
         function triggerEvent() {
             let events = [
                 "🌧️ Pioggia Improvvisa: Vendita ridotta del 30%",
-                "🩺 Ispezione ASL a Sorpresa: Tutti i libretti veterinari sono stati controllati e approvati!",
-                "🚒 Controllo Vigili del Fuoco: Collaudo ignifugo Tenda SUPERATO!"
+                "🩺 Ispezione ASL a Sorpresa: Tutti i libretti veterinari approvati!",
+                "🚒 Controllo VV.F.: Collaudo ignifugo SUPERATO!"
             ];
             alert(events[Math.floor(Math.random() * events.length)]);
         }
 
-        // MODAL HELPERS
         function openModal(id) { document.getElementById(id).classList.add('active'); }
         function closeModal(id) { document.getElementById(id).classList.remove('active'); }
 
-        // LOCAL STORAGE
         function saveLocalStorage() {
             localStorage.setItem('circo_orfei_state', JSON.stringify(state));
         }
