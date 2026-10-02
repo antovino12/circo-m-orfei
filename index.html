@@ -1,1 +1,1220 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circo M. Orfei di Castrignano Production - System RP</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: '#fef9c3',
+                            300: '#fde047',
+                            400: '#facc15',
+                            500: '#eab308',
+                            600: '#ca8a04',
+                            700: '#a16207',
+                            800: '#854d0e',
+                            glow: '#d4af37'
+                        },
+                        darkbg: '#0b0e14',
+                        cardbg: '#121824',
+                        bordercolor: '#2a364f',
+                        hoverbg: '#1a2332'
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #0b0e14;
+            color: #e2e8f0;
+            font-family: 'Inter', sans-serif;
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #fff3a1 0%, #d4af37 50%, #aa7c11 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #f59e0b 0%, #d4af37 50%, #b45309 100%);
+        }
+        .gold-border-glow {
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.1);
+        }
+        .gold-border-glow:hover {
+            border-color: rgba(212, 175, 55, 0.7);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.25);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0b0e14;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2a364f;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #d4af37;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col bg-darkbg text-slate-200">
 
+    <!-- Top Global Bar -->
+    <header class="bg-cardbg border-b border-bordercolor sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap justify-between items-center gap-4">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                <div class="w-10 h-10 rounded-lg gold-gradient-bg flex items-center justify-center text-slate-950 font-black text-xl shadow-md">
+                    <i class="fa-solid fa-tent"></i>
+                </div>
+                <div>
+                    <h1 class="font-cinzel text-lg md:text-xl font-bold tracking-wider gold-gradient-text">CIRCO M. ORFEI</h1>
+                    <p class="text-xs text-amber-400/80 font-medium tracking-widest uppercase">Castrignano Production RP</p>
+                </div>
+            </div>
+
+            <!-- Quick Metrics Top Bar -->
+            <div class="flex items-center space-x-2 md:space-x-6 text-xs md:text-sm bg-darkbg px-4 py-2 rounded-xl border border-bordercolor">
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-coins text-amber-400"></i>
+                    <span class="text-slate-400 hidden sm:inline">Cassa:</span>
+                    <span id="top-cash" class="font-bold text-amber-400">€0,00</span>
+                </div>
+                <div class="h-4 w-[1px] bg-bordercolor"></div>
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-map-pin text-amber-400"></i>
+                    <span class="text-slate-400 hidden sm:inline">Piazza:</span>
+                    <span id="top-piazza" class="font-semibold text-slate-200">In Attesa</span>
+                </div>
+                <div class="h-4 w-[1px] bg-bordercolor"></div>
+                <div class="flex items-center space-x-2">
+                    <i class="fa-solid fa-[#d4af37] fa-hippo text-amber-400"></i>
+                    <span class="text-slate-400 hidden sm:inline">Animali:</span>
+                    <span id="top-animals-count" class="font-semibold text-slate-200">0</span>
+                </div>
+            </div>
+
+            <!-- Home Button & Clock -->
+            <div class="flex items-center space-x-3">
+                <button onclick="switchTab('home')" class="px-3 py-1.5 bg-bordercolor hover:bg-amber-500 hover:text-slate-950 text-slate-200 rounded-lg text-xs font-semibold transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-house"></i>
+                    <span class="hidden sm:inline">Home</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow max-w-7xl w-full mx-auto p-4 md:p-6">
+        
+        <!-- ================= HOME DASHBOARD (GRANDI QUADRATI) ================= -->
+        <section id="view-home" class="space-y-6">
+            <!-- Banner Informativo Tappa -->
+            <div class="bg-gradient-to-r from-cardbg via-hoverbg to-cardbg p-6 rounded-2xl border border-amber-500/20 shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-amber-400 pointer-events-none">
+                    <i class="fa-solid fa-tent text-9xl"></i>
+                </div>
+                <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                    <div>
+                        <span class="px-2.5 py-1 rounded-full text-xs font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/30 uppercase tracking-wider">Pannello Operativo FS22</span>
+                        <h2 class="text-2xl md:text-3xl font-cinzel font-bold text-slate-100 mt-2">Sistema di Gestione Spettacoli & Burocrazia</h2>
+                        <p class="text-slate-400 text-sm mt-1">Seleziona uno dei moduli sottostanti per iniziare le operazioni RP.</p>
+                    </div>
+                    <div class="flex gap-2">
+                        <button onclick="switchTab('admin')" class="px-4 py-2.5 rounded-xl gold-gradient-bg text-slate-950 font-bold text-sm hover:brightness-110 transition shadow-lg flex items-center gap-2">
+                            <i class="fa-solid fa-crown"></i>
+                            Pannello Direzione Admin
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- QUADRATI DASHBOARD GRID -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Tile 1: Biglietteria POS -->
+                <div onclick="switchTab('pos')" class="group bg-cardbg hover:bg-hoverbg p-6 rounded-2xl border border-bordercolor gold-border-glow cursor-pointer transition-all duration-300 flex flex-col justify-between h-64 relative overflow-hidden">
+                    <div class="flex justify-between items-start">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl group-hover:scale-110 transition">
+                            <i class="fa-solid fa-ticket"></i>
+                        </div>
+                        <span class="text-xs px-2.5 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-full font-semibold">POS Attivo</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold font-cinzel text-slate-100 group-hover:text-amber-400 transition">1. Biglietteria & Cassa POS</h3>
+                        <p class="text-slate-400 text-xs mt-1 leading-relaxed">Emissione biglietti SIAE, calcolo del resto contanti, simulazione clienti RP e ricevute QR code.</p>
+                    </div>
+                    <div class="flex items-center text-amber-400 font-semibold text-xs gap-2 pt-2 border-t border-bordercolor/50">
+                        <span>Apri Biglietteria</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i>
+                    </div>
+                </div>
+
+                <!-- Tile 2: Burocrazia e Permessi -->
+                <div onclick="switchTab('burocrazia')" class="group bg-cardbg hover:bg-hoverbg p-6 rounded-2xl border border-bordercolor gold-border-glow cursor-pointer transition-all duration-300 flex flex-col justify-between h-64 relative overflow-hidden">
+                    <div class="flex justify-between items-start">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl group-hover:scale-110 transition">
+                            <i class="fa-solid fa-file-contract"></i>
+                        </div>
+                        <span id="badge-burocrazia" class="text-xs px-2.5 py-1 bg-amber-500/10 text-amber-400 border border-amber-500/30 rounded-full font-semibold">Pratiche In Regola</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold font-cinzel text-slate-100 group-hover:text-amber-400 transition">2. Burocrazia & Permessi</h3>
+                        <p class="text-slate-400 text-xs mt-1 leading-relaxed">TOSAP, TARI, agibilità VDF, certificazioni sanitarie ASL e licenza di Pubblico Spettacolo.</p>
+                    </div>
+                    <div class="flex items-center text-amber-400 font-semibold text-xs gap-2 pt-2 border-t border-bordercolor/50">
+                        <span>Gestisci Autorizzazioni</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i>
+                    </div>
+                </div>
+
+                <!-- Tile 3: Registro Veterinario -->
+                <div onclick="switchTab('veterinaria')" class="group bg-cardbg hover:bg-hoverbg p-6 rounded-2xl border border-bordercolor gold-border-glow cursor-pointer transition-all duration-300 flex flex-col justify-between h-64 relative overflow-hidden">
+                    <div class="flex justify-between items-start">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl group-hover:scale-110 transition">
+                            <i class="fa-solid fa-paw"></i>
+                        </div>
+                        <span class="text-xs px-2.5 py-1 bg-blue-500/10 text-blue-400 border border-blue-500/30 rounded-full font-semibold">BDN Anagrafe</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold font-cinzel text-slate-100 group-hover:text-amber-400 transition">3. Anagrafica & Veterinaria</h3>
+                        <p class="text-slate-400 text-xs mt-1 leading-relaxed">Passaporti animali, marche auricolari, registro Modello IV elettronico per i trasporti FS22.</p>
+                    </div>
+                    <div class="flex items-center text-amber-400 font-semibold text-xs gap-2 pt-2 border-t border-bordercolor/50">
+                        <span>Registro Animali</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i>
+                    </div>
+                </div>
+
+                <!-- Tile 4: Programmazione Tappe -->
+                <div onclick="switchTab('tappe')" class="group bg-cardbg hover:bg-hoverbg p-6 rounded-2xl border border-bordercolor gold-border-glow cursor-pointer transition-all duration-300 flex flex-col justify-between h-64 relative overflow-hidden">
+                    <div class="flex justify-between items-start">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl group-hover:scale-110 transition">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+                        <span class="text-xs px-2.5 py-1 bg-purple-500/10 text-purple-400 border border-purple-500/30 rounded-full font-semibold">Calendario</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold font-cinzel text-slate-100 group-hover:text-amber-400 transition">4. Programmazione Tappe</h3>
+                        <p class="text-slate-400 text-xs mt-1 leading-relaxed">Pianificazione date della tournée, orari spettacoli, giornate di riposo e promozioni Family Day.</p>
+                    </div>
+                    <div class="flex items-center text-amber-400 font-semibold text-xs gap-2 pt-2 border-t border-bordercolor/50">
+                        <span>Pianifica Tappe</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i>
+                    </div>
+                </div>
+
+                <!-- Tile 5: Gestore Piazze & Mappa -->
+                <div onclick="switchTab('piazze')" class="group bg-cardbg hover:bg-hoverbg p-6 rounded-2xl border border-bordercolor gold-border-glow cursor-pointer transition-all duration-300 flex flex-col justify-between h-64 relative overflow-hidden">
+                    <div class="flex justify-between items-start">
+                        <div class="w-14 h-14 rounded-2xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-2xl group-hover:scale-110 transition">
+                            <i class="fa-solid fa-map-location-dot"></i>
+                        </div>
+                        <span class="text-xs px-2.5 py-1 bg-indigo-500/10 text-indigo-400 border border-indigo-500/30 rounded-full font-semibold">Mappa FS22</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold font-cinzel text-slate-100 group-hover:text-amber-400 transition">5. Gestore Piazze</h3>
+                        <p class="text-slate-400 text-xs mt-1 leading-relaxed">Selezione del comune ospitante e caricamento planimetria / screenshot mappa di gioco FS22.</p>
+                    </div>
+                    <div class="flex items-center text-amber-400 font-semibold text-xs gap-2 pt-2 border-t border-bordercolor/50">
+                        <span>Configura Mappa</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i>
+                    </div>
+                </div>
+
+                <!-- Tile 6: PANNELLO ADMIN (NUOVO) -->
+                <div onclick="switchTab('admin')" class="group bg-gradient-to-br from-amber-500/10 via-cardbg to-amber-950/20 hover:bg-hoverbg p-6 rounded-2xl border border-amber-500/40 gold-border-glow cursor-pointer transition-all duration-300 flex flex-col justify-between h-64 relative overflow-hidden">
+                    <div class="flex justify-between items-start">
+                        <div class="w-14 h-14 rounded-2xl gold-gradient-bg flex items-center justify-center text-slate-950 text-2xl group-hover:scale-110 transition shadow-lg">
+                            <i class="fa-solid fa-crown"></i>
+                        </div>
+                        <span class="text-xs px-2.5 py-1 bg-amber-400 text-slate-950 font-bold rounded-full uppercase tracking-wider">Direzione</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold font-cinzel gold-gradient-text">6. Pannello Admin Generale</h3>
+                        <p class="text-slate-300 text-xs mt-1 leading-relaxed">Pannello completo di controllo: bilancio, simulatore imprevisti live, prezzi biglietti, scorte FS22 e backup.</p>
+                    </div>
+                    <div class="flex items-center text-amber-400 font-bold text-xs gap-2 pt-2 border-t border-amber-500/30">
+                        <span>Pannello Direzione</span>
+                        <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition"></i>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ================= MODULO 1: BIGLIETTERIA & POS ================= -->
+        <section id="view-pos" class="hidden space-y-6">
+            <div class="flex justify-between items-center bg-cardbg p-4 rounded-xl border border-bordercolor">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-ticket text-2xl text-amber-400"></i>
+                    <div>
+                        <h2 class="text-xl font-bold font-cinzel text-slate-100">Biglietteria & Sportello POS SIAE</h2>
+                        <p class="text-xs text-slate-400">Gestione emissione tagliandi fiscali per il pubblico</p>
+                    </div>
+                </div>
+                <button onclick="switchTab('home')" class="text-xs px-3 py-1.5 bg-bordercolor hover:bg-slate-700 text-slate-300 rounded-lg">Indietro</button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Cliente RP Simulato -->
+                <div class="lg:col-span-5 bg-cardbg p-5 rounded-2xl border border-bordercolor flex flex-col justify-between space-y-4">
+                    <div>
+                        <div class="flex justify-between items-center mb-3">
+                            <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                                <i class="fa-solid fa-user-tag"></i> Cliente alla Cassa
+                            </h3>
+                            <button onclick="generateRPClient()" class="text-xs bg-amber-500/20 text-amber-400 border border-amber-500/30 hover:bg-amber-500/30 px-2.5 py-1 rounded-lg font-semibold transition">
+                                <i class="fa-solid fa-rotate"></i> Nuovo Cliente
+                            </button>
+                        </div>
+
+                        <!-- Fumetto Cliente -->
+                        <div class="bg-darkbg p-4 rounded-xl border border-bordercolor relative mb-4">
+                            <p class="text-xs text-slate-400 font-semibold">Richiesta del cliente:</p>
+                            <p id="pos-client-dialogue" class="text-sm text-amber-200 font-medium italic mt-1">"Buonasera! Vorrei 2 Biglietti Tribuna e 1 Gradinata per favore."</p>
+                        </div>
+
+                        <!-- Dettagli Modalità Pagamento Cliente -->
+                        <div class="bg-hoverbg p-3.5 rounded-xl border border-bordercolor space-y-2 text-xs">
+                            <div class="flex justify-between">
+                                <span class="text-slate-400">Metodo Preferito:</span>
+                                <span id="pos-client-payment-type" class="font-bold text-emerald-400">CONTANTI</span>
+                            </div>
+                            <div id="pos-cash-tendered-box" class="flex justify-between">
+                                <span class="text-slate-400">Banconota Fornita:</span>
+                                <span id="pos-client-tendered" class="font-bold text-amber-400">€ 50,00</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Configurazione Vendita Attuale -->
+                    <div class="space-y-3 pt-3 border-t border-bordercolor">
+                        <h4 class="text-xs font-bold text-slate-300 uppercase">Seleziona Biglietti per l'Ordine:</h4>
+                        
+                        <div class="grid grid-cols-3 gap-2">
+                            <div class="bg-darkbg p-2.5 rounded-xl border border-bordercolor text-center">
+                                <span class="block text-[10px] text-slate-400">VIP</span>
+                                <span id="price-tag-vip" class="text-xs font-bold text-amber-400">€ 25.00</span>
+                                <input type="number" id="qty-vip" value="0" min="0" onchange="calculatePosTotal()" class="w-full mt-1 bg-cardbg border border-bordercolor rounded text-center text-xs text-slate-200 py-1">
+                            </div>
+                            <div class="bg-darkbg p-2.5 rounded-xl border border-bordercolor text-center">
+                                <span class="block text-[10px] text-slate-400">TRIBUNA</span>
+                                <span id="price-tag-tribuna" class="text-xs font-bold text-amber-400">€ 18.00</span>
+                                <input type="number" id="qty-tribuna" value="0" min="0" onchange="calculatePosTotal()" class="w-full mt-1 bg-cardbg border border-bordercolor rounded text-center text-xs text-slate-200 py-1">
+                            </div>
+                            <div class="bg-darkbg p-2.5 rounded-xl border border-bordercolor text-center">
+                                <span class="block text-[10px] text-slate-400">GRADINATA</span>
+                                <span id="price-tag-gradinata" class="text-xs font-bold text-amber-400">€ 12.00</span>
+                                <input type="number" id="qty-gradinata" value="0" min="0" onchange="calculatePosTotal()" class="w-full mt-1 bg-cardbg border border-bordercolor rounded text-center text-xs text-slate-200 py-1">
+                            </div>
+                        </div>
+
+                        <!-- Calcolo Totale e Resto -->
+                        <div class="bg-darkbg p-3.5 rounded-xl border border-amber-500/20 space-y-1 text-xs">
+                            <div class="flex justify-between items-center">
+                                <span class="text-slate-300 font-semibold">Totale Calcolato:</span>
+                                <span id="pos-computed-total" class="text-base font-extrabold text-amber-400">€ 0.00</span>
+                            </div>
+                            <div class="flex justify-between items-center text-slate-400">
+                                <span>Resto da dare:</span>
+                                <span id="pos-computed-change" class="font-bold text-emerald-400">€ 0.00</span>
+                            </div>
+                        </div>
+
+                        <button onclick="processTicketSale()" class="w-full py-3 gold-gradient-bg text-slate-950 font-bold rounded-xl text-sm hover:brightness-110 shadow-lg transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-print"></i> Emetti Biglietto SIAE
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Anteprima Tagliando SIAE Fiscale -->
+                <div class="lg:col-span-7 bg-cardbg p-5 rounded-2xl border border-bordercolor space-y-4">
+                    <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-receipt"></i> Ultime Emissioni & Ricevuta SIAE Live
+                    </h3>
+
+                    <div id="receipt-preview-box" class="bg-slate-100 text-slate-900 p-5 rounded-xl font-mono text-xs space-y-2 border-2 border-dashed border-amber-500/50 shadow-inner">
+                        <div class="text-center pb-2 border-b border-slate-300">
+                            <p class="font-black text-sm tracking-wider">CIRCO M. ORFEI</p>
+                            <p class="text-[10px] text-slate-600">CASTRIGNANO PRODUCTION - SIAE REG. #849204</p>
+                            <p class="text-[10px] text-slate-500" id="receipt-date">DATA: --/--/---- --:--</p>
+                        </div>
+                        <div class="py-2 space-y-1" id="receipt-items">
+                            <p class="text-slate-500 text-center italic">Nessun biglietto ancora emesso.</p>
+                        </div>
+                        <div class="pt-2 border-t border-slate-300 space-y-1">
+                            <div class="flex justify-between font-bold text-sm">
+                                <span>TOTALE FISCALE:</span>
+                                <span id="receipt-total">€ 0.00</span>
+                            </div>
+                            <div class="flex justify-between text-[10px] text-slate-600">
+                                <span>CODICE UNIVOCO SIAE:</span>
+                                <span id="receipt-siae-code" class="font-bold">SIAE-00000000</span>
+                            </div>
+                        </div>
+                        <div class="text-center pt-2">
+                            <div class="inline-block bg-white p-2 rounded border border-slate-300">
+                                <i class="fa-solid fa-qrcode text-4xl text-slate-800"></i>
+                            </div>
+                            <p class="text-[9px] text-slate-500 mt-1">BIGLIETTO VALIDO ESCLUSIVAMENTE PER LA DATA DI EMISSIONE</p>
+                        </div>
+                    </div>
+
+                    <!-- Storico Transazioni Rapido -->
+                    <div>
+                        <h4 class="text-xs font-bold text-slate-400 mb-2">Ultimi Tagliandi Emessi:</h4>
+                        <div id="recent-sales-list" class="space-y-1.5 max-h-40 overflow-y-auto custom-scrollbar">
+                            <!-- Inserito dinamicamente -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= MODULO 2: BUROCRAZIA & PERMESSI ================= -->
+        <section id="view-burocrazia" class="hidden space-y-6">
+            <div class="flex justify-between items-center bg-cardbg p-4 rounded-xl border border-bordercolor">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-file-contract text-2xl text-amber-400"></i>
+                    <div>
+                        <h2 class="text-xl font-bold font-cinzel text-slate-100">Burocrazia & Permessi Comunali</h2>
+                        <p class="text-xs text-slate-400">Autorizzazioni TOSAP, ASL, VDF e Stato Licenza Spettacolo</p>
+                    </div>
+                </div>
+                <button onclick="switchTab('home')" class="text-xs px-3 py-1.5 bg-bordercolor hover:bg-slate-700 text-slate-300 rounded-lg">Indietro</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Checklist Licenze -->
+                <div class="bg-cardbg p-5 rounded-2xl border border-bordercolor space-y-4">
+                    <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-clipboard-check"></i> Stato Autorizzazioni Tappa
+                    </h3>
+
+                    <div class="space-y-3" id="bureaucracy-checklist">
+                        <!-- Items inseriti da JS -->
+                    </div>
+                </div>
+
+                <!-- Richiesta Nuova Licenza -->
+                <div class="bg-cardbg p-5 rounded-2xl border border-bordercolor space-y-4">
+                    <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-file-signature"></i> Invio Documentazione Comune / SIAE
+                    </h3>
+
+                    <form onsubmit="handleBureaucracySubmit(event)" class="space-y-3 text-xs">
+                        <div>
+                            <label class="block text-slate-400 mb-1">Ente Destinatario:</label>
+                            <select id="bur-entity" class="w-full bg-darkbg border border-bordercolor rounded-xl p-2.5 text-slate-200">
+                                <option value="Comune">Comune / Ufficio TARI & TOSAP</option>
+                                <option value="Vigili del Fuoco">Vigili del Fuoco (Collaudo Struttura)</option>
+                                <option value="ASL Veterinario">ASL Servizio Veterinario</option>
+                                <option value="SIAE">Ufficio Territoriale SIAE</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">Tipologia Istanza:</label>
+                            <input type="text" id="bur-title" placeholder="Es. Pagamento Suolo Pubblico (TOSAP)" required class="w-full bg-darkbg border border-bordercolor rounded-xl p-2.5 text-slate-200">
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">Costo Pratica / Tassem (€):</label>
+                            <input type="number" id="bur-cost" placeholder="150" required class="w-full bg-darkbg border border-bordercolor rounded-xl p-2.5 text-slate-200">
+                        </div>
+                        <button type="submit" class="w-full py-2.5 gold-gradient-bg text-slate-950 font-bold rounded-xl hover:brightness-110 transition">
+                            Invia Istanza ed Effettua Pagamento
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= MODULO 3: ANAGRAFICA & VETERINARIA ================= -->
+        <section id="view-veterinaria" class="hidden space-y-6">
+            <div class="flex justify-between items-center bg-cardbg p-4 rounded-xl border border-bordercolor">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-paw text-2xl text-amber-400"></i>
+                    <div>
+                        <h2 class="text-xl font-bold font-cinzel text-slate-100">Anagrafica & Veterinaria BDN</h2>
+                        <p class="text-xs text-slate-400">Passaporti animali, modello IV di trasporto e razioni FS22</p>
+                    </div>
+                </div>
+                <button onclick="switchTab('home')" class="text-xs px-3 py-1.5 bg-bordercolor hover:bg-slate-700 text-slate-300 rounded-lg">Indietro</button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Form Aggiunta Animale -->
+                <div class="lg:col-span-4 bg-cardbg p-5 rounded-2xl border border-bordercolor space-y-4">
+                    <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-plus-circle"></i> ➕ Aggiungi Nuovo Animale
+                    </h3>
+
+                    <form onsubmit="handleAddAnimal(event)" class="space-y-3 text-xs">
+                        <div>
+                            <label class="block text-slate-400 mb-1">Nome / Identificativo RP:</label>
+                            <input type="text" id="anim-name" placeholder="Es. King" required class="w-full bg-darkbg border border-bordercolor rounded-xl p-2.5 text-slate-200">
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">Specie / Razza:</label>
+                            <select id="anim-species" class="w-full bg-darkbg border border-bordercolor rounded-xl p-2.5 text-slate-200">
+                                <option value="Leone">Leone / Feline</option>
+                                <option value="Tigre">Tigre Reale</option>
+                                <option value="Elefante">Elefante</option>
+                                <option value="Cavallo">Cavallo / Cavalleria</option>
+                                <option value="Lama">Lama / Alpaca</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">Marca Auricolare / Microchip BDN:</label>
+                            <input type="text" id="anim-chip" placeholder="IT092839102" required class="w-full bg-darkbg border border-bordercolor rounded-xl p-2.5 text-slate-200">
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">Tipo Cibo Preferito FS22:</label>
+                            <select id="anim-food-type" class="w-full bg-darkbg border border-bordercolor rounded-xl p-2.5 text-slate-200">
+                                <option value="Fieno">Fieno / Paglia</option>
+                                <option value="Carote">Carote</option>
+                                <option value="Carne">Carne (Mangime Feline)</option>
+                                <option value="Acqua">Acqua Fresca</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="w-full py-2.5 gold-gradient-bg text-slate-950 font-bold rounded-xl hover:brightness-110 transition">
+                            Registra Animale in BDN
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Lista e Passaporti Animali -->
+                <div class="lg:col-span-8 bg-cardbg p-5 rounded-2xl border border-bordercolor space-y-4">
+                    <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-id-card"></i> Registro Passaporti & Diario Sanitario
+                    </h3>
+
+                    <div id="animal-list-grid" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Schede animali da JS -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= MODULO 4: PROGRAMMAZIONE TAPPE ================= -->
+        <section id="view-tappe" class="hidden space-y-6">
+            <div class="flex justify-between items-center bg-cardbg p-4 rounded-xl border border-bordercolor">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-calendar-days text-2xl text-amber-400"></i>
+                    <div>
+                        <h2 class="text-xl font-bold font-cinzel text-slate-100">Programmazione Tappe & Calendar</h2>
+                        <p class="text-xs text-slate-400">Pianificazione date spettacoli, orari e Family Day</p>
+                    </div>
+                </div>
+                <button onclick="switchTab('home')" class="text-xs px-3 py-1.5 bg-bordercolor hover:bg-slate-700 text-slate-300 rounded-lg">Indietro</button>
+            </div>
+
+            <div class="bg-cardbg p-5 rounded-2xl border border-bordercolor space-y-4">
+                <form onsubmit="handleSaveTourConfig(event)" class="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs">
+                    <div>
+                        <label class="block text-slate-400 mb-1">Data Inizio Tappa:</label>
+                        <input type="date" id="tour-start" class="w-full bg-darkbg border border-bordercolor rounded-xl p-2.5 text-slate-200">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 mb-1">Data Fine Tappa:</label>
+                        <input type="date" id="tour-end" class="w-full bg-darkbg border border-bordercolor rounded-xl p-2.5 text-slate-200">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 mb-1">Giorno di Riposo Sanificazione:</label>
+                        <select id="tour-rest-day" class="w-full bg-darkbg border border-bordercolor rounded-xl p-2.5 text-slate-200">
+                            <option value="Lunedì">Lunedì</option>
+                            <option value="Martedì">Martedì</option>
+                            <option value="Mercoledì">Mercoledì</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 mb-1">Spettacoli al Giorno:</label>
+                        <input type="number" id="tour-shows-count" value="2" min="1" max="4" class="w-full bg-darkbg border border-bordercolor rounded-xl p-2.5 text-slate-200">
+                    </div>
+                    <div>
+                        <label class="block text-slate-400 mb-1">Family Day Promozionale:</label>
+                        <select id="tour-family-day" class="w-full bg-darkbg border border-bordercolor rounded-xl p-2.5 text-slate-200">
+                            <option value="Giovedì">Giovedì (Sconto 30%)</option>
+                            <option value="Venerdì">Venerdì (Sconto 20%)</option>
+                            <option value="Nessuno">Nessuno</option>
+                        </select>
+                    </div>
+                    <div class="flex items-end">
+                        <button type="submit" class="w-full py-2.5 gold-gradient-bg text-slate-950 font-bold rounded-xl hover:brightness-110 transition">
+                            Salva Programmazione
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-6 border-t border-bordercolor pt-4">
+                    <h3 class="text-sm font-bold text-amber-400 mb-3">Riepilogo Calendario Attivo</h3>
+                    <div id="tour-summary-card" class="bg-darkbg p-4 rounded-xl border border-bordercolor text-xs space-y-2">
+                        <!-- JS Content -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= MODULO 5: GESTORE PIAZZE & MAPPA FS22 ================= -->
+        <section id="view-piazze" class="hidden space-y-6">
+            <div class="flex justify-between items-center bg-cardbg p-4 rounded-xl border border-bordercolor">
+                <div class="flex items-center gap-3">
+                    <i class="fa-solid fa-map-location-dot text-2xl text-amber-400"></i>
+                    <div>
+                        <h2 class="text-xl font-bold font-cinzel text-slate-100">Gestore Piazze & Planimetria FS22</h2>
+                        <p class="text-xs text-slate-400">Configura la città corrente e carica la mappa del terreno</p>
+                    </div>
+                </div>
+                <button onclick="switchTab('home')" class="text-xs px-3 py-1.5 bg-bordercolor hover:bg-slate-700 text-slate-300 rounded-lg">Indietro</button>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Selettore Piazza -->
+                <div class="lg:col-span-4 bg-cardbg p-5 rounded-2xl border border-bordercolor space-y-4">
+                    <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider">Imposta Piazza Attuale</h3>
+                    <form onsubmit="handleSaveSquare(event)" class="space-y-3 text-xs">
+                        <div>
+                            <label class="block text-slate-400 mb-1">Nome Città / Comune FS22:</label>
+                            <input type="text" id="square-city-name" placeholder="Es. Castrignano del Capo" required class="w-full bg-darkbg border border-bordercolor rounded-xl p-2.5 text-slate-200">
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">Dimensione Area Chapiteau (m²):</label>
+                            <input type="number" id="square-size" placeholder="2500" required class="w-full bg-darkbg border border-bordercolor rounded-xl p-2.5 text-slate-200">
+                        </div>
+                        <div>
+                            <label class="block text-slate-400 mb-1">URL Immagine Planimetria Mappa (Opzionale):</label>
+                            <input type="text" id="square-map-url" placeholder="https://..." class="w-full bg-darkbg border border-bordercolor rounded-xl p-2.5 text-slate-200">
+                        </div>
+                        <button type="submit" class="w-full py-2.5 gold-gradient-bg text-slate-950 font-bold rounded-xl hover:brightness-110 transition">
+                            Aggiorna Piazza FS22
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Anteprima Mappa FS22 -->
+                <div class="lg:col-span-8 bg-cardbg p-5 rounded-2xl border border-bordercolor space-y-4 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-sm font-bold text-amber-400 uppercase tracking-wider mb-2">Planimetria Mappa Terreno</h3>
+                        <div id="map-display-container" class="w-full h-72 bg-darkbg rounded-xl border border-bordercolor flex items-center justify-center overflow-hidden relative">
+                            <img id="map-preview-img" src="" alt="Planimetria Piazza" class="w-full h-full object-cover hidden">
+                            <div id="map-placeholder" class="text-center p-6">
+                                <i class="fa-solid fa-map text-5xl text-slate-600 mb-2"></i>
+                                <p class="text-xs text-slate-400">Nessuna mappa o screenshot FS22 caricato per questa piazza.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= MODULO 6: PANNELLO GESTIONE ADMIN (NUOVO) ================= -->
+        <section id="view-admin" class="hidden space-y-6">
+            <div class="flex justify-between items-center bg-cardbg p-4 rounded-xl border border-amber-500/30">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl gold-gradient-bg flex items-center justify-center text-slate-950 font-black">
+                        <i class="fa-solid fa-crown text-xl"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-xl font-bold font-cinzel text-slate-100 gold-gradient-text">Pannello Direzione Admin & Controllo Generale</h2>
+                        <p class="text-xs text-slate-400">Gestione totale bilanci, prezzi, scorte FS22, simulatore imprevisti ed override</p>
+                    </div>
+                </div>
+                <button onclick="switchTab('home')" class="text-xs px-3 py-1.5 bg-bordercolor hover:bg-slate-700 text-slate-300 rounded-lg">Indietro</button>
+            </div>
+
+            <!-- Tab Admin Sub-Bar -->
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                
+                <!-- Financial Control Card -->
+                <div class="bg-cardbg p-5 rounded-2xl border border-bordercolor space-y-3">
+                    <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-wallet"></i> Controllo Cassa & Bilancio Netto
+                    </h3>
+                    <div class="bg-darkbg p-3 rounded-xl space-y-1">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-400">Incassi Lordi:</span>
+                            <span id="admin-gross-income" class="text-emerald-400 font-bold">€ 0.00</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-400">Tasse Pagate:</span>
+                            <span id="admin-bureau-costs" class="text-red-400 font-bold">€ 0.00</span>
+                        </div>
+                        <div class="pt-2 border-t border-bordercolor flex justify-between text-sm font-extrabold">
+                            <span class="text-slate-200">Netto Cassa:</span>
+                            <span id="admin-net-balance" class="text-amber-400">€ 0.00</span>
+                        </div>
+                    </div>
+                    <button onclick="adminAddManualFunds()" class="w-full py-2 bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 rounded-xl text-xs font-semibold hover:bg-emerald-500/20 transition">
+                        + Deposito / Iniezione Cassa RP
+                    </button>
+                </div>
+
+                <!-- Price Management -->
+                <div class="bg-cardbg p-5 rounded-2xl border border-bordercolor space-y-3">
+                    <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-tags"></i> Modificatione Prezzi Biglietti
+                    </h3>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-300">VIP (€):</span>
+                            <input type="number" id="admin-price-vip" value="25" class="w-20 bg-darkbg border border-bordercolor rounded p-1 text-center font-bold text-amber-400">
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-300">Tribuna (€):</span>
+                            <input type="number" id="admin-price-tribuna" value="18" class="w-20 bg-darkbg border border-bordercolor rounded p-1 text-center font-bold text-amber-400">
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-300">Gradinata (€):</span>
+                            <input type="number" id="admin-price-gradinata" value="12" class="w-20 bg-darkbg border border-bordercolor rounded p-1 text-center font-bold text-amber-400">
+                        </div>
+                    </div>
+                    <button onclick="adminSavePrices()" class="w-full py-2 gold-gradient-bg text-slate-950 rounded-xl text-xs font-bold hover:brightness-110 transition">
+                        Aggiorna Prezzi
+                    </button>
+                </div>
+
+                <!-- FS22 Livestock & Feeding Supply -->
+                <div class="bg-cardbg p-5 rounded-2xl border border-bordercolor space-y-3">
+                    <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-wheat-awn"></i> Scorte Alimentari FS22
+                    </h3>
+                    <div class="space-y-2 text-xs">
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">Balle Fieno/Paglia:</span>
+                            <span id="feed-bales" class="font-bold text-slate-200">24 Balle</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">Carote (Litri):</span>
+                            <span id="feed-carrots" class="font-bold text-slate-200">1,500 L</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-400">Acqua Cisterna:</span>
+                            <span id="feed-water" class="font-bold text-emerald-400">100% OK</span>
+                        </div>
+                    </div>
+                    <button onclick="adminRestockFeed()" class="w-full py-2 bg-blue-500/10 text-blue-400 border border-blue-500/30 rounded-xl text-xs font-semibold hover:bg-blue-500/20 transition">
+                        <i class="fa-solid fa-truck-ramp-box"></i> Rifornisci Scorte FS22
+                    </button>
+                </div>
+
+                <!-- Data & Backup Tools -->
+                <div class="bg-cardbg p-5 rounded-2xl border border-bordercolor space-y-3">
+                    <h3 class="text-xs font-bold text-amber-400 uppercase tracking-wider flex items-center gap-2">
+                        <i class="fa-solid fa-database"></i> Backup & Reset Sistema
+                    </h3>
+                    <p class="text-[11px] text-slate-400 leading-normal">
+                        Reset o esportazione/importazione completa dei dati salvati nel browser.
+                    </p>
+                    <div class="flex gap-2">
+                        <button onclick="adminExportData()" class="flex-1 py-2 bg-bordercolor text-slate-200 rounded-xl text-xs font-semibold hover:bg-slate-700 transition">
+                            Export
+                        </button>
+                        <button onclick="adminResetData()" class="flex-1 py-2 bg-red-500/20 text-red-400 border border-red-500/30 rounded-xl text-xs font-semibold hover:bg-red-500/30 transition">
+                            Reset
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- SIMULATORE IMPREVISTI LIVE ROLEPLAY -->
+            <div class="bg-cardbg p-6 rounded-2xl border border-amber-500/30 space-y-4">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <h3 class="text-base font-bold font-cinzel text-slate-100 gold-gradient-text">
+                            <i class="fa-solid fa-bolt text-amber-400"></i> Simulatore Imprevisti & Eventi Live RP
+                        </h3>
+                        <p class="text-xs text-slate-400">Genera situazioni di gioco per arricchire l'esperienza Roleplay su FS22</p>
+                    </div>
+                    <button onclick="triggerRPRandomEvent()" class="px-4 py-2 gold-gradient-bg text-slate-950 font-bold rounded-xl text-xs hover:brightness-110 shadow-lg transition">
+                        <i class="fa-solid fa-dice"></i> Genera Imprevisto Casuale
+                    </button>
+                </div>
+
+                <!-- Output Evento -->
+                <div id="rp-event-output" class="bg-darkbg p-5 rounded-xl border border-bordercolor hidden space-y-2">
+                    <div class="flex items-center gap-2 text-amber-400 font-bold text-sm">
+                        <i id="rp-event-icon" class="fa-solid fa-triangle-exclamation"></i>
+                        <span id="rp-event-title">CONTROLLO ISPEZIONE ASL A SORPRESA</span>
+                    </div>
+                    <p id="rp-event-desc" class="text-xs text-slate-300 leading-relaxed">
+                        Un'unità veterinaria ASL è giunta sul piazzale per verificare le marcature auricolari del circo.
+                    </p>
+                    <div class="pt-2 flex gap-3 text-xs" id="rp-event-actions">
+                        <!-- Bottoni azione evento -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // GLOBAL APP STATE
+        let appState = {
+            cash: 1250.00,
+            grossIncome: 1250.00,
+            bureauCosts: 0.00,
+            piazza: "Castrignano del Capo",
+            piazzaSize: 2500,
+            piazzaMapUrl: "",
+            prices: { vip: 25, tribuna: 18, gradinata: 12 },
+            animals: [
+                { id: 1, name: "Simba", species: "Leone", chip: "IT092839101", food: "Carne", health: "Ottima" },
+                { id: 2, name: "Kira", species: "Tigre", chip: "IT092839102", food: "Carne", health: "Ottima" },
+                { id: 3, name: "Dumbo", species: "Elefante", chip: "IT092839103", food: "Fieno", health: "Ottima" }
+            ],
+            bureaucracy: [
+                { id: 1, title: "Autorizzazione TOSAP Suolo Pubblico", entity: "Comune", paid: true, cost: 200 },
+                { id: 2, title: "Certificato Idoneità Struttura VDF", entity: "Vigili del Fuoco", paid: true, cost: 150 },
+                { id: 3, title: "Nulla Osta Veterinario ASL", entity: "ASL", paid: true, cost: 100 }
+            ],
+            recentSales: [],
+            tourConfig: {
+                start: "2026-10-01",
+                end: "2026-10-15",
+                restDay: "Lunedì",
+                showsCount: 2,
+                familyDay: "Giovedì"
+            },
+            feed: { bales: 24, carrots: 1500, water: "100%" }
+        };
+
+        // CURRENT CLIENT GENERATED IN POS
+        let currentPosClient = null;
+
+        // INITIALIZATION ON WINDOW LOAD
+        window.onload = function() {
+            loadSavedData();
+            updateGlobalUI();
+            generateRPClient();
+            renderBureaucracy();
+            renderAnimals();
+            renderTourSummary();
+        };
+
+        // NAVIGATION TABS
+        function switchTab(tabId) {
+            const views = ['home', 'pos', 'burocrazia', 'veterinaria', 'tappe', 'piazze', 'admin'];
+            views.forEach(v => {
+                const el = document.getElementById(`view-${v}`);
+                if(el) el.classList.add('hidden');
+            });
+            const selected = document.getElementById(`view-${tabId}`);
+            if(selected) selected.classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // SAVE & LOAD LOCAL STORAGE
+        function saveData() {
+            localStorage.setItem('circo_orfei_data_v2', JSON.stringify(appState));
+            updateGlobalUI();
+        }
+
+        function loadSavedData() {
+            const saved = localStorage.getItem('circo_orfei_data_v2');
+            if(saved) {
+                try {
+                    appState = Object.assign({}, appState, JSON.parse(saved));
+                } catch(e) { console.error("Error loading saved data", e); }
+            }
+        }
+
+        // UPDATE GLOBAL TOP BAR METRICS
+        function updateGlobalUI() {
+            const netBalance = appState.grossIncome - appState.bureauCosts;
+            document.getElementById('top-cash').innerText = `€ ${netBalance.toFixed(2)}`;
+            document.getElementById('top-piazza').innerText = appState.piazza || 'Non Impostata';
+            document.getElementById('top-animals-count').innerText = appState.animals.length;
+
+            // Admin metrics
+            document.getElementById('admin-gross-income').innerText = `€ ${appState.grossIncome.toFixed(2)}`;
+            document.getElementById('admin-bureau-costs').innerText = `€ ${appState.bureauCosts.toFixed(2)}`;
+            document.getElementById('admin-net-balance').innerText = `€ ${netBalance.toFixed(2)}`;
+
+            // Admin prices inputs
+            document.getElementById('admin-price-vip').value = appState.prices.vip;
+            document.getElementById('admin-price-tribuna').value = appState.prices.tribuna;
+            document.getElementById('admin-price-gradinata').value = appState.prices.gradinata;
+
+            // POS Price tags
+            document.getElementById('price-tag-vip').innerText = `€ ${appState.prices.vip.toFixed(2)}`;
+            document.getElementById('price-tag-tribuna').innerText = `€ ${appState.prices.tribuna.toFixed(2)}`;
+            document.getElementById('price-tag-gradinata').innerText = `€ ${appState.prices.gradinata.toFixed(2)}`;
+
+            // Feed
+            document.getElementById('feed-bales').innerText = `${appState.feed.bales} Balle`;
+            document.getElementById('feed-carrots').innerText = `${appState.feed.carrots} L`;
+            document.getElementById('feed-water').innerText = appState.feed.water;
+        }
+
+        // ================= POS TICKETING LOGIC =================
+        function generateRPClient() {
+            const names = ["Marco G.", "Elena R.", "Famiglia Rossi", "Luigi B.", "Sofia V.", "Giuseppe T."];
+            const name = names[Math.floor(Math.random() * names.length)];
+            
+            const reqVip = Math.floor(Math.random() * 2);
+            const reqTribuna = Math.floor(Math.random() * 3);
+            const reqGradinata = Math.floor(Math.random() * 2);
+
+            const isCash = Math.random() > 0.3;
+            const paymentType = isCash ? "CONTANTI" : "CARTA / POS";
+            
+            let totalNeeded = (reqVip * appState.prices.vip) + (reqTribuna * appState.prices.tribuna) + (reqGradinata * appState.prices.gradinata);
+            if(totalNeeded === 0) totalNeeded = appState.prices.tribuna;
+
+            const bankNotes = [20, 50, 100];
+            let tendered = totalNeeded;
+            if(isCash) {
+                tendered = bankNotes.find(b => b >= totalNeeded) || totalNeeded + 20;
+            }
+
+            currentPosClient = {
+                name,
+                reqVip,
+                reqTribuna,
+                reqGradinata,
+                paymentType,
+                tendered,
+                totalNeeded
+            };
+
+            document.getElementById('pos-client-dialogue').innerText = `"${name}: Salve! Vorrei ${reqVip > 0 ? reqVip + ' VIP, ' : ''}${reqTribuna > 0 ? reqTribuna + ' Tribuna, ' : ''}${reqGradinata > 0 ? reqGradinata + ' Gradinata' : ''} per favore."`;
+            document.getElementById('pos-client-payment-type').innerText = paymentType;
+            
+            const cashBox = document.getElementById('pos-cash-tendered-box');
+            if(isCash) {
+                cashBox.style.display = 'flex';
+                document.getElementById('pos-client-tendered').innerText = `€ ${tendered.toFixed(2)}`;
+            } else {
+                cashBox.style.display = 'none';
+            }
+
+            // Pre-fill inputs
+            document.getElementById('qty-vip').value = reqVip;
+            document.getElementById('qty-tribuna').value = reqTribuna;
+            document.getElementById('qty-gradinata').value = reqGradinata;
+
+            calculatePosTotal();
+        }
+
+        function calculatePosTotal() {
+            const qtyVip = parseInt(document.getElementById('qty-vip').value) || 0;
+            const qtyTribuna = parseInt(document.getElementById('qty-tribuna').value) || 0;
+            const qtyGradinata = parseInt(document.getElementById('qty-gradinata').value) || 0;
+
+            const total = (qtyVip * appState.prices.vip) + (qtyTribuna * appState.prices.tribuna) + (qtyGradinata * appState.prices.gradinata);
+            document.getElementById('pos-computed-total').innerText = `€ ${total.toFixed(2)}`;
+
+            if(currentPosClient && currentPosClient.paymentType === "CONTANTI") {
+                const change = currentPosClient.tendered - total;
+                document.getElementById('pos-computed-change').innerText = `€ ${change >= 0 ? change.toFixed(2) : '0.00 (Insufficiente)'}`;
+            } else {
+                document.getElementById('pos-computed-change').innerText = `€ 0.00`;
+            }
+        }
+
+        function processTicketSale() {
+            const qtyVip = parseInt(document.getElementById('qty-vip').value) || 0;
+            const qtyTribuna = parseInt(document.getElementById('qty-tribuna').value) || 0;
+            const qtyGradinata = parseInt(document.getElementById('qty-gradinata').value) || 0;
+
+            const total = (qtyVip * appState.prices.vip) + (qtyTribuna * appState.prices.tribuna) + (qtyGradinata * appState.prices.gradinata);
+
+            if(total <= 0) {
+                alert("Seleziona almeno un biglietto da vendere.");
+                return;
+            }
+
+            const siaeCode = "SIAE-" + Math.floor(10000000 + Math.random() * 90000000);
+            const now = new Date();
+            const dateStr = now.toLocaleDateString('it-IT') + " " + now.toLocaleTimeString('it-IT', {hour: '2-digit', minute:'2-digit'});
+
+            // Add to gross income
+            appState.grossIncome += total;
+            
+            const saleRecord = {
+                id: Date.now(),
+                date: dateStr,
+                total,
+                siaeCode,
+                items: `VIP: ${qtyVip}, Tribuna: ${qtyTribuna}, Gradinata: ${qtyGradinata}`
+            };
+
+            appState.recentSales.unshift(saleRecord);
+            saveData();
+
+            // Update SIAE Receipt Visual
+            document.getElementById('receipt-date').innerText = `DATA: ${dateStr}`;
+            document.getElementById('receipt-total').innerText = `€ ${total.toFixed(2)}`;
+            document.getElementById('receipt-siae-code').innerText = siaeCode;
+
+            let itemsHtml = '';
+            if(qtyVip > 0) itemsHtml += `<div class="flex justify-between"><span>${qtyVip}x B. VIP</span><span>€ ${(qtyVip * appState.prices.vip).toFixed(2)}</span></div>`;
+            if(qtyTribuna > 0) itemsHtml += `<div class="flex justify-between"><span>${qtyTribuna}x B. TRIBUNA</span><span>€ ${(qtyTribuna * appState.prices.tribuna).toFixed(2)}</span></div>`;
+            if(qtyGradinata > 0) itemsHtml += `<div class="flex justify-between"><span>${qtyGradinata}x B. GRADINATA</span><span>€ ${(qtyGradinata * appState.prices.gradinata).toFixed(2)}</span></div>`;
+            
+            document.getElementById('receipt-items').innerHTML = itemsHtml;
+
+            renderRecentSales();
+            generateRPClient();
+        }
+
+        function renderRecentSales() {
+            const container = document.getElementById('recent-sales-list');
+            if(!container) return;
+
+            if(appState.recentSales.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-500 italic">Nessuna vendita effettuata.</p>`;
+                return;
+            }
+
+            container.innerHTML = appState.recentSales.slice(0, 5).map(s => `
+                <div class="bg-darkbg p-2 rounded-lg border border-bordercolor flex justify-between items-center text-xs">
+                    <div>
+                        <span class="font-bold text-amber-400">€ ${s.total.toFixed(2)}</span>
+                        <span class="text-slate-400 text-[10px] ml-2">${s.items}</span>
+                    </div>
+                    <span class="text-[10px] text-slate-500">${s.siaeCode}</span>
+                </div>
+            `).join('');
+        }
+
+        // ================= BUROCRAZIA LOGIC =================
+        function renderBureaucracy() {
+            const container = document.getElementById('bureaucracy-checklist');
+            if(!container) return;
+
+            container.innerHTML = appState.bureaucracy.map(b => `
+                <div class="bg-darkbg p-3.5 rounded-xl border border-bordercolor flex justify-between items-center text-xs">
+                    <div>
+                        <span class="block font-bold text-slate-200">${b.title}</span>
+                        <span class="text-[10px] text-slate-400">Ente: ${b.entity} | Costo: € ${b.cost}</span>
+                    </div>
+                    <span class="px-2.5 py-1 rounded-full text-[10px] font-bold ${b.paid ? 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/30' : 'bg-red-500/10 text-red-400 border border-red-500/30'}">
+                        ${b.paid ? 'APPROVATO / PAGATO' : 'IN ATTESA'}
+                    </span>
+                </div>
+            `).join('');
+        }
+
+        function handleBureaucracySubmit(e) {
+            e.preventDefault();
+            const entity = document.getElementById('bur-entity').value;
+            const title = document.getElementById('bur-title').value;
+            const cost = parseFloat(document.getElementById('bur-cost').value) || 0;
+
+            appState.bureaucracy.push({
+                id: Date.now(),
+                title,
+                entity,
+                cost,
+                paid: true
+            });
+
+            appState.bureauCosts += cost;
+            saveData();
+            renderBureaucracy();
+            document.getElementById('bur-title').value = '';
+            document.getElementById('bur-cost').value = '';
+        }
+
+        // ================= VETERINARIA LOGIC =================
+        function renderAnimals() {
+            const container = document.getElementById('animal-list-grid');
+            if(!container) return;
+
+            container.innerHTML = appState.animals.map(a => `
+                <div class="bg-darkbg p-4 rounded-xl border border-bordercolor space-y-2">
+                    <div class="flex justify-between items-start">
+                        <h4 class="font-bold text-amber-400 text-sm">${a.name}</h4>
+                        <span class="text-[10px] px-2 py-0.5 bg-blue-500/10 text-blue-400 rounded border border-blue-500/30 font-semibold">${a.species}</span>
+                    </div>
+                    <div class="text-[11px] text-slate-400 space-y-1">
+                        <p><strong class="text-slate-300">BDN / Chip:</strong> ${a.chip}</p>
+                        <p><strong class="text-slate-300">Razione Cibo FS22:</strong> ${a.food}</p>
+                        <p><strong class="text-slate-300">Stato Sanitario:</strong> <span class="text-emerald-400 font-semibold">${a.health}</span></p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function handleAddAnimal(e) {
+            e.preventDefault();
+            const name = document.getElementById('anim-name').value;
+            const species = document.getElementById('anim-species').value;
+            const chip = document.getElementById('anim-chip').value;
+            const food = document.getElementById('anim-food-type').value;
+
+            appState.animals.push({
+                id: Date.now(),
+                name,
+                species,
+                chip,
+                food,
+                health: "Ottima"
+            });
+
+            saveData();
+            renderAnimals();
+            document.getElementById('anim-name').value = '';
+            document.getElementById('anim-chip').value = '';
+        }
+
+        // ================= TAPPE LOGIC =================
+        function handleSaveTourConfig(e) {
+            e.preventDefault();
+            appState.tourConfig.start = document.getElementById('tour-start').value;
+            appState.tourConfig.end = document.getElementById('tour-end').value;
+            appState.tourConfig.restDay = document.getElementById('tour-rest-day').value;
+            appState.tourConfig.showsCount = document.getElementById('tour-shows-count').value;
+            appState.tourConfig.familyDay = document.getElementById('tour-family-day').value;
+
+            saveData();
+            renderTourSummary();
+        }
+
+        function renderTourSummary() {
+            const container = document.getElementById('tour-summary-card');
+            if(!container) return;
+
+            const tc = appState.tourConfig;
+            container.innerHTML = `
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+                    <div><span class="text-slate-400">Date Tappa:</span> <p class="font-bold text-slate-200">${tc.start || 'Non Impostata'} al ${tc.end || 'Non Impostata'}</p></div>
+                    <div><span class="text-slate-400">Giorno Riposo:</span> <p class="font-bold text-amber-400">${tc.restDay}</p></div>
+                    <div><span class="text-slate-400">Spettacoli / Giorno:</span> <p class="font-bold text-slate-200">${tc.showsCount}</p></div>
+                    <div><span class="text-slate-400">Promozione:</span> <p class="font-bold text-emerald-400">${tc.familyDay}</p></div>
+                </div>
+            `;
+        }
+
+        // ================= PIAZZE LOGIC =================
+        function handleSaveSquare(e) {
+            e.preventDefault();
+            appState.piazza = document.getElementById('square-city-name').value;
+            appState.piazzaSize = document.getElementById('square-size').value;
+            appState.piazzaMapUrl = document.getElementById('square-map-url').value;
+
+            saveData();
+            updateSquareMapPreview();
+        }
+
+        function updateSquareMapPreview() {
+            const img = document.getElementById('map-preview-img');
+            const placeholder = document.getElementById('map-placeholder');
+
+            if(appState.piazzaMapUrl) {
+                img.src = appState.piazzaMapUrl;
+                img.classList.remove('hidden');
+                placeholder.classList.add('hidden');
+            } else {
+                img.classList.add('hidden');
+                placeholder.classList.remove('hidden');
+            }
+        }
+
+        // ================= ADMIN PANEL CONTROLS =================
+        function adminSavePrices() {
+            const vip = parseFloat(document.getElementById('admin-price-vip').value) || 25;
+            const tribuna = parseFloat(document.getElementById('admin-price-tribuna').value) || 18;
+            const gradinata = parseFloat(document.getElementById('admin-price-gradinata').value) || 12;
+
+            appState.prices = { vip, tribuna, gradinata };
+            saveData();
+            alert("Prezzi aggiornati con successo!");
+        }
+
+        function adminAddManualFunds() {
+            const amount = prompt("Inserisci l'importo da aggiungere alla Cassa RP (€):", "500");
+            if(amount && !isNaN(amount)) {
+                appState.grossIncome += parseFloat(amount);
+                saveData();
+            }
+        }
+
+        function adminRestockFeed() {
+            appState.feed = { bales: 50, carrots: 3000, water: "100%" };
+            saveData();
+            alert("Scorte di fieno, carote e acqua ripristinate a pieno carico per FS22!");
+        }
+
+        function adminResetData() {
+            if(confirm("Sei sicuro di voler resettare tutti i dati del circo? L'operazione non è reversibile.")) {
+                localStorage.removeItem('circo_orfei_data_v2');
+                location.reload();
+            }
+        }
+
+        function adminExportData() {
+            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(appState));
+            const downloadAnchor = document.createElement('a');
+            downloadAnchor.setAttribute("href", dataStr);
+            downloadAnchor.setAttribute("download", `Circo_Orfei_Backup_${Date.now()}.json`);
+            document.body.appendChild(downloadAnchor);
+            downloadAnchor.click();
+            downloadAnchor.remove();
+        }
+
+        // ================= SIMULATORE IMPREVISTI LIVE RP =================
+        function triggerRPRandomEvent() {
+            const events = [
+                {
+                    title: "CONTROLLO VIGILI DEL FUOCO",
+                    desc: "La squadra dei VDF sta controllando gli uscite di sicurezza e gli estintori del tendone chapiteau.",
+                    icon: "fa-fire-extinguisher",
+                    actions: ["<button onclick='resolveEvent(true, 100)' class='px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded border border-emerald-500/30'>Mostra Certificati (-€100)</button>"]
+                },
+                {
+                    title: "GUASTO GENERATORE ELETTRICO FS22",
+                    desc: "Il generatore principale di luce ha subito un guasto prima dello spettacolo serale.",
+                    icon: "fa-bolt-lightning",
+                    actions: ["<button onclick='resolveEvent(true, 150)' class='px-3 py-1 bg-amber-500/20 text-amber-400 rounded border border-amber-500/30'>Chiama Meccanico RP (-€150)</button>"]
+                },
+                {
+                    title: "ISPEZIONE ASL VETERINARIA",
+                    desc: "Un controllo sul benessere degli animali richiede la verifica del Modello IV di Trasporto.",
+                    icon: "fa-stethoscope",
+                    actions: ["<button onclick='resolveEvent(true, 0)' class='px-3 py-1 bg-emerald-500/20 text-emerald-400 rounded border border-emerald-500/30'>Mostra Registro Passaporti BDN OK</button>"]
+                }
+            ];
+
+            const ev = events[Math.floor(Math.random() * events.length)];
+            const output = document.getElementById('rp-event-output');
+            
+            document.getElementById('rp-event-title').innerText = ev.title;
+            document.getElementById('rp-event-desc').innerText = ev.desc;
+            document.getElementById('rp-event-icon').className = `fa-solid ${ev.icon}`;
+            document.getElementById('rp-event-actions').innerHTML = ev.actions.join('');
+
+            output.classList.remove('hidden');
+        }
+
+        function resolveEvent(success, cost) {
+            if(cost > 0) {
+                appState.bureauCosts += cost;
+                saveData();
+            }
+            document.getElementById('rp-event-output').classList.add('hidden');
+            alert(success ? "Imprevisto RP risolto con successo!" : "Evento registrato.");
+        }
+    </script>
+</body>
+</html>
