@@ -440,26 +440,28 @@
             background: var(--bg-card-hover);
             border: 1px solid var(--border-color);
             color: #fff;
-            width: 26px;
-            height: 26px;
+            width: 28px;
+            height: 28px;
             border-radius: 6px;
             font-weight: 800;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
+            user-select: none;
         }
 
         .btn-ctrl:hover {
             border-color: var(--accent-gold);
             color: var(--accent-gold);
+            background: var(--border-color);
         }
 
         .count-val {
             font-size: 0.9rem;
             font-weight: 700;
             font-family: 'JetBrains Mono', monospace;
-            width: 20px;
+            width: 24px;
             text-align: center;
         }
 
@@ -494,7 +496,7 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
-        /* REALISTIC SIAE TICKET (Matching User Screenshot Style) */
+        /* REALISTIC SIAE TICKET */
         .siae-receipt-wrapper {
             background: #000;
             padding: 1rem;
@@ -618,8 +620,6 @@
         }
 
         .status-tag.ok { background: rgba(34, 197, 94, 0.15); color: var(--success); border: 1px solid var(--success); }
-        .status-tag.warn { background: rgba(234, 179, 8, 0.15); color: var(--warning); border: 1px solid var(--warning); }
-        .status-tag.danger { background: rgba(239, 68, 68, 0.15); color: var(--danger); border: 1px solid var(--danger); }
 
         /* FORMS & MODALS */
         .form-group {
@@ -711,7 +711,7 @@
                     <div class="day-item">
                         <label>Meteo Attuale (FS22)</label>
                         <select id="weather-select" class="form-control" onchange="updateWeather()">
-                            <option value="Soleggiato ☀️">Soleggiato ☀️ (+20% Affluenza)</option>
+                            <option value="Soleggiato ☀️">Soleggiato ☀️️ (+20% Affluenza)</option>
                             <option value="Nuvoloso ⛅">Nuvoloso ⛅ (Standard)</option>
                             <option value="Pioggia 🌧️">Pioggia 🌧️ (-30% Affluenza)</option>
                             <option value="Temporale 🌩️">Temporale 🌩️ (-60% Affluenza)</option>
@@ -818,9 +818,9 @@
                             <div style="display:flex; align-items:center;">
                                 <span class="tariff-price" id="pr-vip-int">€ 25.00</span>
                                 <div class="ticket-controls">
-                                    <button class="btn-ctrl" onclick="changeTicket('vip_int', -1)">-</button>
+                                    <button type="button" class="btn-ctrl" onclick="changeTicket('vip_int', -1)">-</button>
                                     <span class="count-val" id="cnt-vip_int">0</span>
-                                    <button class="btn-ctrl" onclick="changeTicket('vip_int', 1)">+</button>
+                                    <button type="button" class="btn-ctrl" onclick="changeTicket('vip_int', 1)">+</button>
                                 </div>
                             </div>
                         </div>
@@ -829,9 +829,9 @@
                             <div style="display:flex; align-items:center;">
                                 <span class="tariff-price" id="pr-vip-rid">€ 18.00</span>
                                 <div class="ticket-controls">
-                                    <button class="btn-ctrl" onclick="changeTicket('vip_rid', -1)">-</button>
+                                    <button type="button" class="btn-ctrl" onclick="changeTicket('vip_rid', -1)">-</button>
                                     <span class="count-val" id="cnt-vip_rid">0</span>
-                                    <button class="btn-ctrl" onclick="changeTicket('vip_rid', 1)">+</button>
+                                    <button type="button" class="btn-ctrl" onclick="changeTicket('vip_rid', 1)">+</button>
                                 </div>
                             </div>
                         </div>
@@ -844,9 +844,9 @@
                             <div style="display:flex; align-items:center;">
                                 <span class="tariff-price" id="pr-tribuna-int">€ 18.00</span>
                                 <div class="ticket-controls">
-                                    <button class="btn-ctrl" onclick="changeTicket('tribuna_int', -1)">-</button>
+                                    <button type="button" class="btn-ctrl" onclick="changeTicket('tribuna_int', -1)">-</button>
                                     <span class="count-val" id="cnt-tribuna_int">0</span>
-                                    <button class="btn-ctrl" onclick="changeTicket('tribuna_int', 1)">+</button>
+                                    <button type="button" class="btn-ctrl" onclick="changeTicket('tribuna_int', 1)">+</button>
                                 </div>
                             </div>
                         </div>
@@ -855,9 +855,9 @@
                             <div style="display:flex; align-items:center;">
                                 <span class="tariff-price" id="pr-tribuna-rid">€ 12.00</span>
                                 <div class="ticket-controls">
-                                    <button class="btn-ctrl" onclick="changeTicket('tribuna_rid', -1)">-</button>
+                                    <button type="button" class="btn-ctrl" onclick="changeTicket('tribuna_rid', -1)">-</button>
                                     <span class="count-val" id="cnt-tribuna_rid">0</span>
-                                    <button class="btn-ctrl" onclick="changeTicket('tribuna_rid', 1)">+</button>
+                                    <button type="button" class="btn-ctrl" onclick="changeTicket('tribuna_rid', 1)">+</button>
                                 </div>
                             </div>
                         </div>
@@ -870,9 +870,9 @@
                             <div style="display:flex; align-items:center;">
                                 <span class="tariff-price" id="pr-gradinata-int">€ 12.00</span>
                                 <div class="ticket-controls">
-                                    <button class="btn-ctrl" onclick="changeTicket('gradinata_int', -1)">-</button>
+                                    <button type="button" class="btn-ctrl" onclick="changeTicket('gradinata_int', -1)">-</button>
                                     <span class="count-val" id="cnt-gradinata_int">0</span>
-                                    <button class="btn-ctrl" onclick="changeTicket('gradinata_int', 1)">+</button>
+                                    <button type="button" class="btn-ctrl" onclick="changeTicket('gradinata_int', 1)">+</button>
                                 </div>
                             </div>
                         </div>
@@ -881,9 +881,9 @@
                             <div style="display:flex; align-items:center;">
                                 <span class="tariff-price" id="pr-gradinata-rid">€ 8.00</span>
                                 <div class="ticket-controls">
-                                    <button class="btn-ctrl" onclick="changeTicket('gradinata_rid', -1)">-</button>
+                                    <button type="button" class="btn-ctrl" onclick="changeTicket('gradinata_rid', -1)">-</button>
                                     <span class="count-val" id="cnt-gradinata_rid">0</span>
-                                    <button class="btn-ctrl" onclick="changeTicket('gradinata_rid', 1)">+</button>
+                                    <button type="button" class="btn-ctrl" onclick="changeTicket('gradinata_rid', 1)">+</button>
                                 </div>
                             </div>
                         </div>
@@ -972,7 +972,6 @@
                     </tr>
                 </thead>
                 <tbody id="animal-table-body">
-                    <!-- Populated via JS -->
                 </tbody>
             </table>
         </div>
@@ -989,7 +988,7 @@
 
             <div class="grid-home" style="aspect-ratio:auto;">
                 <div class="cassa-card">
-                    <h3>🏛️️ Comune & TOSAP/TARI</h3>
+                    <h3>🏛 Comune & TOSAP/TARI</h3>
                     <p style="font-size:0.85rem; color:var(--text-muted);">Occupazione suolo pubblico per la piazza corrente.</p>
                     <div style="margin-top:1rem;">
                         <span class="status-tag ok" id="tosap-status">Licenza Convalidata</span>
@@ -1003,7 +1002,7 @@
                     <div style="margin-top:1rem;">
                         <span class="status-tag ok" id="vvf-status">Nullaosta Valido</span>
                     </div>
-                    <button class="btn-gold" style="margin-top:1rem;" onclick="requestVvf()">Richiedi Ispezione</button>
+                    <button class="btn-gold" style="margin-top:1rem;" onclick="alert('Nullaosta Vigili del Fuoco confermato!')">Richiedi Ispezione</button>
                 </div>
 
                 <div class="cassa-card">
@@ -1012,7 +1011,7 @@
                     <div style="margin-top:1rem;">
                         <span class="status-tag ok" id="asl-status">Serraglio Idoneo</span>
                     </div>
-                    <button class="btn-gold" style="margin-top:1rem;" onclick="checkAsl()">Ispezione ASL</button>
+                    <button class="btn-gold" style="margin-top:1rem;" onclick="alert('Ispezione ASL superata con successo!')">Ispezione ASL</button>
                 </div>
             </div>
         </div>
@@ -1041,7 +1040,6 @@
                     </tr>
                 </thead>
                 <tbody id="piazze-table-body">
-                    <!-- Populated via JS -->
                 </tbody>
             </table>
         </div>
@@ -1050,7 +1048,7 @@
         <div id="view-admin" class="view-panel">
             <div class="section-header">
                 <div class="section-title">
-                    <h2>⚙️ Pannello Direzione Admin</h2>
+                    <h2>⚙️️ Pannello Direzione Admin</h2>
                     <p>Controllo finanziario globale, listini e simulatore imprevisti</p>
                 </div>
                 <button class="nav-btn" onclick="showView('home')">Indietro</button>
@@ -1125,7 +1123,6 @@
         </div>
     </div>
 
-    <!-- JAVASCRIPT ENGINE -->
     <script>
         let state = {
             cassa: 1359.00,
@@ -1193,9 +1190,11 @@
         }
 
         function changeTicket(type, delta) {
-            if(state.currentOrder[type] + delta >= 0) {
-                state.currentOrder[type] += delta;
-                document.getElementById(`cnt-${type}`).innerText = state.currentOrder[type];
+            let val = state.currentOrder[type] + delta;
+            if(val >= 0) {
+                state.currentOrder[type] = val;
+                let elem = document.getElementById(`cnt-${type}`);
+                if(elem) elem.innerText = val;
                 calculateOrderTotal();
             }
         }
@@ -1225,23 +1224,33 @@
 
         function generateClient() {
             let name = clientNames[Math.floor(Math.random() * clientNames.length)];
-            let sector = sectors[Math.floor(Math.random() * sectors.length)];
+            let sectorObj = sectors[Math.floor(Math.random() * sectors.length)];
             let numInt = Math.floor(Math.random() * 3) + 1;
             let numRid = Math.random() > 0.5 ? Math.floor(Math.random() * 2) + 1 : 0;
             let isCash = Math.random() > 0.3;
             let method = isCash ? "CONTANTI" : "CARTA / POS";
-            let cashArr = [20, 50, 100];
-            let cash = isCash ? cashArr[Math.floor(Math.random() * cashArr.length)] : 0;
 
-            state.currentClient = { name, sector: sector.name, numInt, numRid, method, cash };
-
+            // Imposta automaticamente la quantita' richiesta dal cliente
             for(let key in state.currentOrder) {
                 state.currentOrder[key] = 0;
-                let el = document.getElementById(`cnt-${key}`);
-                if(el) el.innerText = "0";
             }
 
-            let speech = `"${name}: Salve! Vorrei ${numInt} Interi${numRid > 0 ? ' e ' + numRid + ' Ridotti (<11 anni)' : ''} in ${sector.name}, per favore."`;
+            let keyInt = `${sectorObj.id}_int`;
+            let keyRid = `${sectorObj.id}_rid`;
+            state.currentOrder[keyInt] = numInt;
+            state.currentOrder[keyRid] = numRid;
+
+            for(let key in state.currentOrder) {
+                let el = document.getElementById(`cnt-${key}`);
+                if(el) el.innerText = state.currentOrder[key];
+            }
+
+            let totalNeed = (numInt * state.prices[keyInt]) + (numRid * state.prices[keyRid]);
+            let cash = isCash ? (totalNeed > 50 ? 100 : 50) : 0;
+
+            state.currentClient = { name, sector: sectorObj.name, numInt, numRid, method, cash };
+
+            let speech = `"${name}: Salve! Vorrei ${numInt} Interi${numRid > 0 ? ' e ' + numRid + ' Ridotti (<11 anni)' : ''} in ${sectorObj.name}, per favore."`;
             document.getElementById('client-dialog').innerText = speech;
             document.getElementById('client-method').innerText = method;
             document.getElementById('client-cash').innerText = isCash ? `€ ${cash.toFixed(2)}` : "N/D";
