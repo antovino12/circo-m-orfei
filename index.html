@@ -619,6 +619,8 @@
         }
 
         .status-tag.ok { background: rgba(34, 197, 94, 0.15); color: var(--success); border: 1px solid var(--success); }
+        .status-tag.in { background: rgba(34, 197, 94, 0.15); color: var(--success); border: 1px solid var(--success); }
+        .status-tag.out { background: rgba(239, 68, 68, 0.15); color: var(--danger); border: 1px solid var(--danger); }
 
         /* FORMS */
         .form-group {
@@ -682,6 +684,28 @@
             border-radius: 8px;
             border: 1px solid var(--border-color);
             margin-top: 0.75rem;
+        }
+
+        .attachment-card {
+            background: rgba(212, 175, 55, 0.08);
+            border: 1px solid var(--accent-gold);
+            border-radius: 8px;
+            padding: 0.85rem;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .attachment-info p.title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+        }
+
+        .attachment-info p.desc {
+            font-size: 0.75rem;
+            color: var(--text-muted);
         }
     </style>
 </head>
@@ -767,29 +791,29 @@
                     <div class="tile-footer">Apri Negozio -></div>
                 </div>
 
-                <div class="tile-card" onclick="showView('veterinaria')">
-                    <div>
-                        <div class="tile-icon">A</div>
-                        <div class="tile-title">Anagrafica Veterinaria</div>
-                        <div class="tile-desc">Libretti sanitari degli animali, codici BDN, dieta agricola FS22 e Modello IV per i trasporti.</div>
-                    </div>
-                    <div class="tile-footer">Gestisci Animali -></div>
-                </div>
-
                 <div class="tile-card" onclick="showView('burocrazia')">
                     <div>
                         <div class="tile-icon">B</div>
                         <div class="tile-title">Portale Burocrazia & Email Comunale</div>
-                        <div class="tile-desc">Posta elettronica ufficiale con il Comune per inviare richieste, ricevere risposte, fatture e autorizzazioni.</div>
+                        <div class="tile-desc">Corrispondenza con il Comune. La fattura viene allegata via email per poi essere saldata.</div>
                     </div>
                     <div class="tile-footer">Apri Pratiche -></div>
+                </div>
+
+                <div class="tile-card" onclick="showView('finanze')">
+                    <div>
+                        <div class="tile-icon">F</div>
+                        <div class="tile-title">Registro Finanze & Transazioni</div>
+                        <div class="tile-desc">Storico contabile dettagliato di tutte le entrate (biglietti) e uscite (fatture, stock biglietti).</div>
+                    </div>
+                    <div class="tile-footer">Apri Registro -></div>
                 </div>
 
                 <div class="tile-card" onclick="showView('piazze')">
                     <div>
                         <div class="tile-icon">P</div>
-                        <div class="tile-title">Gestione Piazze & Mappe</div>
-                        <div class="tile-desc">Organizzazione tour nelle mappe FS22. Quando si sceglie una città, si genera l'email del Comune relativa.</div>
+                        <div class="tile-title">Gestione Piazze & Tour</div>
+                        <div class="tile-desc">Organizzazione tournée. Seleziona la città per attivare l'email del Comune di riferimento.</div>
                     </div>
                     <div class="tile-footer">Vedi Piazze -></div>
                 </div>
@@ -935,7 +959,7 @@
                     <button class="btn-gold" style="width:100%; justify-content:center; padding:1rem;" onclick="processSale()">Emetti Biglietto SIAE</button>
                 </div>
 
-                <!-- Right Panel: Ultra-Realistic SIAE Receipt Display -->
+                <!-- Right Panel: SIAE Receipt Display -->
                 <div class="cassa-card">
                     <div class="cassa-card-header">
                         <h3>ULTIME EMISSIONI & RICEVUTA SIAE LIVE</h3>
@@ -1037,49 +1061,36 @@
             </div>
         </div>
 
-        <!-- VIEW 3: VETERINARIA -->
-        <div id="view-veterinaria" class="view-panel">
+        <!-- VIEW 3: REGISTRO FINANZE -->
+        <div id="view-finanze" class="view-panel">
             <div class="section-header">
                 <div class="section-title">
-                    <h2>ANAGRAFICA VETERINARIA</h2>
-                    <p>Gestione libretti sanitari e registri BDN</p>
+                    <h2>REGISTRO FINANZE & TRANSAZIONI</h2>
+                    <p>Storico completo delle entrate e delle uscite della cassa</p>
                 </div>
                 <button class="nav-btn" onclick="showView('home')">Indietro</button>
             </div>
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th>Nome Animale</th>
-                        <th>Specie</th>
-                        <th>Codice BDN</th>
-                        <th>Stato Sanitario</th>
-                        <th>Azioni</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Simba</td>
-                        <td>Leone</td>
-                        <td>IT093ZO012L</td>
-                        <td><span class="status-tag ok">REGOLARE</span></td>
-                        <td><button class="nav-btn" style="padding:0.3rem 0.6rem; font-size:0.75rem;">Modello IV</button></td>
-                    </tr>
-                    <tr>
-                        <td>Dumbo</td>
-                        <td>Elefante Asiatico</td>
-                        <td>IT093ZO044E</td>
-                        <td><span class="status-tag ok">REGOLARE</span></td>
-                        <td><button class="nav-btn" style="padding:0.3rem 0.6rem; font-size:0.75rem;">Modello IV</button></td>
-                    </tr>
-                    <tr>
-                        <td>Bora</td>
-                        <td>Cavallo Camargue</td>
-                        <td>IT093EQ008C</td>
-                        <td><span class="status-tag ok">REGOLARE</span></td>
-                        <td><button class="nav-btn" style="padding:0.3rem 0.6rem; font-size:0.75rem;">Modello IV</button></td>
-                    </tr>
-                </tbody>
-            </table>
+
+            <div class="cassa-card">
+                <div class="cassa-card-header">
+                    <h3>MOVIMENTI CONTABILI REGISTRATI</h3>
+                </div>
+
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Data & Ora</th>
+                            <th>Tipologia Operazione</th>
+                            <th>Descrizione Dettagliata</th>
+                            <th>Importo</th>
+                            <th>Tipo</th>
+                        </tr>
+                    </thead>
+                    <tbody id="finance-table-body">
+                        <!-- Popolato via JS -->
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- VIEW 4: BUROCRAZIA & EMAIL COMUNALE -->
@@ -1087,29 +1098,29 @@
             <div class="section-header">
                 <div class="section-title">
                     <h2>PORTALE BUROCRAZIA & CORRISPONDENZA EMAIL COMUNALE</h2>
-                    <p>Gestione autorizzazioni, fatturazione e comunicazioni ufficiali tra Circo e Comune</p>
+                    <p>Gestione messaggi, fattura allegata ed autorizzazioni per il Comune di <span id="buro-city-header">Castrignano</span></p>
                 </div>
                 <button class="nav-btn" onclick="showView('home')">Indietro</button>
             </div>
 
             <div class="cassa-grid">
-                <!-- Panel Sinistro: Email RP Simulator -->
+                <!-- Panel Sinistro: Simulator Mail RP -->
                 <div class="cassa-card">
                     <div class="cassa-card-header">
-                        <h3>CORRISPONDENZA EMAIL COMUNE (<span id="email-city-title">Castrignano</span>)</h3>
+                        <h3>MESSAGGIO IN USCITA DAL CIRCO</h3>
                     </div>
 
                     <div class="email-box">
                         <div class="email-header-row"><span class="lbl">DA:</span> <span>cirmomorfei@castrignanoproduction.it</span></div>
                         <div class="email-header-row"><span class="lbl">A:</span> <span id="email-to-comune">protocollo@comune.castrignano.it</span></div>
-                        <div class="email-header-row"><span class="lbl">OGGETTO:</span> <span>Richiesta Autorizzazioni Spettacolo e Permessi Tournée</span></div>
+                        <div class="email-header-row"><span class="lbl">OGGETTO:</span> <span>Richiesta Autorizzazione Spettacolo Circense</span></div>
                         
                         <div class="email-body-text" id="email-body-outbound">
                             Spettabile Ufficio Protocollo e Tributi del Comune di Castrignano,
                             
-                            con la presente il Circo M. Orfei di Castrignano Production trasmette formale richiesta di autorizzazione per l'allestimento delle strutture circensi presso l'area designata.
+                            con la presente il Circo M. Orfei di Castrignano Production trasmette formale richiesta di autorizzazione per l'allestimento delle strutture circensi presso l'area occupata.
                             
-                            In attesa di Vostra cortese risposta con prospetto costi, fattura per diritti di piazza, TOSAP, SIAE e TARI per il successivo saldo e rilascio concessioni.
+                            In attesa di Vostra cortese risposta con prospetto costi e fattura per il successivo saldo e rilascio concessioni.
                             
                             Distinti Saluti,
                             Direzione Circo M. Orfei
@@ -1118,54 +1129,92 @@
                     </div>
 
                     <div class="email-box" id="email-inbound-box" style="display:none; border-color:var(--accent-gold);">
+                        <div class="cassa-card-header" style="padding-bottom:0.4rem; margin-bottom:0.5rem;">
+                            <h3 style="font-size:0.85rem; color:var(--accent-gold);">RISPOSTA RICEVUTA DAL COMUNE</h3>
+                        </div>
                         <div class="email-header-row"><span class="lbl">DA:</span> <span id="email-from-comune">protocollo@comune.castrignano.it</span></div>
                         <div class="email-header-row"><span class="lbl">A:</span> <span>cirmomorfei@castrignanoproduction.it</span></div>
-                        <div class="email-header-row"><span class="lbl">OGGETTO:</span> <span>Rifiuto/Risposta: Prospetto Tasse Comunali e Fattura Concessione</span></div>
+                        <div class="email-header-row"><span class="lbl">OGGETTO:</span> <span>Risposta: Prospetto Tasse Comunali e Fattura Concessione</span></div>
                         
                         <div class="email-body-text" id="email-body-inbound">
                             Gentile Direzione Circo M. Orfei,
                             
-                            abbiamo preso in carico la Vostra richiesta. Di seguito la fattura dei costi stabiliti dal regolamento comunale per l'occupazione suolo e la concessione dello spettacolo.
-                            
-                            Totale Fattura Dovuto: € 490.00
-                            Procedere al pagamento nella sezione di destra per ottenere il certificato di autorizzazione ufficiale.
+                            abbiamo preso in carico la Vostra richiesta. In allegato alla presente email inviamo il prospetto dettagliato della Fattura relativa alle tasse di occupazione suolo, SIAE e TARI.
+                        </div>
+
+                        <div class="attachment-card">
+                            <div class="attachment-info">
+                                <p class="title">Allegato: Fattura_Comunale_Concessione.pdf</p>
+                                <p class="desc">Importo totale da saldare: € 490.00</p>
+                            </div>
+                            <button class="btn-gold" id="btn-open-attachment" style="padding:0.4rem 0.8rem; font-size:0.75rem;" onclick="openAttachment()">Apri Allegato & Carica Fattura</button>
                         </div>
                     </div>
                 </div>
 
-                <!-- Panel Destro: Tabella Fatture e Autorizzazioni -->
+                <!-- Panel Destro: Dettaglio Fattura Allegata e Saldo -->
                 <div class="cassa-card">
                     <div class="cassa-card-header">
-                        <h3>FATTURA E AUTORIZZAZIONI COMUNALI</h3>
+                        <h3>FATTURA ALLEGATA DALLA RISPOSTA</h3>
                     </div>
 
-                    <p style="font-size:0.85rem; color:var(--text-muted);">Elenco delle voci della fattura emessa dal Comune a seguito dell'invio dell'email:</p>
+                    <div id="invoice-placeholder" style="text-align:center; padding:3rem 1rem; color:var(--text-muted); font-style:italic;">
+                        Nessuna fattura carica. Invia prima l'email al Comune ed apri l'allegato contenuto nella risposta.
+                    </div>
 
-                    <table class="custom-table">
-                        <thead>
-                            <tr>
-                                <th>Voce Fattura / Permesso</th>
-                                <th>Importo</th>
-                                <th>Stato</th>
-                            </tr>
-                        </thead>
-                        <tbody id="buro-table-body">
-                            <!-- Popolato da JS -->
-                        </tbody>
-                    </table>
+                    <div id="invoice-details-block" style="display:none;">
+                        <p style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.75rem;">Voce e riepilogo della fattura ricevuta via email dal Comune:</p>
 
-                    <div class="totals-block" style="margin-top:1rem;">
-                        <div class="total-row main">
-                            <span>Totale Fattura:</span>
-                            <span class="val" id="buro-total-invoice">€ 490.00</span>
+                        <table class="custom-table">
+                            <thead>
+                                <tr>
+                                    <th>Voce Fattura</th>
+                                    <th>Importo</th>
+                                    <th>Stato</th>
+                                </tr>
+                            </thead>
+                            <tbody id="buro-table-body">
+                                <tr><td>Licenza Pubblico Spettacolo e SIAE</td><td>€ 150.00</td><td id="st-0">DA PAGARE</td></tr>
+                                <tr><td>TOSAP - Occupazione Suolo Pubblico</td><td>€ 200.00</td><td id="st-1">DA PAGARE</td></tr>
+                                <tr><td>Diritti Affissioni e Pubblicità</td><td>€ 80.00</td><td id="st-2">DA PAGARE</td></tr>
+                                <tr><td>TARI - Tassa Smaltimento Rifiuti</td><td>€ 60.00</td><td id="st-3">DA PAGARE</td></tr>
+                            </tbody>
+                        </table>
+
+                        <div class="totals-block" style="margin-top:1rem;">
+                            <div class="total-row main">
+                                <span>Totale Fattura Allegata:</span>
+                                <span class="val">€ 490.00</span>
+                            </div>
+                        </div>
+
+                        <button class="btn-gold" id="btn-pay-invoice" style="width:100%; justify-content:center; padding:1rem; margin-top:1rem;" onclick="payFullInvoice()">Paga Fattura Completa ed Emetti Autorizzazione</button>
+                        <div id="autorizzazione-badge" style="display:none; text-align:center; padding:0.8rem; background:rgba(34, 197, 94, 0.2); border:1px solid var(--success); border-radius:8px; color:var(--success); font-weight:800; margin-top:1rem;">
+                            AUTORIZZAZIONE COMUNALE RILASCIATA E ATTIVA
                         </div>
                     </div>
-
-                    <button class="btn-gold" id="btn-pay-invoice" style="width:100%; justify-content:center; padding:1rem;" onclick="payFullInvoice()">Paga Fattura Completa ed Emetti Autorizzazione</button>
-                    <div id="autorizzazione-badge" style="display:none; text-align:center; padding:0.8rem; background:rgba(34, 197, 94, 0.2); border:1px solid var(--success); border-radius:8px; color:var(--success); font-weight:800;">
-                        AUTORIZZAZIONE COMUNALE RILASCIATA E ATTIVA
-                    </div>
                 </div>
+            </div>
+
+            <!-- Storico Email -->
+            <div class="cassa-card" style="margin-top:1.5rem;">
+                <div class="cassa-card-header">
+                    <h3>STORICO EMAIL COMUNALI SCAMBIATE</h3>
+                </div>
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Data e Ora</th>
+                            <th>Città</th>
+                            <th>Mittente -> Destinatario</th>
+                            <th>Oggetto</th>
+                            <th>Stato</th>
+                        </tr>
+                    </thead>
+                    <tbody id="email-history-body">
+                        <!-- Popolato via JS -->
+                    </tbody>
+                </table>
             </div>
         </div>
 
@@ -1196,7 +1245,7 @@
                         <label>Durata Tournée (Giorni)</label>
                         <input type="number" id="tour-days-input" class="form-control" value="7">
                     </div>
-                    <button class="btn-gold" onclick="organizeTour()">Conferma e Genera Email Comune</button>
+                    <button class="btn-gold" onclick="organizeTour()">Conferma e Prepara Email Comune</button>
                 </div>
 
                 <div class="cassa-card">
@@ -1288,14 +1337,13 @@
             emailState: {
                 sent: false,
                 responded: false,
+                attachmentOpened: false,
                 invoicePaid: false
             },
-            comuneFees: [
-                { name: "Licenza Pubblico Spettacolo e SIAE", amount: 150.00 },
-                { name: "TOSAP - Occupazione Suolo Pubblico", amount: 200.00 },
-                { name: "Diritti Affissioni e Pubblicità", amount: 80.00 },
-                { name: "TARI - Tassa Smaltimento Rifiuti", amount: 60.00 }
+            finances: [
+                { date: "Iniziale", type: "ENTRATA", desc: "Fondo Cassa Iniziale", amount: 1359.00 }
             ],
+            emailHistory: [],
             tours: [
                 { city: "Castrignano", location: "Area Mercatale", days: 7, status: "ATTUALE" }
             ]
@@ -1313,9 +1361,41 @@
             if (viewId === 'burocrazia') {
                 renderBurocraziaView();
             }
+            if (viewId === 'finanze') {
+                renderFinancesTable();
+            }
             if (viewId === 'piazze') {
                 renderPiazzeTable();
             }
+        }
+
+        function addTransaction(type, desc, amount) {
+            let now = new Date();
+            let dateStr = now.toLocaleDateString() + " " + now.toLocaleTimeString();
+            gameState.finances.unshift({
+                date: dateStr,
+                type: type,
+                desc: desc,
+                amount: amount
+            });
+        }
+
+        function renderFinancesTable() {
+            let html = '';
+            gameState.finances.forEach(f => {
+                let tagClass = f.type === 'ENTRATA' ? 'status-tag in' : 'status-tag out';
+                let sign = f.type === 'ENTRATA' ? '+ € ' : '- € ';
+                html += `
+                    <tr>
+                        <td>${f.date}</td>
+                        <td><span class="${tagClass}">${f.type}</span></td>
+                        <td>${f.desc}</td>
+                        <td style="font-weight:700; font-family:'JetBrains Mono', monospace;">${sign}${f.amount.toFixed(2)}</td>
+                        <td>${f.type}</td>
+                    </tr>
+                `;
+            });
+            document.getElementById('finance-table-body').innerHTML = html;
         }
 
         function updateHeader() {
@@ -1390,6 +1470,7 @@
             }
 
             gameState.cassa -= totalCost;
+            addTransaction("USCITA", `Acquisto Stock ${totalTickets} Biglietti al Negozio`, totalCost);
             updateHeader();
 
             gameState.shopBlocks.interi = 0;
@@ -1488,6 +1569,7 @@
             }
 
             gameState.cassa += total;
+            addTransaction("ENTRATA", "Vendita Biglietti Botteghino SIAE", total);
             updateHeader();
 
             let now = new Date();
@@ -1505,7 +1587,7 @@
             let cityClean = gameState.piazza.toLowerCase().replace(/[^a-z0-9]/g, '');
             let comuneEmail = `protocollo.ufficiotributi@comune.${cityClean}.it`;
 
-            document.getElementById('email-city-title').innerText = gameState.piazza;
+            document.getElementById('buro-city-header').innerText = gameState.piazza;
             document.getElementById('email-to-comune').innerText = comuneEmail;
             document.getElementById('email-from-comune').innerText = comuneEmail;
 
@@ -1515,24 +1597,31 @@
                 `Siamo in attesa di Vostra risposta con il prospetto dettagliato dei costi e la relativa fattura da saldare per il rilascio dei permessi ufficiali.\n\n` +
                 `Distinti Saluti,\nDirezione Circo M. Orfei`;
 
-            let tableHtml = '';
-            let totalInvoice = 0;
-            gameState.comuneFees.forEach(fee => {
-                totalInvoice += fee.amount;
-                let statusText = gameState.emailState.invoicePaid ? '<span class="status-tag ok">PAGATO</span>' : '<span class="status-tag" style="background:rgba(239, 68, 68, 0.2); color:var(--danger); border:1px solid var(--danger);">DA PAGARE</span>';
-                tableHtml += `<tr><td>${fee.name}</td><td>€ ${fee.amount.toFixed(2)}</td><td>${statusText}</td></tr>`;
-            });
-
-            document.getElementById('buro-table-body').innerHTML = tableHtml;
-            document.getElementById('buro-total-invoice').innerText = '€ ' + totalInvoice.toFixed(2);
+            if (gameState.emailState.attachmentOpened) {
+                document.getElementById('invoice-placeholder').style.display = 'none';
+                document.getElementById('invoice-details-block').style.display = 'block';
+            } else {
+                document.getElementById('invoice-placeholder').style.display = 'block';
+                document.getElementById('invoice-details-block').style.display = 'none';
+            }
 
             if (gameState.emailState.invoicePaid) {
+                for (let i = 0; i < 4; i++) {
+                    let el = document.getElementById('st-' + i);
+                    if (el) el.innerHTML = '<span class="status-tag ok">PAGATO</span>';
+                }
                 document.getElementById('btn-pay-invoice').style.display = 'none';
                 document.getElementById('autorizzazione-badge').style.display = 'block';
             } else {
+                for (let i = 0; i < 4; i++) {
+                    let el = document.getElementById('st-' + i);
+                    if (el) el.innerHTML = '<span class="status-tag" style="background:rgba(239,68,68,0.2); color:var(--danger); border:1px solid var(--danger);">DA PAGARE</span>';
+                }
                 document.getElementById('btn-pay-invoice').style.display = 'inline-flex';
                 document.getElementById('autorizzazione-badge').style.display = 'none';
             }
+
+            renderEmailHistoryTable();
         }
 
         function sendCircusEmail() {
@@ -1546,16 +1635,41 @@
             document.getElementById('email-body-inbound').innerText = 
                 `Gentile Direzione Circo M. Orfei,\n\n` +
                 `I nostri uffici hanno esaminato la Vostra richiesta di occupazione e spettacolo per il Comune di ${gameState.piazza}.\n\n` +
-                `In allegato trasmettiamo la fattura complessiva di € 490.00. A seguito del saldo della fattura, il sistema rilascerà automaticamente l'autorizzazione comunale ed il nulla osta per lo spettacolo.\n\n` +
+                `In allegato trasmettiamo la fattura complessiva di € 490.00. Apri l'allegato sottostante per caricare la fattura ed effettuare il saldo.\n\n` +
                 `Cordiali Saluti,\nUfficio Tributi & Demanio - Comune di ${gameState.piazza}`;
 
             document.getElementById('email-inbound-box').style.display = 'block';
-            alert("Email inviata con successo al Comune! Il Comune ha risposto trasmettendo la fattura.");
+
+            let now = new Date();
+            let timeStr = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+            gameState.emailHistory.unshift({
+                date: timeStr,
+                city: gameState.piazza,
+                route: "cirmomorfei@castrignanoproduction.it -> " + comuneEmail,
+                subject: "Richiesta Autorizzazione Spettacolo Circense",
+                status: "INVIATO"
+            });
+            gameState.emailHistory.unshift({
+                date: timeStr,
+                city: gameState.piazza,
+                route: comuneEmail + " -> cirmomorfei@castrignanoproduction.it",
+                subject: "Risposta: Prospetto Tasse e Fattura (Allegato)",
+                status: "RICEVUTO"
+            });
+
+            renderEmailHistoryTable();
+            alert("Email inviata con successo al Comune! Il Comune ha risposto allegando la fattura.");
+        }
+
+        function openAttachment() {
+            gameState.emailState.attachmentOpened = true;
+            renderBurocraziaView();
+            alert("Allegato 'Fattura_Comunale_Concessione.pdf' aperto e caricato con successo!");
         }
 
         function payFullInvoice() {
-            if (!gameState.emailState.sent) {
-                alert("Devi prima inviare l'email al Comune per richiedere l'emissione della fattura!");
+            if (!gameState.emailState.attachmentOpened) {
+                alert("Devi prima aprire l'allegato ricevuto nell'email dal Comune!");
                 return;
             }
 
@@ -1566,11 +1680,32 @@
             }
 
             gameState.cassa -= totalInvoice;
+            addTransaction("USCITA", `Saldo Fattura Comunale Permessi e TOSAP (${gameState.piazza})`, totalInvoice);
             gameState.emailState.invoicePaid = true;
+
             updateHeader();
             renderBurocraziaView();
 
-            alert("Fattura saldata con successo! L'autorizzazione ufficiale del Comune di " + gameState.piazza + " è stata emessa ed è ora attiva.");
+            alert("Fattura saldata con successo! L'autorizzazione ufficiale del Comune di " + gameState.piazza + " è stata rilasciata ed è ora attiva.");
+        }
+
+        function renderEmailHistoryTable() {
+            let html = '';
+            gameState.emailHistory.forEach(e => {
+                let statusTag = e.status === "RICEVUTO" 
+                    ? '<span class="status-tag ok">RICEVUTO</span>' 
+                    : '<span class="status-tag" style="background:rgba(59, 130, 246, 0.2); color:var(--info); border:1px solid var(--info);">INVIATO</span>';
+                html += `
+                    <tr>
+                        <td>${e.date}</td>
+                        <td>${e.city}</td>
+                        <td style="font-size:0.75rem;">${e.route}</td>
+                        <td>${e.subject}</td>
+                        <td>${statusTag}</td>
+                    </tr>
+                `;
+            });
+            document.getElementById('email-history-body').innerHTML = html;
         }
 
         /* PIAZZE & TOUR */
@@ -1589,6 +1724,7 @@
             // Reset stato email e fatture per la nuova piazza
             gameState.emailState.sent = false;
             gameState.emailState.responded = false;
+            gameState.emailState.attachmentOpened = false;
             gameState.emailState.invoicePaid = false;
 
             document.getElementById('btn-send-email').innerText = "Invia Email al Comune";
