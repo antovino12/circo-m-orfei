@@ -777,7 +777,7 @@
                     <div>
                         <div class="tile-icon">T</div>
                         <div class="tile-title">Sportello POS SIAE</div>
-                        <div class="tile-desc">Gestione vendita biglietti con clienti allo sportello, emissione scontrino fiscale e calcolo del resto.</div>
+                        <div class="tile-desc">Gestione vendita biglietti con clienti allo sportello, emissione scontrino fiscale e controllo scorte stock rimanenti.</div>
                     </div>
                     <div class="tile-footer">Apri Cassa -></div>
                 </div>
@@ -786,7 +786,7 @@
                     <div>
                         <div class="tile-icon">N</div>
                         <div class="tile-title">Negozio Biglietti Proprietario</div>
-                        <div class="tile-desc">Acquista stock di biglietti a pacchetti da 100 pezzi per 10 euro (500 interi + 500 ridotti = 100 euro).</div>
+                        <div class="tile-desc">Acquista stock di biglietti a pacchetti da 100 pezzi per 10 euro (ricarica immediata scorte esauribili).</div>
                     </div>
                     <div class="tile-footer">Apri Negozio -></div>
                 </div>
@@ -834,9 +834,24 @@
             <div class="section-header">
                 <div class="section-title">
                     <h2>BIGLIETTERIA & SPORTELLO POS SIAE</h2>
-                    <p>Gestione emissione tagliandi fiscali per il pubblico</p>
+                    <p>Gestione emissione tagliandi fiscali per il pubblico e controllo giacenza scorte</p>
                 </div>
                 <button class="nav-btn" onclick="showView('home')">Indietro</button>
+            </div>
+
+            <!-- Stock Banner Indicatori in Cassa -->
+            <div class="day-control-banner" style="margin-bottom: 1.5rem;">
+                <div class="day-info">
+                    <div class="day-item">
+                        <label>Scorte Biglietti Interi Disponibili</label>
+                        <span id="stock-interi-display" style="color:var(--success);">100 pz</span>
+                    </div>
+                    <div class="day-item">
+                        <label>Scorte Biglietti Ridotti Disponibili</label>
+                        <span id="stock-ridotti-display" style="color:var(--success);">100 pz</span>
+                    </div>
+                </div>
+                <p style="font-size:0.8rem; color:var(--text-muted);">Acquista altri stock al Negozio se le scorte stanno per esaurirsi.</p>
             </div>
 
             <div class="cassa-grid">
@@ -1159,7 +1174,7 @@
                     </div>
 
                     <div id="invoice-placeholder" style="text-align:center; padding:3rem 1rem; color:var(--text-muted); font-style:italic;">
-                        Nessuna fattura carica. Invia prima l'email al Comune ed apri l'allegato contenuto nella risposta.
+                        Nessuna fattura caricata. Invia prima l'email al Comune ed apri l'allegato contenuto nella risposta.
                     </div>
 
                     <div id="invoice-details-block" style="display:none;">
@@ -1308,6 +1323,9 @@
             dayIndex: 0,
             weather: "Soleggiato",
             familyDayName: "Nessuno",
+            // Scorte iniziali reali di biglietti magazzino
+            stockInteri: 100,
+            stockRidotti: 100,
             prices: {
                 vip_int: 25,
                 vip_rid: 18,
@@ -1356,6 +1374,7 @@
             document.getElementById('view-' + viewId).classList.add('active');
             if (viewId === 'cassa') {
                 updatePricesDisplay();
+                updateStockDisplay();
                 generateClient();
             }
             if (viewId === 'burocrazia') {
@@ -1413,6 +1432,18 @@
                 limitText = "800 Posti (Capienza Massima)";
             }
             document.getElementById('daily-limit-display').innerText = limitText;
+            updateStockDisplay();
+        }
+
+        function updateStockDisplay() {
+            let intEl = document.getElementById('stock-interi-display');
+            let ridEl = document.getElementById('stock-ridotti-display');
+            if (intEl && ridEl) {
+                intEl.innerText = gameState.stockInteri + " pz";
+                ridEl.innerText = gameState.stockRidotti + " pz";
+                intEl.style.color = gameState.stockInteri > 10 ? 'var(--success)' : 'var(--danger)';
+                ridEl.style.color = gameState.stockRidotti > 10 ? 'var(--success)' : 'var(--danger)';
+            }
         }
 
         function nextDay() {
@@ -1456,8 +1487,11 @@
         }
 
         function processShopPurchase() {
-            let totalCost = (gameState.shopBlocks.interi + gameState.shopBlocks.ridotti) * 10.00;
-            let totalTickets = (gameState.shopBlocks.interi + gameState.shopBlocks.ridotti) * 100;
+            let totalBlocks = gameState.shopBlocks.interi + gameState.shopBlocks.ridotti;
+            let totalCost = totalBlocks * 10.00;
+            let addedInteri = gameState.shopBlocks.interi * 100;
+            let addedRidotti = gameState.shopBlocks.ridotti * 100;
+            let totalTickets = addedInteri + addedRidotti;
 
             if (totalTickets === 0) {
                 alert("Seleziona almeno un blocco da 100 biglietti.");
@@ -1465,12 +1499,15 @@
             }
 
             if (gameState.cassa < totalCost) {
-                alert("Fondi in cassa insufficienti per completare l'acquisto!");
+                alert("Fondi in cassa insufficienti per completare l'acquisto stock!");
                 return;
             }
 
             gameState.cassa -= totalCost;
-            addTransaction("USCITA", `Acquisto Stock ${totalTickets} Biglietti al Negozio`, totalCost);
+            gameState.stockInteri += addedInteri;
+            gameState.stockRidotti += addedRidotti;
+
+            addTransaction("USCITA", `Acquisto Stock Negozio (${addedInteri} Interi, ${addedRidotti} Ridotti)`, totalCost);
             updateHeader();
 
             gameState.shopBlocks.interi = 0;
@@ -1479,7 +1516,7 @@
             document.getElementById('shop-cnt-ridotti').innerText = 0;
             calcShopTotal();
 
-            alert("Acquisto completato! Stampati " + totalTickets + " biglietti stock. Totale pagato: € " + totalCost.toFixed(2));
+            alert("Acquisto completato! Ricaricati " + addedInteri + " biglietti interi e " + addedRidotti + " ridotti in magazzino. Totale pagato: € " + totalCost.toFixed(2));
         }
 
         /* CASSA SPORTELLO */
@@ -1547,6 +1584,8 @@
             let total = 0;
             let itemsHtml = '';
             let hasItems = false;
+            let requiredInteri = 0;
+            let requiredRidotti = 0;
 
             for (let k in gameState.ticketCounts) {
                 let count = gameState.ticketCounts[k];
@@ -1555,6 +1594,12 @@
                     let sub = count * gameState.prices[k];
                     total += sub;
                     itemsHtml += `<div class="siae-item-row"><span>${count}x ${k.toUpperCase()}</span><span>€ ${sub.toFixed(2)}</span></div>`;
+                    
+                    if (k.includes('int')) {
+                        requiredInteri += count;
+                    } else {
+                        requiredRidotti += count;
+                    }
                 }
             }
 
@@ -1563,13 +1608,23 @@
                 return;
             }
 
+            // CONTROLLO ESAURIMENTO SCORTE IN MAGAZZINO
+            if (requiredInteri > gameState.stockInteri || requiredRidotti > gameState.stockRidotti) {
+                alert("Attenzione: Scorte di magazzino insufficienti! I biglietti sono esauriti o non bastano per questo ordine. Vai al Negozio a comprarne altri.");
+                return;
+            }
+
             if (gameState.currentClient.cash < total) {
                 alert("Il cliente non ha abbastanza denaro per coprire l'importo!");
                 return;
             }
 
+            // SCAMBIO E SCARICO SCORTE
             gameState.cassa += total;
-            addTransaction("ENTRATA", "Vendita Biglietti Botteghino SIAE", total);
+            gameState.stockInteri -= requiredInteri;
+            gameState.stockRidotti -= requiredRidotti;
+
+            addTransaction("ENTRATA", `Vendita Biglietti Botteghino (${requiredInteri} Int, ${requiredRidotti} Rid)`, total);
             updateHeader();
 
             let now = new Date();
@@ -1578,7 +1633,7 @@
             document.getElementById('receipt-items').innerHTML = itemsHtml;
             document.getElementById('receipt-total').innerText = '€ ' + total.toFixed(2);
 
-            alert("Vendita completata con successo! Scontrino SIAE emesso.");
+            alert("Vendita completata con successo! Scontrino SIAE emesso e scorte aggiornate.");
             generateClient();
         }
 
@@ -1770,7 +1825,7 @@
         function savePrices() {
             gameState.prices.vip_int = parseFloat(document.getElementById('cfg-vip-int').value) || 25;
             gameState.prices.tribuna_int = parseFloat(document.getElementById('cfg-tribuna-int').value) || 18;
-            gameState.prices.gradinata_int = parseFloat(document.getElementById('cfg-gradinata-int').value) || 12;
+            gameState.prices.gradinata_int = parseFloat(document.getElementById('cfg-gradinata-int').value)|| 12;
             alert("Listino prezzi aggiornato con successo.");
             updatePricesDisplay();
         }
