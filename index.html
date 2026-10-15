@@ -681,7 +681,7 @@
     <!-- Header Navigation -->
     <header>
         <div class="brand-container">
-            <div class="brand-logo">🎪</div>
+            <div class="brand-logo">C</div>
             <div class="brand-title">
                 <h1>CIRCO M. ORFEI</h1>
                 <p>CASTRIGNANO PRODUCTION RP</p>
@@ -689,10 +689,10 @@
         </div>
 
         <div class="header-stats">
-            <div class="stat-badge">💰 Cassa: <span class="val" id="head-cassa">€ 1359.00</span></div>
-            <div class="stat-badge">📍 Piazza: <span class="val" id="head-piazza">Castrignano</span></div>
-            <div class="stat-badge">🐾 Animali: <span class="val" id="head-animali">3</span></div>
-            <button class="nav-btn" onclick="showView('home')">🏠 Home</button>
+            <div class="stat-badge">Cassa: <span class="val" id="head-cassa">€ 1359.00</span></div>
+            <div class="stat-badge">Piazza: <span class="val" id="head-piazza">Castrignano</span></div>
+            <div class="stat-badge">Animali: <span class="val" id="head-animali">3</span></div>
+            <button class="nav-btn" onclick="showView('home')">Home</button>
         </div>
     </header>
 
@@ -711,34 +711,47 @@
                     <div class="day-item">
                         <label>Meteo Attuale (FS22)</label>
                         <select id="weather-select" class="form-control" onchange="updateWeather()">
-                            <option value="Soleggiato ☀️">Soleggiato ☀️️ (+20% Affluenza)</option>
-                            <option value="Nuvoloso ⛅">Nuvoloso ⛅ (Standard)</option>
-                            <option value="Pioggia 🌧️">Pioggia 🌧️ (-30% Affluenza)</option>
-                            <option value="Temporale 🌩️">Temporale 🌩️ (-60% Affluenza)</option>
+                            <option value="Soleggiato">Soleggiato (+20% Affluenza)</option>
+                            <option value="Nuvoloso">Nuvoloso (Standard)</option>
+                            <option value="Pioggia">Pioggia (-30% Affluenza)</option>
+                            <option value="Temporale">Temporale (-60% Affluenza)</option>
                         </select>
                     </div>
                     <div class="day-item">
                         <label>Capienza Limite Vendite</label>
                         <span id="daily-limit-display">300 Posti</span>
                     </div>
+                    <div class="day-item">
+                        <label>Family Day</label>
+                        <input type="date" id="family-day-input" class="form-control" onchange="updateFamilyDay()" style="background:#090d14; color:#fff; border:1px solid var(--border-color); padding:0.4rem; border-radius:6px;">
+                    </div>
                 </div>
-                <button class="btn-gold" onclick="nextDay()">⏭️ Avanza Giorno</button>
+                <button class="btn-gold" onclick="nextDay()">Avanza Giorno</button>
             </div>
 
             <!-- Home Tiles Grid -->
             <div class="grid-home">
                 <div class="tile-card" onclick="showView('cassa')">
                     <div>
-                        <div class="tile-icon">🎟️</div>
+                        <div class="tile-icon">T</div>
                         <div class="tile-title">Sportello POS SIAE</div>
                         <div class="tile-desc">Gestione vendita biglietti con clienti allo sportello, emissione scontrino fiscale e calcolo del resto.</div>
                     </div>
                     <div class="tile-footer">Apri Cassa ➔</div>
                 </div>
 
+                <div class="tile-card" onclick="showView('negozio')">
+                    <div>
+                        <div class="tile-icon">N</div>
+                        <div class="tile-title">Negozio Biglietti Proprietario</div>
+                        <div class="tile-desc">Acquista direttamente i biglietti desiderati (interi e ridotti) pagandoli al negozio.</div>
+                    </div>
+                    <div class="tile-footer">Apri Negozio ➔</div>
+                </div>
+
                 <div class="tile-card" onclick="showView('veterinaria')">
                     <div>
-                        <div class="tile-icon">🦁</div>
+                        <div class="tile-icon">A</div>
                         <div class="tile-title">Anagrafica Veterinaria</div>
                         <div class="tile-desc">Libretti sanitari degli animali, codici BDN, dieta agricola FS22 e Modello IV per i trasporti.</div>
                     </div>
@@ -747,7 +760,7 @@
 
                 <div class="tile-card" onclick="showView('burocrazia')">
                     <div>
-                        <div class="tile-icon">📜</div>
+                        <div class="tile-icon">B</div>
                         <div class="tile-title">Portale Burocrazia</div>
                         <div class="tile-desc">Rilascio licenze comunali, TOSAP/TARI, permessi Vigili del Fuoco, ASL e controlli di piazza.</div>
                     </div>
@@ -756,7 +769,7 @@
 
                 <div class="tile-card" onclick="showView('piazze')">
                     <div>
-                        <div class="tile-icon">🎪</div>
+                        <div class="tile-icon">P</div>
                         <div class="tile-title">Gestione Piazze & Mappe</div>
                         <div class="tile-desc">Programmazione tournée nelle mappe FS22, prenotazione suolo e pianificazione spettacoli.</div>
                     </div>
@@ -765,7 +778,7 @@
 
                 <div class="tile-card" onclick="showView('admin')">
                     <div>
-                        <div class="tile-icon">⚙️</div>
+                        <div class="tile-icon">S</div>
                         <div class="tile-title">Pannello Direzione Admin</div>
                         <div class="tile-desc">Controllo finanziario totale, modifica listino prezzi, imprevisti e reset salvataggi.</div>
                     </div>
@@ -778,7 +791,7 @@
         <div id="view-cassa" class="view-panel">
             <div class="section-header">
                 <div class="section-title">
-                    <h2>🎟️ BIGLIETTERIA & SPORTELLO POS SIAE</h2>
+                    <h2>BIGLIETTERIA & SPORTELLO POS SIAE</h2>
                     <p>Gestione emissione tagliandi fiscali per il pubblico</p>
                 </div>
                 <button class="nav-btn" onclick="showView('home')">Indietro</button>
@@ -788,8 +801,8 @@
                 <!-- Left Panel: Client Dialog & Controls -->
                 <div class="cassa-card">
                     <div class="cassa-card-header">
-                        <h3>👤 CLIENTE ALLA CASSA</h3>
-                        <button class="btn-gold" style="padding:0.4rem 0.8rem; font-size:0.8rem;" onclick="generateClient()">🔄 Nuovo Cliente</button>
+                        <h3>CLIENTE ALLA CASSA</h3>
+                        <button class="btn-gold" style="padding:0.4rem 0.8rem; font-size:0.8rem;" onclick="generateClient()">Nuovo Cliente</button>
                     </div>
 
                     <div class="client-speech">
@@ -901,13 +914,13 @@
                         </div>
                     </div>
 
-                    <button class="btn-gold" style="width:100%; justify-content:center; padding:1rem;" onclick="processSale()">🖨️ Emetti Biglietto SIAE</button>
+                    <button class="btn-gold" style="width:100%; justify-content:center; padding:1rem;" onclick="processSale()">Emetti Biglietto SIAE</button>
                 </div>
 
                 <!-- Right Panel: Ultra-Realistic SIAE Receipt Display -->
                 <div class="cassa-card">
                     <div class="cassa-card-header">
-                        <h3>🧾 ULTIME EMISSIONI & RICEVUTA SIAE LIVE</h3>
+                        <h3>ULTIME EMISSIONI & RICEVUTA SIAE LIVE</h3>
                     </div>
 
                     <div class="siae-receipt-wrapper">
@@ -925,21 +938,16 @@
 
                             <div class="siae-footer">
                                 <div class="siae-total">
-                                    <span>TOTALE FISCALE:</span>
-                                    <span id="receipt-total-val">€ 0.00</span>
+                                    <span>TOTALE:</span>
+                                    <span id="receipt-total">€ 0.00</span>
                                 </div>
-                                <div style="width:100%; display:flex; justify-content:space-between; font-size:0.6rem; color:#333;">
-                                    <span>CODICE UNIVOCO SIAE:</span>
-                                    <span id="receipt-siae-code">SIAE-00000000</span>
-                                </div>
-                                
                                 <div class="qr-mock">
                                     <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
                                     <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
                                     <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
                                     <div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div><div class="qr-cell"></div>
                                 </div>
-                                <p style="font-size:0.55rem; color:#444; text-align:center;">BIGLIETTO VALIDO ESCLUSIVAMENTE PER LA DATA ED ORA DI EMISSIONE FISCALE - CIRCO M. ORFEI RP</p>
+                                <p style="font-size:0.55rem; color:#666;">TAGLIANDO FISCALE ART. 74 DPR 633/72</p>
                             </div>
                         </div>
                     </div>
@@ -947,31 +955,152 @@
             </div>
         </div>
 
-        <!-- VIEW 3: ANAGRAFICA VETERINARIA -->
+        <!-- VIEW 2.5: NEGOZIO BIGLIETTI PROPRIETARIO -->
+        <div id="view-negozio" class="view-panel">
+            <div class="section-header">
+                <div class="section-title">
+                    <h2>NEGOZIO BIGLIETTI PROPRIETARIO</h2>
+                    <p>Acquista quanti biglietti desideri per il circo pagandoli direttamente al negozio</p>
+                </div>
+                <button class="nav-btn" onclick="showView('home')">Indietro</button>
+            </div>
+
+            <div class="cassa-card" style="max-width: 600px; margin: 0 auto;">
+                <div class="cassa-card-header">
+                    <h3>ACQUISTO DIRETTO PROPRIETARIO</h3>
+                </div>
+                <p style="font-size:0.85rem; color:var(--text-muted);">Seleziona la quantità di biglietti interi e ridotti da acquistare. Il pagamento verrà scalato dalla cassa del circo.</p>
+
+                <div class="ticket-sector-block">
+                    <div class="sector-title"><span>POLTRONA VIP</span></div>
+                    <div class="tariff-row">
+                        <span class="tariff-label">Intero</span>
+                        <div style="display:flex; align-items:center;">
+                            <span class="tariff-price" id="shop-pr-vip-int">€ 25.00</span>
+                            <div class="ticket-controls">
+                                <button type="button" class="btn-ctrl" onclick="changeShopTicket('vip_int', -1)">-</button>
+                                <span class="count-val" id="shop-cnt-vip_int">0</span>
+                                <button type="button" class="btn-ctrl" onclick="changeShopTicket('vip_int', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tariff-row">
+                        <span class="tariff-label">Ridotto</span>
+                        <div style="display:flex; align-items:center;">
+                            <span class="tariff-price" id="shop-pr-vip-rid">€ 18.00</span>
+                            <div class="ticket-controls">
+                                <button type="button" class="btn-ctrl" onclick="changeShopTicket('vip_rid', -1)">-</button>
+                                <span class="count-val" id="shop-cnt-vip_rid">0</span>
+                                <button type="button" class="btn-ctrl" onclick="changeShopTicket('vip_rid', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticket-sector-block">
+                    <div class="sector-title"><span>TRIBUNA</span></div>
+                    <div class="tariff-row">
+                        <span class="tariff-label">Intero</span>
+                        <div style="display:flex; align-items:center;">
+                            <span class="tariff-price" id="shop-pr-tribuna-int">€ 18.00</span>
+                            <div class="ticket-controls">
+                                <button type="button" class="btn-ctrl" onclick="changeShopTicket('tribuna_int', -1)">-</button>
+                                <span class="count-val" id="shop-cnt-tribuna_int">0</span>
+                                <button type="button" class="btn-ctrl" onclick="changeShopTicket('tribuna_int', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tariff-row">
+                        <span class="tariff-label">Ridotto</span>
+                        <div style="display:flex; align-items:center;">
+                            <span class="tariff-price" id="shop-pr-tribuna-rid">€ 12.00</span>
+                            <div class="ticket-controls">
+                                <button type="button" class="btn-ctrl" onclick="changeShopTicket('tribuna_rid', -1)">-</button>
+                                <span class="count-val" id="shop-cnt-tribuna_rid">0</span>
+                                <button type="button" class="btn-ctrl" onclick="changeShopTicket('tribuna_rid', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ticket-sector-block">
+                    <div class="sector-title"><span>GRADINATA</span></div>
+                    <div class="tariff-row">
+                        <span class="tariff-label">Intero</span>
+                        <div style="display:flex; align-items:center;">
+                            <span class="tariff-price" id="shop-pr-gradinata-int">€ 12.00</span>
+                            <div class="ticket-controls">
+                                <button type="button" class="btn-ctrl" onclick="changeShopTicket('gradinata_int', -1)">-</button>
+                                <span class="count-val" id="shop-cnt-gradinata_int">0</span>
+                                <button type="button" class="btn-ctrl" onclick="changeShopTicket('gradinata_int', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tariff-row">
+                        <span class="tariff-label">Ridotto</span>
+                        <div style="display:flex; align-items:center;">
+                            <span class="tariff-price" id="shop-pr-gradinata-rid">€ 8.00</span>
+                            <div class="ticket-controls">
+                                <button type="button" class="btn-ctrl" onclick="changeShopTicket('gradinata_rid', -1)">-</button>
+                                <span class="count-val" id="shop-cnt-gradinata_rid">0</span>
+                                <button type="button" class="btn-ctrl" onclick="changeShopTicket('gradinata_rid', 1)">+</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="totals-block">
+                    <div class="total-row main">
+                        <span>Totale da pagare al Negozio:</span>
+                        <span class="val" id="shop-total-display">€ 0.00</span>
+                    </div>
+                </div>
+
+                <button class="btn-gold" style="width:100%; justify-content:center; padding:1rem;" onclick="processShopPurchase()">Acquista e Paga al Negozio</button>
+            </div>
+        </div>
+
+        <!-- VIEW 3: VETERINARIA -->
         <div id="view-veterinaria" class="view-panel">
             <div class="section-header">
                 <div class="section-title">
-                    <h2>🦁 Registro Anagrafico & Passaporti Sanitari</h2>
-                    <p>Gestione individuale del serraglio, microchip BDN e Modello IV Elettronico</p>
+                    <h2>ANAGRAFICA VETERINARIA</h2>
+                    <p>Gestione libretti sanitari e registri BDN</p>
                 </div>
-                <div>
-                    <button class="btn-gold" onclick="openModal('modal-animal')">➕ Aggiungi Animale</button>
-                    <button class="nav-btn" onclick="showView('home')">Indietro</button>
-                </div>
+                <button class="nav-btn" onclick="showView('home')">Indietro</button>
             </div>
-
             <table class="custom-table">
                 <thead>
                     <tr>
-                        <th>Nome / Identificativo</th>
-                        <th>Specie / Razza</th>
-                        <th>Microchip BDN</th>
-                        <th>Stato Salute</th>
-                        <th>Dieta FS22</th>
+                        <th>Nome Animale</th>
+                        <th>Specie</th>
+                        <th>Codice BDN</th>
+                        <th>Stato Sanitario</th>
                         <th>Azioni</th>
                     </tr>
                 </thead>
-                <tbody id="animal-table-body">
+                <tbody>
+                    <tr>
+                        <td>Simba</td>
+                        <td>Leone</td>
+                        <td>IT093ZO012L</td>
+                        <td><span class="status-tag ok">REGOLARE</span></td>
+                        <td><button class="nav-btn" style="padding:0.3rem 0.6rem; font-size:0.75rem;">Modello IV</button></td>
+                    </tr>
+                    <tr>
+                        <td>Dumbo</td>
+                        <td>Elefante Asiatico</td>
+                        <td>IT093ZO044E</td>
+                        <td><span class="status-tag ok">REGOLARE</span></td>
+                        <td><button class="nav-btn" style="padding:0.3rem 0.6rem; font-size:0.75rem;">Modello IV</button></td>
+                    </tr>
+                    <tr>
+                        <td>Bora</td>
+                        <td>Cavallo Camargue</td>
+                        <td>IT093EQ008C</td>
+                        <td><span class="status-tag ok">REGOLARE</span></td>
+                        <td><button class="nav-btn" style="padding:0.3rem 0.6rem; font-size:0.75rem;">Modello IV</button></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
@@ -980,422 +1109,363 @@
         <div id="view-burocrazia" class="view-panel">
             <div class="section-header">
                 <div class="section-title">
-                    <h2>📜 Portale Burocrazia & Enti Pubblici</h2>
-                    <p>Autorizzazioni comunali, Modello IV ASL e Nullaosta di Pubblico Spettacolo</p>
+                    <h2>PORTALE BUROCRAZIA</h2>
+                    <p>Licenze, permessi e autorizzazioni comunali</p>
                 </div>
                 <button class="nav-btn" onclick="showView('home')">Indietro</button>
             </div>
-
-            <div class="grid-home" style="aspect-ratio:auto;">
-                <div class="cassa-card">
-                    <h3>🏛 Comune & TOSAP/TARI</h3>
-                    <p style="font-size:0.85rem; color:var(--text-muted);">Occupazione suolo pubblico per la piazza corrente.</p>
-                    <div style="margin-top:1rem;">
-                        <span class="status-tag ok" id="tosap-status">Licenza Convalidata</span>
-                    </div>
-                    <button class="btn-gold" style="margin-top:1rem;" onclick="payTosap()">Paga Tassa TOSAP (€ 150.00)</button>
-                </div>
-
-                <div class="cassa-card">
-                    <h3>🚒 Vigili del Fuoco</h3>
-                    <p style="font-size:0.85rem; color:var(--text-muted);">Verifica idoneità tendone, uscite di sicurezza e collaudo ignifugo.</p>
-                    <div style="margin-top:1rem;">
-                        <span class="status-tag ok" id="vvf-status">Nullaosta Valido</span>
-                    </div>
-                    <button class="btn-gold" style="margin-top:1rem;" onclick="alert('Nullaosta Vigili del Fuoco confermato!')">Richiedi Ispezione</button>
-                </div>
-
-                <div class="cassa-card">
-                    <h3>🩺 ASL Veterinario</h3>
-                    <p style="font-size:0.85rem; color:var(--text-muted);">Controllo benessere animale, stalle e Modello IV Elettronico.</p>
-                    <div style="margin-top:1rem;">
-                        <span class="status-tag ok" id="asl-status">Serraglio Idoneo</span>
-                    </div>
-                    <button class="btn-gold" style="margin-top:1rem;" onclick="alert('Ispezione ASL superata con successo!')">Ispezione ASL</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- VIEW 5: GESTIONE PIAZZE -->
-        <div id="view-piazze" class="view-panel">
-            <div class="section-header">
-                <div class="section-title">
-                    <h2>🎪 Gestione Piazze & Mappe FS22</h2>
-                    <p>Pianificazione tappe e piazze di tournée</p>
-                </div>
-                <div>
-                    <button class="btn-gold" onclick="openModal('modal-piazza')">➕ Nuova Piazza</button>
-                    <button class="nav-btn" onclick="showView('home')">Indietro</button>
-                </div>
-            </div>
-
             <table class="custom-table">
                 <thead>
                     <tr>
-                        <th>Nome Piazza / Mappa FS</th>
-                        <th>Comune</th>
-                        <th>Capienza Max Tenda</th>
-                        <th>Stato Permessi</th>
-                        <th>Azioni</th>
+                        <th>Pratica / Ente</th>
+                        <th>Riferimento</th>
+                        <th>Scadenza</th>
+                        <th>Stato</th>
                     </tr>
                 </thead>
-                <tbody id="piazze-table-body">
+                <tbody>
+                    <tr>
+                        <td>Licenza Spettacolo Viaggiante</td>
+                        <td>Questura / Comune</td>
+                        <td>31/12/2026</td>
+                        <td><span class="status-tag ok">ATTIVA</span></td>
+                    </tr>
+                    <tr>
+                        <td>Verifica Vigili del Fuoco</td>
+                        <td>Comando Provinciale</td>
+                        <td>Verifica a Piazza</td>
+                        <td><span class="status-tag ok">COLLAUDATO</span></td>
+                    </tr>
+                    <tr>
+                        <td>TOSAP / Occupazione Suolo</td>
+                        <td>Ufficio Tributi</td>
+                        <td>Fine Turnnée</td>
+                        <td><span class="status-tag ok PAGATO">PAGATO</span></td>
+                    </tr>
                 </tbody>
             </table>
         </div>
 
-        <!-- VIEW 6: PANNELLO ADMIN -->
-        <div id="view-admin" class="view-panel">
+        <!-- VIEW 5: PIAZZE -->
+        <div id="view-piazze" class="view-panel">
             <div class="section-header">
                 <div class="section-title">
-                    <h2>⚙️️ Pannello Direzione Admin</h2>
-                    <p>Controllo finanziario globale, listini e simulatore imprevisti</p>
+                    <h2>GESTIONE PIAZZE & MAPPE</h2>
+                    <p>Pianificazione tournée nelle mappe FS22</p>
                 </div>
                 <button class="nav-btn" onclick="showView('home')">Indietro</button>
             </div>
+            <table class="custom-table">
+                <thead>
+                    <tr>
+                        <th>Mappa / Piazza</th>
+                        <th>Ubicazione</th>
+                        <th>Spazio Disponibile</th>
+                        <th>Stato Occupazione</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Castrignano de' Greci</td>
+                        <td>Zona Fiera / Area Mercatale</td>
+                        <td>Ampio (1200 mq)</td>
+                        <td><span class="status-tag ok">ATTUALE</span></td>
+                    </tr>
+                    <tr>
+                        <td>Farming Valley (FS22)</td>
+                        <td>Vicinato Zona Industriale</td>
+                        <td>Medio (800 mq)</td>
+                        <td>PRENOTABILE</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
 
-            <div class="cassa-grid">
-                <div class="cassa-card">
-                    <h3>💰 Modifica Cassa Circo</h3>
-                    <div class="form-group">
-                        <label>Importo Cassa (€):</label>
-                        <input type="number" id="admin-cassa-input" class="form-control" value="1359.00">
-                    </div>
-                    <button class="btn-gold" onclick="saveAdminCassa()">Aggiorna Cassa</button>
+        <!-- VIEW 6: ADMIN -->
+        <div id="view-admin" class="view-panel">
+            <div class="section-header">
+                <div class="section-title">
+                    <h2>PANNELLO DIREZIONE ADMIN</h2>
+                    <p>Amministrazione avanzata e listino prezzi</p>
                 </div>
-
-                <div class="cassa-card">
-                    <h3>⚠️ Simulatore Imprevisti RP</h3>
-                    <p style="font-size:0.85rem; color:var(--text-muted);">Estrai eventi casuali durante il gioco su FS22.</p>
-                    <button class="btn-gold" style="background:var(--danger); color:#fff;" onclick="triggerEvent()">🎲 Estrai Evento Casual</button>
+                <button class="nav-btn" onclick="showView('home')">Indietro</button>
+            </div>
+            <div class="cassa-card">
+                <div class="cassa-card-header">
+                    <h3>CONFIGURAZIONE LISTINO PREZZI</h3>
                 </div>
+                <div class="form-group">
+                    <label>Prezzo Poltrona VIP Intero (€)</label>
+                    <input type="number" id="cfg-vip-int" class="form-control" value="25">
+                </div>
+                <div class="form-group">
+                    <label>Prezzo Tribuna Intero (€)</label>
+                    <input type="number" id="cfg-tribuna-int" class="form-control" value="18">
+                </div>
+                <div class="form-group">
+                    <label>Prezzo Gradinata Intero (€)</label>
+                    <input type="number" id="cfg-gradinata-int" class="form-control" value="12">
+                </div>
+                <button class="btn-gold" onclick="savePrices()">Salva Listino</button>
             </div>
         </div>
 
     </main>
 
-    <!-- MODALS -->
-    <div class="modal-overlay" id="modal-animal">
-        <div class="modal-box">
-            <h3 style="color:var(--accent-gold); margin-bottom:1rem;">➕ Inserisci Animale</h3>
-            <div class="form-group">
-                <label>Nome Animale:</label>
-                <input type="text" id="add-anim-name" class="form-control" placeholder="es. Sultan">
-            </div>
-            <div class="form-group">
-                <label>Specie:</label>
-                <input type="text" id="add-anim-species" class="form-control" placeholder="es. Tigre, Cavallo">
-            </div>
-            <div class="form-group">
-                <label>Codice Microchip BDN:</label>
-                <input type="text" id="add-anim-chip" class="form-control" placeholder="es. IT092837492">
-            </div>
-            <div class="form-group">
-                <label>Dieta FS22 (kg/giorno):</label>
-                <input type="text" id="add-anim-diet" class="form-control" placeholder="es. 20kg Fieno">
-            </div>
-            <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-top:1.5rem;">
-                <button class="nav-btn" onclick="closeModal('modal-animal')">Annulla</button>
-                <button class="btn-gold" onclick="saveAnimal()">Salva Animale</button>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal-overlay" id="modal-piazza">
-        <div class="modal-box">
-            <h3 style="color:var(--accent-gold); margin-bottom:1rem;">➕ Nuova Piazza</h3>
-            <div class="form-group">
-                <label>Nome Location / Campo:</label>
-                <input type="text" id="add-piazza-name" class="form-control" placeholder="es. Piazzale Campo Sportivo">
-            </div>
-            <div class="form-group">
-                <label>Comune:</label>
-                <input type="text" id="add-piazza-comune" class="form-control" placeholder="es. Castrignano del Capo">
-            </div>
-            <div class="form-group">
-                <label>Capienza Tenda:</label>
-                <input type="number" id="add-piazza-cap" class="form-control" value="350">
-            </div>
-            <div style="display:flex; justify-content:flex-end; gap:0.5rem; margin-top:1.5rem;">
-                <button class="nav-btn" onclick="closeModal('modal-piazza')">Annulla</button>
-                <button class="btn-gold" onclick="savePiazza()">Salva Piazza</button>
-            </div>
-        </div>
-    </div>
-
     <script>
-        let state = {
+        let gameState = {
             cassa: 1359.00,
-            currentDayIdx: 0,
-            days: ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"],
-            weather: "Soleggiato ☀️",
-            activePiazza: "Castrignano",
+            piazza: "Castrignano",
+            animali: 3,
+            dayIndex: 0,
+            weather: "Soleggiato",
+            familyDayDate: "",
             prices: {
-                vip_int: 25.00, vip_rid: 18.00,
-                tribuna_int: 18.00, tribuna_rid: 12.00,
-                gradinata_int: 12.00, gradinata_rid: 8.00
+                vip_int: 25,
+                vip_rid: 18,
+                tribuna_int: 18,
+                tribuna_rid: 12,
+                gradinata_int: 12,
+                gradinata_rid: 8
             },
-            currentOrder: {
-                vip_int: 0, vip_rid: 0,
-                tribuna_int: 0, tribuna_rid: 0,
-                gradinata_int: 0, gradinata_rid: 0
+            ticketCounts: {
+                vip_int: 0,
+                vip_rid: 0,
+                tribuna_int: 0,
+                tribuna_rid: 0,
+                gradinata_int: 0,
+                gradinata_rid: 0
             },
-            currentClient: null,
-            animals: [
-                { id: 1, name: "Sultan", species: "Tigre del Bengala", chip: "IT900293841", status: "Sano", diet: "15kg Carne" },
-                { id: 2, name: "Thunder", species: "Cavallo Arabo", chip: "IT882930192", status: "Sano", diet: "20kg Fieno" },
-                { id: 3, name: "Kaiser", species: "Leone Africano", chip: "IT773920193", status: "Sano", diet: "18kg Carne" }
-            ],
-            piazze: [
-                { id: 1, name: "Piazzale Molo", comune: "Castrignano del Capo", cap: 350, active: true }
-            ]
+            shopTicketCounts: {
+                vip_int: 0,
+                vip_rid: 0,
+                tribuna_int: 0,
+                tribuna_rid: 0,
+                gradinata_int: 0,
+                gradinata_rid: 0
+            },
+            currentClient: {
+                dialog: "Buongiorno, vorrei 2 biglietti per la tribuna per favore.",
+                method: "CONTANTI",
+                cash: 50.00,
+                targetTickets: { tribuna_int: 2, vip_int: 0, vip_rid: 0, tribuna_rid: 0, gradinata_int: 0, gradinata_rid: 0 }
+            }
         };
 
-        window.onload = function() {
-            loadLocalStorage();
-            updateUI();
-            generateClient();
-        };
-
-        function updateUI() {
-            document.getElementById('head-cassa').innerText = `€ ${state.cassa.toFixed(2)}`;
-            document.getElementById('head-piazza').innerText = state.activePiazza;
-            document.getElementById('head-animali').innerText = state.animals.length;
-            document.getElementById('current-day-display').innerText = state.days[state.currentDayIdx];
-
-            let baseLimit = state.currentDayIdx >= 4 ? 500 : 300;
-            if(state.weather.includes("Pioggia")) baseLimit = Math.floor(baseLimit * 0.7);
-            if(state.weather.includes("Temporale")) baseLimit = Math.floor(baseLimit * 0.4);
-            document.getElementById('daily-limit-display').innerText = `${baseLimit} Posti`;
-
-            renderAnimals();
-            renderPiazze();
-            saveLocalStorage();
-        }
+        const days = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"];
 
         function showView(viewId) {
-            document.querySelectorAll('.view-panel').forEach(el => el.classList.remove('active'));
-            document.getElementById(`view-${viewId}`).classList.add('active');
+            document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('view-' + viewId).classList.add('active');
+            if (viewId === 'cassa') {
+                updatePricesDisplay();
+                generateClient();
+            }
+            if (viewId === 'negozio') {
+                updateShopPricesDisplay();
+            }
+        }
+
+        function updateHeader() {
+            document.getElementById('head-cassa').innerText = '€ ' + gameState.cassa.toFixed(2);
+            document.getElementById('head-piazza').innerText = gameState.piazza;
+            document.getElementById('head-animali').innerText = gameState.animali;
+            document.getElementById('current-day-display').innerText = days[gameState.dayIndex];
+
+            let dayName = days[gameState.dayIndex];
+            let isWeekend = (dayName === 'Sabato' || dayName === 'Domenica');
+            let currentDateStr = new Date().toISOString().split('T')[0];
+            let isFamilyDay = (gameState.familyDayDate && gameState.familyDayDate === currentDateStr);
+
+            let limitText = "300 Posti (Normale)";
+            if (isWeekend || isFamilyDay) {
+                limitText = "800 Posti (Capienza Massima)";
+            }
+            document.getElementById('daily-limit-display').innerText = limitText;
         }
 
         function nextDay() {
-            state.currentDayIdx = (state.currentDayIdx + 1) % 7;
-            alert(`🗓️ Giornata avanzata a: ${state.days[state.currentDayIdx]}`);
-            updateUI();
+            gameState.dayIndex = (gameState.dayIndex + 1) % days.length;
+            updateHeader();
         }
 
         function updateWeather() {
-            state.weather = document.getElementById('weather-select').value;
-            updateUI();
+            gameState.weather = document.getElementById('weather-select').value;
+        }
+
+        function updateFamilyDay() {
+            gameState.familyDayDate = document.getElementById('family-day-input').value;
+            updateHeader();
+        }
+
+        function updatePricesDisplay() {
+            document.getElementById('pr-vip-int').innerText = '€ ' + gameState.prices.vip_int.toFixed(2);
+            document.getElementById('pr-vip-rid').innerText = '€ ' + gameState.prices.vip_rid.toFixed(2);
+            document.getElementById('pr-tribuna-int').innerText = '€ ' + gameState.prices.tribuna_int.toFixed(2);
+            document.getElementById('pr-tribuna-rid').innerText = '€ ' + gameState.prices.tribuna_rid.toFixed(2);
+            document.getElementById('pr-gradinata-int').innerText = '€ ' + gameState.prices.gradinata_int.toFixed(2);
+            document.getElementById('pr-gradinata-rid').innerText = '€ ' + gameState.prices.gradinata_rid.toFixed(2);
+        }
+
+        function updateShopPricesDisplay() {
+            document.getElementById('shop-pr-vip-int').innerText = '€ ' + gameState.prices.vip_int.toFixed(2);
+            document.getElementById('shop-pr-vip-rid').innerText = '€ ' + gameState.prices.vip_rid.toFixed(2);
+            document.getElementById('shop-pr-tribuna-int').innerText = '€ ' + gameState.prices.tribuna_int.toFixed(2);
+            document.getElementById('shop-pr-tribuna-rid').innerText = '€ ' + gameState.prices.tribuna_rid.toFixed(2);
+            document.getElementById('shop-pr-gradinata-int').innerText = '€ ' + gameState.prices.gradinata_int.toFixed(2);
+            document.getElementById('shop-pr-gradinata-rid').innerText = '€ ' + gameState.prices.gradinata_rid.toFixed(2);
         }
 
         function changeTicket(type, delta) {
-            let val = state.currentOrder[type] + delta;
-            if(val >= 0) {
-                state.currentOrder[type] = val;
-                let elem = document.getElementById(`cnt-${type}`);
-                if(elem) elem.innerText = val;
-                calculateOrderTotal();
-            }
+            let val = gameState.ticketCounts[type] + delta;
+            if (val < 0) val = 0;
+            gameState.ticketCounts[type] = val;
+            document.getElementById('cnt-' + type).innerText = val;
+            calcOrderTotal();
         }
 
-        function calculateOrderTotal() {
+        function changeShopTicket(type, delta) {
+            let val = gameState.shopTicketCounts[type] + delta;
+            if (val < 0) val = 0;
+            gameState.shopTicketCounts[type] = val;
+            document.getElementById('shop-cnt-' + type).innerText = val;
+            calcShopTotal();
+        }
+
+        function calcOrderTotal() {
             let total = 0;
-            for(let key in state.currentOrder) {
-                total += state.currentOrder[key] * state.prices[key];
+            for (let k in gameState.ticketCounts) {
+                total += gameState.ticketCounts[k] * gameState.prices[k];
             }
-
-            document.getElementById('order-total-display').innerText = `€ ${total.toFixed(2)}`;
-
-            if(state.currentClient && state.currentClient.method === "CONTANTI") {
-                let change = state.currentClient.cash - total;
-                document.getElementById('order-change-display').innerText = `€ ${change >= 0 ? change.toFixed(2) : '0.00'}`;
+            document.getElementById('order-total-display').innerText = '€ ' + total.toFixed(2);
+            let change = gameState.currentClient.cash - total;
+            let changeEl = document.getElementById('order-change-display');
+            if (change >= 0) {
+                changeEl.innerText = '€ ' + change.toFixed(2);
+                changeEl.style.color = 'var(--success)';
             } else {
-                document.getElementById('order-change-display').innerText = `€ 0.00 (POS)`;
+                changeEl.innerText = 'Denaro insufficiente!';
+                changeEl.style.color = 'var(--danger)';
             }
         }
 
-        const clientNames = ["Famiglia Rossi", "Marco Bianchi", "Giulia Verdi", "Luca Neri", "Elena Sarti", "Roberto Russo"];
-        const sectors = [
-            { id: "vip", name: "Poltrona VIP" },
-            { id: "tribuna", name: "Tribuna" },
-            { id: "gradinata", name: "Gradinata" }
-        ];
+        function calcShopTotal() {
+            let total = 0;
+            for (let k in gameState.shopTicketCounts) {
+                total += gameState.shopTicketCounts[k] * gameState.prices[k];
+            }
+            document.getElementById('shop-total-display').innerText = '€ ' + total.toFixed(2);
+        }
 
         function generateClient() {
-            let name = clientNames[Math.floor(Math.random() * clientNames.length)];
-            let sectorObj = sectors[Math.floor(Math.random() * sectors.length)];
-            let numInt = Math.floor(Math.random() * 3) + 1;
-            let numRid = Math.random() > 0.5 ? Math.floor(Math.random() * 2) + 1 : 0;
-            let isCash = Math.random() > 0.3;
-            let method = isCash ? "CONTANTI" : "CARTA / POS";
+            let types = ['vip_int', 'vip_rid', 'tribuna_int', 'tribuna_rid', 'gradinata_int', 'gradinata_rid'];
+            let randomType = types[Math.floor(Math.random() * types.length)];
+            let randomQty = Math.floor(Math.random() * 3) + 1;
 
-            // Imposta automaticamente la quantita' richiesta dal cliente
-            for(let key in state.currentOrder) {
-                state.currentOrder[key] = 0;
+            for (let k in gameState.ticketCounts) {
+                gameState.ticketCounts[k] = 0;
+                document.getElementById('cnt-' + k).innerText = 0;
             }
 
-            let keyInt = `${sectorObj.id}_int`;
-            let keyRid = `${sectorObj.id}_rid`;
-            state.currentOrder[keyInt] = numInt;
-            state.currentOrder[keyRid] = numRid;
+            let target = { vip_int: 0, vip_rid: 0, tribuna_int: 0, tribuna_rid: 0, gradinata_int: 0, gradinata_rid: 0 };
+            target[randomType] = randomQty;
 
-            for(let key in state.currentOrder) {
-                let el = document.getElementById(`cnt-${key}`);
-                if(el) el.innerText = state.currentOrder[key];
-            }
+            let sectorName = randomType.includes('vip') ? 'poltrona vip' : (randomType.includes('tribuna') ? 'tribuna' : 'gradinata');
+            let tariffName = randomType.includes('int') ? 'intero' : 'ridotto';
 
-            let totalNeed = (numInt * state.prices[keyInt]) + (numRid * state.prices[keyRid]);
-            let cash = isCash ? (totalNeed > 50 ? 100 : 50) : 0;
+            gameState.currentClient = {
+                dialog: "Salve, vorrei " + randomQty + " biglietti " + tariffName + " per il settore " + sectorName + ".",
+                method: "CONTANTI",
+                cash: [20, 50, 100][Math.floor(Math.random() * 3)],
+                targetTickets: target
+            };
 
-            state.currentClient = { name, sector: sectorObj.name, numInt, numRid, method, cash };
-
-            let speech = `"${name}: Salve! Vorrei ${numInt} Interi${numRid > 0 ? ' e ' + numRid + ' Ridotti (<11 anni)' : ''} in ${sectorObj.name}, per favore."`;
-            document.getElementById('client-dialog').innerText = speech;
-            document.getElementById('client-method').innerText = method;
-            document.getElementById('client-cash').innerText = isCash ? `€ ${cash.toFixed(2)}` : "N/D";
-            calculateOrderTotal();
+            document.getElementById('client-dialog').innerText = '"' + gameState.currentClient.dialog + '"';
+            document.getElementById('client-method').innerText = gameState.currentClient.method;
+            document.getElementById('client-cash').innerText = '€ ' + gameState.currentClient.cash.toFixed(2);
+            calcOrderTotal();
         }
 
         function processSale() {
             let total = 0;
-            for(let key in state.currentOrder) {
-                total += state.currentOrder[key] * state.prices[key];
+            let itemsHtml = '';
+            let hasItems = false;
+
+            for (let k in gameState.ticketCounts) {
+                let count = gameState.ticketCounts[k];
+                if (count > 0) {
+                    hasItems = true;
+                    let sub = count * gameState.prices[k];
+                    total += sub;
+                    itemsHtml += `<div class="siae-item-row"><span>${count}x ${k.toUpperCase()}</span><span>€ ${sub.toFixed(2)}</span></div>`;
+                }
             }
 
-            if(total === 0) {
-                alert("⚠️ Seleziona almeno un biglietto da emettere!");
+            if (!hasItems) {
+                alert("Seleziona almeno un biglietto da emettere.");
                 return;
             }
 
-            state.cassa += total;
-            updateUI();
+            if (gameState.currentClient.cash < total) {
+                alert("Il cliente non ha abbastanza denaro per coprire l'importo!");
+                return;
+            }
+
+            gameState.cassa += total;
+            updateHeader();
 
             let now = new Date();
-            document.getElementById('receipt-date').innerText = `DATA: ${now.toLocaleDateString()} ${now.toLocaleTimeString()}`;
+            let dateStr = now.toLocaleDateString() + ' ' + now.toLocaleTimeString();
+            document.getElementById('receipt-date').innerText = 'DATA: ' + dateStr;
+            document.getElementById('receipt-items').innerHTML = itemsHtml;
+            document.getElementById('receipt-total').innerText = '€ ' + total.toFixed(2);
 
-            let html = '';
-            if(state.currentOrder.vip_int > 0) html += `<div class="siae-item-row"><span>${state.currentOrder.vip_int}x POLTRONA VIP (INT)</span><span>€ ${(state.currentOrder.vip_int*state.prices.vip_int).toFixed(2)}</span></div>`;
-            if(state.currentOrder.vip_rid > 0) html += `<div class="siae-item-row"><span>${state.currentOrder.vip_rid}x POLTRONA VIP (RID)</span><span>€ ${(state.currentOrder.vip_rid*state.prices.vip_rid).toFixed(2)}</span></div>`;
-            if(state.currentOrder.tribuna_int > 0) html += `<div class="siae-item-row"><span>${state.currentOrder.tribuna_int}x TRIBUNA (INT)</span><span>€ ${(state.currentOrder.tribuna_int*state.prices.tribuna_int).toFixed(2)}</span></div>`;
-            if(state.currentOrder.tribuna_rid > 0) html += `<div class="siae-item-row"><span>${state.currentOrder.tribuna_rid}x TRIBUNA (RID)</span><span>€ ${(state.currentOrder.tribuna_rid*state.prices.tribuna_rid).toFixed(2)}</span></div>`;
-            if(state.currentOrder.gradinata_int > 0) html += `<div class="siae-item-row"><span>${state.currentOrder.gradinata_int}x GRADINATA (INT)</span><span>€ ${(state.currentOrder.gradinata_int*state.prices.gradinata_int).toFixed(2)}</span></div>`;
-            if(state.currentOrder.gradinata_rid > 0) html += `<div class="siae-item-row"><span>${state.currentOrder.gradinata_rid}x GRADINATA (RID)</span><span>€ ${(state.currentOrder.gradinata_rid*state.prices.gradinata_rid).toFixed(2)}</span></div>`;
-
-            document.getElementById('receipt-items').innerHTML = html;
-            document.getElementById('receipt-total-val').innerText = `€ ${total.toFixed(2)}`;
-            document.getElementById('receipt-siae-code').innerText = `SIAE-${Math.floor(Math.random()*89999999 + 10000000)}`;
-
-            alert("✅ Biglietto SIAE C1 emesso con successo!");
+            alert("Vendita completata con successo! Scontrino SIAE emesso.");
             generateClient();
         }
 
-        function renderAnimals() {
-            let tbody = document.getElementById('animal-table-body');
-            tbody.innerHTML = '';
-            state.animals.forEach(a => {
-                tbody.innerHTML += `
-                    <tr>
-                        <td><b>${a.name}</b></td>
-                        <td>${a.species}</td>
-                        <td><code>${a.chip}</code></td>
-                        <td><span class="status-tag ok">${a.status}</span></td>
-                        <td>${a.diet}</td>
-                        <td><button class="nav-btn" onclick="deleteAnimal(${a.id})">🗑️</button></td>
-                    </tr>
-                `;
-            });
-        }
-
-        function saveAnimal() {
-            let name = document.getElementById('add-anim-name').value;
-            let species = document.getElementById('add-anim-species').value;
-            let chip = document.getElementById('add-anim-chip').value;
-            let diet = document.getElementById('add-anim-diet').value;
-
-            if(!name || !species) return alert("Compila i campi principali!");
-
-            state.animals.push({ id: Date.now(), name, species, chip: chip || "IT-PENDING", status: "Sano", diet });
-            closeModal('modal-animal');
-            updateUI();
-        }
-
-        function deleteAnimal(id) {
-            state.animals = state.animals.filter(a => a.id !== id);
-            updateUI();
-        }
-
-        function renderPiazze() {
-            let tbody = document.getElementById('piazze-table-body');
-            tbody.innerHTML = '';
-            state.piazze.forEach(p => {
-                tbody.innerHTML += `
-                    <tr>
-                        <td><b>${p.name}</b></td>
-                        <td>${p.comune}</td>
-                        <td>${p.cap} Posti</td>
-                        <td><span class="status-tag ok">Autorizzata</span></td>
-                        <td><button class="btn-gold" style="padding:0.3rem 0.6rem; font-size:0.75rem;" onclick="setActivePiazza('${p.comune}')">Attiva</button></td>
-                    </tr>
-                `;
-            });
-        }
-
-        function setActivePiazza(name) {
-            state.activePiazza = name;
-            updateUI();
-        }
-
-        function savePiazza() {
-            let name = document.getElementById('add-piazza-name').value;
-            let comune = document.getElementById('add-piazza-comune').value;
-            let cap = document.getElementById('add-piazza-cap').value;
-
-            if(!name) return;
-            state.piazze.push({ id: Date.now(), name, comune, cap, active: false });
-            closeModal('modal-piazza');
-            updateUI();
-        }
-
-        function payTosap() {
-            state.cassa -= 150;
-            alert("✅ Tassa TOSAP pagata al Comune.");
-            updateUI();
-        }
-
-        function saveAdminCassa() {
-            let val = parseFloat(document.getElementById('admin-cassa-input').value);
-            if(!isNaN(val)) {
-                state.cassa = val;
-                updateUI();
-                alert("💰 Cassa aggiornata!");
+        function processShopPurchase() {
+            let total = 0;
+            let hasItems = false;
+            for (let k in gameState.shopTicketCounts) {
+                let count = gameState.shopTicketCounts[k];
+                if (count > 0) {
+                    hasItems = true;
+                    total += count * gameState.prices[k];
+                }
             }
-        }
 
-        function triggerEvent() {
-            let events = [
-                "🌧️ Pioggia Improvvisa: Vendita ridotta del 30%",
-                "🩺 Ispezione ASL a Sorpresa: Tutti i libretti veterinari approvati!",
-                "🚒 Controllo VV.F.: Collaudo ignifugo SUPERATO!"
-            ];
-            alert(events[Math.floor(Math.random() * events.length)]);
-        }
-
-        function openModal(id) { document.getElementById(id).classList.add('active'); }
-        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
-
-        function saveLocalStorage() {
-            localStorage.setItem('circo_orfei_state', JSON.stringify(state));
-        }
-
-        function loadLocalStorage() {
-            let saved = localStorage.getItem('circo_orfei_state');
-            if(saved) {
-                try {
-                    state = Object.assign(state, JSON.parse(saved));
-                } catch(e) {}
+            if (!hasItems) {
+                alert("Seleziona almeno un biglietto da acquistare.");
+                return;
             }
+
+            if (gameState.cassa < total) {
+                alert("Fondi in cassa insufficienti per completare l'acquisto al negozio!");
+                return;
+            }
+
+            gameState.cassa -= total;
+            updateHeader();
+
+            for (let k in gameState.shopTicketCounts) {
+                gameState.shopTicketCounts[k] = 0;
+                document.getElementById('shop-cnt-' + k).innerText = 0;
+            }
+            calcShopTotal();
+
+            alert("Acquisto effettuato con successo al negozio! Totale pagato: € " + total.toFixed(2));
         }
+
+        function savePrices() {
+            gameState.prices.vip_int = parseFloat(document.getElementById('cfg-vip-int').value) || 25;
+            gameState.prices.tribuna_int = parseFloat(document.getElementById('cfg-tribuna-int').value) || 18;
+            gameState.prices.gradinata_int = parseFloat(document.getElementById('cfg-gradinata-int').value) || 12;
+            alert("Listino prezzi aggiornato con successo.");
+            updatePricesDisplay();
+        }
+
+        updateHeader();
     </script>
 </body>
 </html>
