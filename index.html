@@ -722,8 +722,17 @@
                         <span id="daily-limit-display">300 Posti</span>
                     </div>
                     <div class="day-item">
-                        <label>Family Day</label>
-                        <input type="date" id="family-day-input" class="form-control" onchange="updateFamilyDay()" style="background:#090d14; color:#fff; border:1px solid var(--border-color); padding:0.4rem; border-radius:6px;">
+                        <label>Giorno Family Day</label>
+                        <select id="family-day-select" class="form-control" onchange="updateFamilyDay()">
+                            <option value="Nessuno">Nessuno</option>
+                            <option value="Lunedì">Lunedì</option>
+                            <option value="Martedì">Martedì</option>
+                            <option value="Mercoledì">Mercoledì</option>
+                            <option value="Giovedì">Giovedì</option>
+                            <option value="Venerdì">Venerdì</option>
+                            <option value="Sabato">Sabato</option>
+                            <option value="Domenica">Domenica</option>
+                        </select>
                     </div>
                 </div>
                 <button class="btn-gold" onclick="nextDay()">Avanza Giorno</button>
@@ -744,7 +753,7 @@
                     <div>
                         <div class="tile-icon">N</div>
                         <div class="tile-title">Negozio Biglietti Proprietario</div>
-                        <div class="tile-desc">Acquista direttamente i biglietti desiderati (interi e ridotti) pagandoli al negozio.</div>
+                        <div class="tile-desc">Acquista direttamente i biglietti desiderati a costo d'ingrosso fortemente scontato.</div>
                     </div>
                     <div class="tile-footer">Apri Negozio ➔</div>
                 </div>
@@ -761,8 +770,8 @@
                 <div class="tile-card" onclick="showView('burocrazia')">
                     <div>
                         <div class="tile-icon">B</div>
-                        <div class="tile-title">Portale Burocrazia</div>
-                        <div class="tile-desc">Rilascio licenze comunali, TOSAP/TARI, permessi Vigili del Fuoco, ASL e controlli di piazza.</div>
+                        <div class="tile-title">Portale Burocrazia & Pagamenti</div>
+                        <div class="tile-desc">Pagamento tasse comunali, autorizzazione SIAE, permessi pubblicità e controlli di piazza.</div>
                     </div>
                     <div class="tile-footer">Apri Pratiche ➔</div>
                 </div>
@@ -771,7 +780,7 @@
                     <div>
                         <div class="tile-icon">P</div>
                         <div class="tile-title">Gestione Piazze & Mappe</div>
-                        <div class="tile-desc">Programmazione tournée nelle mappe FS22, prenotazione suolo e pianificazione spettacoli.</div>
+                        <div class="tile-desc">Organizzazione completa tour, scelta della città e pianificazione delle date di spettacolo.</div>
                     </div>
                     <div class="tile-footer">Vedi Piazze ➔</div>
                 </div>
@@ -959,8 +968,8 @@
         <div id="view-negozio" class="view-panel">
             <div class="section-header">
                 <div class="section-title">
-                    <h2>NEGOZIO BIGLIETTI PROPRIETARIO</h2>
-                    <p>Acquista quanti biglietti desideri per il circo pagandoli direttamente al negozio</p>
+                    <h2>NEGOZIO BIGLIETTI PROPRIETARIO (INGROSSO)</h2>
+                    <p>Acquista i biglietti a prezzo ridotto di costo rispetto al botteghino pubblico</p>
                 </div>
                 <button class="nav-btn" onclick="showView('home')">Indietro</button>
             </div>
@@ -969,14 +978,14 @@
                 <div class="cassa-card-header">
                     <h3>ACQUISTO DIRETTO PROPRIETARIO</h3>
                 </div>
-                <p style="font-size:0.85rem; color:var(--text-muted);">Seleziona la quantità di biglietti interi e ridotti da acquistare. Il pagamento verrà scalato dalla cassa del circo.</p>
+                <p style="font-size:0.85rem; color:var(--text-muted);">Prezzi d'ingrosso riservati al proprietario. Il saldo viene scalato dalla cassa.</p>
 
                 <div class="ticket-sector-block">
                     <div class="sector-title"><span>POLTRONA VIP</span></div>
                     <div class="tariff-row">
-                        <span class="tariff-label">Intero</span>
+                        <span class="tariff-label">Intero (Ingrosso)</span>
                         <div style="display:flex; align-items:center;">
-                            <span class="tariff-price" id="shop-pr-vip-int">€ 25.00</span>
+                            <span class="tariff-price" id="shop-pr-vip-int">€ 5.00</span>
                             <div class="ticket-controls">
                                 <button type="button" class="btn-ctrl" onclick="changeShopTicket('vip_int', -1)">-</button>
                                 <span class="count-val" id="shop-cnt-vip_int">0</span>
@@ -985,9 +994,9 @@
                         </div>
                     </div>
                     <div class="tariff-row">
-                        <span class="tariff-label">Ridotto</span>
+                        <span class="tariff-label">Ridotto (Ingrosso)</span>
                         <div style="display:flex; align-items:center;">
-                            <span class="tariff-price" id="shop-pr-vip-rid">€ 18.00</span>
+                            <span class="tariff-price" id="shop-pr-vip-rid">€ 3.00</span>
                             <div class="ticket-controls">
                                 <button type="button" class="btn-ctrl" onclick="changeShopTicket('vip_rid', -1)">-</button>
                                 <span class="count-val" id="shop-cnt-vip_rid">0</span>
@@ -1000,9 +1009,9 @@
                 <div class="ticket-sector-block">
                     <div class="sector-title"><span>TRIBUNA</span></div>
                     <div class="tariff-row">
-                        <span class="tariff-label">Intero</span>
+                        <span class="tariff-label">Intero (Ingrosso)</span>
                         <div style="display:flex; align-items:center;">
-                            <span class="tariff-price" id="shop-pr-tribuna-int">€ 18.00</span>
+                            <span class="tariff-price" id="shop-pr-tribuna-int">€ 3.50</span>
                             <div class="ticket-controls">
                                 <button type="button" class="btn-ctrl" onclick="changeShopTicket('tribuna_int', -1)">-</button>
                                 <span class="count-val" id="shop-cnt-tribuna_int">0</span>
@@ -1011,9 +1020,9 @@
                         </div>
                     </div>
                     <div class="tariff-row">
-                        <span class="tariff-label">Ridotto</span>
+                        <span class="tariff-label">Ridotto (Ingrosso)</span>
                         <div style="display:flex; align-items:center;">
-                            <span class="tariff-price" id="shop-pr-tribuna-rid">€ 12.00</span>
+                            <span class="tariff-price" id="shop-pr-tribuna-rid">€ 2.00</span>
                             <div class="ticket-controls">
                                 <button type="button" class="btn-ctrl" onclick="changeShopTicket('tribuna_rid', -1)">-</button>
                                 <span class="count-val" id="shop-cnt-tribuna_rid">0</span>
@@ -1026,9 +1035,9 @@
                 <div class="ticket-sector-block">
                     <div class="sector-title"><span>GRADINATA</span></div>
                     <div class="tariff-row">
-                        <span class="tariff-label">Intero</span>
+                        <span class="tariff-label">Intero (Ingrosso)</span>
                         <div style="display:flex; align-items:center;">
-                            <span class="tariff-price" id="shop-pr-gradinata-int">€ 12.00</span>
+                            <span class="tariff-price" id="shop-pr-gradinata-int">€ 2.00</span>
                             <div class="ticket-controls">
                                 <button type="button" class="btn-ctrl" onclick="changeShopTicket('gradinata_int', -1)">-</button>
                                 <span class="count-val" id="shop-cnt-gradinata_int">0</span>
@@ -1037,9 +1046,9 @@
                         </div>
                     </div>
                     <div class="tariff-row">
-                        <span class="tariff-label">Ridotto</span>
+                        <span class="tariff-label">Ridotto (Ingrosso)</span>
                         <div style="display:flex; align-items:center;">
-                            <span class="tariff-price" id="shop-pr-gradinata-rid">€ 8.00</span>
+                            <span class="tariff-price" id="shop-pr-gradinata-rid">€ 1.00</span>
                             <div class="ticket-controls">
                                 <button type="button" class="btn-ctrl" onclick="changeShopTicket('gradinata_rid', -1)">-</button>
                                 <span class="count-val" id="shop-cnt-gradinata_rid">0</span>
@@ -1109,76 +1118,92 @@
         <div id="view-burocrazia" class="view-panel">
             <div class="section-header">
                 <div class="section-title">
-                    <h2>PORTALE BUROCRAZIA</h2>
-                    <p>Licenze, permessi e autorizzazioni comunali</p>
+                    <h2>PORTALE BUROCRAZIA & PAGAMENTI COMUNALI</h2>
+                    <p>Saldo tasse, permessi per affissioni pubblicitarie e licenze SIAE per il comune attuale</p>
                 </div>
                 <button class="nav-btn" onclick="showView('home')">Indietro</button>
             </div>
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th>Pratica / Ente</th>
-                        <th>Riferimento</th>
-                        <th>Scadenza</th>
-                        <th>Stato</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Licenza Spettacolo Viaggiante</td>
-                        <td>Questura / Comune</td>
-                        <td>31/12/2026</td>
-                        <td><span class="status-tag ok">ATTIVA</span></td>
-                    </tr>
-                    <tr>
-                        <td>Verifica Vigili del Fuoco</td>
-                        <td>Comando Provinciale</td>
-                        <td>Verifica a Piazza</td>
-                        <td><span class="status-tag ok">COLLAUDATO</span></td>
-                    </tr>
-                    <tr>
-                        <td>TOSAP / Occupazione Suolo</td>
-                        <td>Ufficio Tributi</td>
-                        <td>Fine Turnnée</td>
-                        <td><span class="status-tag ok PAGATO">PAGATO</span></td>
-                    </tr>
-                </tbody>
-            </table>
+
+            <div class="cassa-card">
+                <div class="cassa-card-header">
+                    <h3>TASSE E DIRITTI RICHIESTI DAL COMUNE (<span id="buro-comune-name">Castrignano</span>)</h3>
+                </div>
+                
+                <table class="custom-table">
+                    <thead>
+                        <tr>
+                            <th>Tipologia Tassa / Autorizzazione</th>
+                            <th>Dettagli Richiesta</th>
+                            <th>Importo Dovuto</th>
+                            <th>Stato Pagamento</th>
+                            <th>Azione</th>
+                        </tr>
+                    </thead>
+                    <tbody id="buro-table-body">
+                        <!-- Popolato via JS -->
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <!-- VIEW 5: PIAZZE -->
         <div id="view-piazze" class="view-panel">
             <div class="section-header">
                 <div class="section-title">
-                    <h2>GESTIONE PIAZZE & MAPPE</h2>
-                    <p>Pianificazione tournée nelle mappe FS22</p>
+                    <h2>GESTIONE PIAZZE & ORGANIZZAZIONE TOUR</h2>
+                    <p>Pianifica e organizza il tuo tour scegliendo la città e impostando i dati necessari</p>
                 </div>
                 <button class="nav-btn" onclick="showView('home')">Indietro</button>
             </div>
-            <table class="custom-table">
-                <thead>
-                    <tr>
-                        <th>Mappa / Piazza</th>
-                        <th>Ubicazione</th>
-                        <th>Spazio Disponibile</th>
-                        <th>Stato Occupazione</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Castrignano de' Greci</td>
-                        <td>Zona Fiera / Area Mercatale</td>
-                        <td>Ampio (1200 mq)</td>
-                        <td><span class="status-tag ok">ATTUALE</span></td>
-                    </tr>
-                    <tr>
-                        <td>Farming Valley (FS22)</td>
-                        <td>Vicinato Zona Industriale</td>
-                        <td>Medio (800 mq)</td>
-                        <td>PRENOTABILE</td>
-                    </tr>
-                </tbody>
-            </table>
+
+            <div class="cassa-grid">
+                <div class="cassa-card">
+                    <div class="cassa-card-header">
+                        <h3>ORGANIZZA NUOVO TOUR IN UNA PIAZZA</h3>
+                    </div>
+                    <div class="form-group">
+                        <label>Nome Città / Comune Destinatione</label>
+                        <input type="text" id="tour-city-input" class="form-control" placeholder="Es. Lecce, Gallipoli, Taranto...">
+                    </div>
+                    <div class="form-group">
+                        <label>Ubicazione / Area Spettacolo</label>
+                        <input type="text" id="tour-location-input" class="form-control" placeholder="Es. Area Fiera, Piazza Nuova...">
+                    </div>
+                    <div class="form-group">
+                        <label>Durata Tournée (Giorni)</label>
+                        <input type="number" id="tour-days-input" class="form-control" value="7">
+                    </div>
+                    <div class="form-group">
+                        <label>Costo Prenotazione Suolo Pubblico (€)</label>
+                        <input type="number" id="tour-cost-input" class="form-control" value="250">
+                    </div>
+                    <button class="btn-gold" onclick="organizeTour()">Conferma e Organizza Tour</button>
+                </div>
+
+                <div class="cassa-card">
+                    <div class="cassa-card-header">
+                        <h3>STORICO & PIAZZE IN PROGRAMMA</h3>
+                    </div>
+                    <table class="custom-table">
+                        <thead>
+                            <tr>
+                                <th>Città</th>
+                                <th>Ubicazione</th>
+                                <th>Durata</th>
+                                <th>Stato</th>
+                            </tr>
+                        </thead>
+                        <tbody id="piazze-table-body">
+                            <tr>
+                                <td>Castrignano</td>
+                                <td>Area Mercatale</td>
+                                <td>7 giorni</td>
+                                <td><span class="status-tag ok">ATTUALE</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
 
         <!-- VIEW 6: ADMIN -->
@@ -1219,7 +1244,7 @@
             animali: 3,
             dayIndex: 0,
             weather: "Soleggiato",
-            familyDayDate: "",
+            familyDayName: "Nessuno",
             prices: {
                 vip_int: 25,
                 vip_rid: 18,
@@ -1227,6 +1252,14 @@
                 tribuna_rid: 12,
                 gradinata_int: 12,
                 gradinata_rid: 8
+            },
+            shopPrices: {
+                vip_int: 5.00,
+                vip_rid: 3.00,
+                tribuna_int: 3.50,
+                tribuna_rid: 2.00,
+                gradinata_int: 2.00,
+                gradinata_rid: 1.00
             },
             ticketCounts: {
                 vip_int: 0,
@@ -1249,7 +1282,16 @@
                 method: "CONTANTI",
                 cash: 50.00,
                 targetTickets: { tribuna_int: 2, vip_int: 0, vip_rid: 0, tribuna_rid: 0, gradinata_int: 0, gradinata_rid: 0 }
-            }
+            },
+            comuneFees: [
+                { id: "siae", name: "Autorizzazione SIAE e Spettacolo", amount: 150.00, paid: false },
+                { id: "tosap", name: "Occupazione Suolo Pubblico (TOSAP)", amount: 200.00, paid: false },
+                { id: "pubblicita", name: "Diritti Affissione Manifesti e Pubblicità", amount: 80.00, paid: false },
+                { id: "tari", name: "Tassa Rifiuti Straordinaria (TARI)", amount: 60.00, paid: false }
+            ],
+            tours: [
+                { city: "Castrignano", location: "Area Mercatale", days: 7, status: "ATTUALE" }
+            ]
         };
 
         const days = ["Lunedì", "Martedì", "Mercoledì", "Giovedì", "Venerdì", "Sabato", "Domenica"];
@@ -1264,6 +1306,12 @@
             if (viewId === 'negozio') {
                 updateShopPricesDisplay();
             }
+            if (viewId === 'burocrazia') {
+                renderBurocraziaTable();
+            }
+            if (viewId === 'piazze') {
+                renderPiazzeTable();
+            }
         }
 
         function updateHeader() {
@@ -1274,8 +1322,7 @@
 
             let dayName = days[gameState.dayIndex];
             let isWeekend = (dayName === 'Sabato' || dayName === 'Domenica');
-            let currentDateStr = new Date().toISOString().split('T')[0];
-            let isFamilyDay = (gameState.familyDayDate && gameState.familyDayDate === currentDateStr);
+            let isFamilyDay = (gameState.familyDayName === dayName);
 
             let limitText = "300 Posti (Normale)";
             if (isWeekend || isFamilyDay) {
@@ -1294,7 +1341,7 @@
         }
 
         function updateFamilyDay() {
-            gameState.familyDayDate = document.getElementById('family-day-input').value;
+            gameState.familyDayName = document.getElementById('family-day-select').value;
             updateHeader();
         }
 
@@ -1308,12 +1355,12 @@
         }
 
         function updateShopPricesDisplay() {
-            document.getElementById('shop-pr-vip-int').innerText = '€ ' + gameState.prices.vip_int.toFixed(2);
-            document.getElementById('shop-pr-vip-rid').innerText = '€ ' + gameState.prices.vip_rid.toFixed(2);
-            document.getElementById('shop-pr-tribuna-int').innerText = '€ ' + gameState.prices.tribuna_int.toFixed(2);
-            document.getElementById('shop-pr-tribuna-rid').innerText = '€ ' + gameState.prices.tribuna_rid.toFixed(2);
-            document.getElementById('shop-pr-gradinata-int').innerText = '€ ' + gameState.prices.gradinata_int.toFixed(2);
-            document.getElementById('shop-pr-gradinata-rid').innerText = '€ ' + gameState.prices.gradinata_rid.toFixed(2);
+            document.getElementById('shop-pr-vip-int').innerText = '€ ' + gameState.shopPrices.vip_int.toFixed(2);
+            document.getElementById('shop-pr-vip-rid').innerText = '€ ' + gameState.shopPrices.vip_rid.toFixed(2);
+            document.getElementById('shop-pr-tribuna-int').innerText = '€ ' + gameState.shopPrices.tribuna_int.toFixed(2);
+            document.getElementById('shop-pr-tribuna-rid').innerText = '€ ' + gameState.shopPrices.tribuna_rid.toFixed(2);
+            document.getElementById('shop-pr-gradinata-int').innerText = '€ ' + gameState.shopPrices.gradinata_int.toFixed(2);
+            document.getElementById('shop-pr-gradinata-rid').innerText = '€ ' + gameState.shopPrices.gradinata_rid.toFixed(2);
         }
 
         function changeTicket(type, delta) {
@@ -1352,7 +1399,7 @@
         function calcShopTotal() {
             let total = 0;
             for (let k in gameState.shopTicketCounts) {
-                total += gameState.shopTicketCounts[k] * gameState.prices[k];
+                total += gameState.shopTicketCounts[k] * gameState.shopPrices[k];
             }
             document.getElementById('shop-total-display').innerText = '€ ' + total.toFixed(2);
         }
@@ -1373,8 +1420,14 @@
             let sectorName = randomType.includes('vip') ? 'poltrona vip' : (randomType.includes('tribuna') ? 'tribuna' : 'gradinata');
             let tariffName = randomType.includes('int') ? 'intero' : 'ridotto';
 
+            let phrases = [
+                "Salve, vorrei " + randomQty + " biglietti " + tariffName + " per " + sectorName + ".",
+                "Buonasera, mi servono " + randomQty + " biglietti (" + tariffName + ") per " + sectorName + ", grazie.",
+                "Ciao! Posso avere " + randomQty + " ingressi " + tariffName + " in " + sectorName + "?"
+            ];
+
             gameState.currentClient = {
-                dialog: "Salve, vorrei " + randomQty + " biglietti " + tariffName + " per il settore " + sectorName + ".",
+                dialog: phrases[Math.floor(Math.random() * phrases.length)],
                 method: "CONTANTI",
                 cash: [20, 50, 100][Math.floor(Math.random() * 3)],
                 targetTickets: target
@@ -1431,7 +1484,7 @@
                 let count = gameState.shopTicketCounts[k];
                 if (count > 0) {
                     hasItems = true;
-                    total += count * gameState.prices[k];
+                    total += count * gameState.shopPrices[k];
                 }
             }
 
@@ -1454,7 +1507,102 @@
             }
             calcShopTotal();
 
-            alert("Acquisto effettuato con successo al negozio! Totale pagato: € " + total.toFixed(2));
+            alert("Acquisto effettuato con successo al negozio d'ingrosso! Totale pagato: € " + total.toFixed(2));
+        }
+
+        function renderBurocraziaTable() {
+            document.getElementById('buro-comune-name').innerText = gameState.piazza;
+            let html = '';
+            gameState.comuneFees.forEach((fee, index) => {
+                let statusHtml = fee.paid 
+                    ? '<span class="status-tag ok">PAGATO</span>' 
+                    : '<span class="status-tag" style="background:rgba(239, 68, 68, 0.2); color:var(--danger); border:1px solid var(--danger);">DA PAGARE</span>';
+                
+                let btnHtml = fee.paid
+                    ? '<span>Nessuna azione</span>'
+                    : `<button class="btn-gold" style="padding:0.3rem 0.6rem; font-size:0.75rem;" onclick="payFee(${index})">Paga ORA</button>`;
+
+                html += `
+                    <tr>
+                        <td>${fee.name}</td>
+                        <td>In regola con regolamento di ${gameState.piazza}</td>
+                        <td>€ ${fee.amount.toFixed(2)}</td>
+                        <td>${statusHtml}</td>
+                        <td>${btnHtml}</td>
+                    </tr>
+                `;
+            });
+            document.getElementById('buro-table-body').innerHTML = html;
+        }
+
+        function payFee(index) {
+            let fee = gameState.comuneFees[index];
+            if (gameState.cassa < fee.amount) {
+                alert("Fondi in cassa insufficienti per saldare questa tassa!");
+                return;
+            }
+            gameState.cassa -= fee.amount;
+            fee.paid = true;
+            updateHeader();
+            renderBurocraziaTable();
+            alert(`Pagamento di € ${fee.amount.toFixed(2)} effettuato con successo per: ${fee.name}`);
+        }
+
+        function organizeTour() {
+            let city = document.getElementById('tour-city-input').value.trim();
+            let location = document.getElementById('tour-location-input').value.trim();
+            let daysNum = document.getElementById('tour-days-input').value;
+            let cost = parseFloat(document.getElementById('tour-cost-input').value) || 0;
+
+            if (!city || !location) {
+                alert("Inserisci sia il nome della città che l'ubicazione dell'area!");
+                return;
+            }
+
+            if (gameState.cassa < cost) {
+                alert("Fondi in cassa insufficienti per prenotare ed organizzare la tournée!");
+                return;
+            }
+
+            gameState.cassa -= cost;
+            gameState.piazza = city;
+
+            // Reset burocrazia fees per la nuova città
+            gameState.comuneFees.forEach(f => f.paid = false);
+
+            gameState.tours.forEach(t => { if (t.status === "ATTUALE") t.status = "COMPLETATO"; });
+            gameState.tours.push({
+                city: city,
+                location: location,
+                days: daysNum,
+                status: "ATTUALE"
+            });
+
+            updateHeader();
+            renderPiazzeTable();
+
+            document.getElementById('tour-city-input').value = "";
+            document.getElementById('tour-location-input').value = "";
+
+            alert(`Tour organizzato con successo a ${city}! Spostamento eseguito e cassa aggiornata.`);
+        }
+
+        function renderPiazzeTable() {
+            let html = '';
+            gameState.tours.forEach(t => {
+                let statusTag = t.status === "ATTUALE" 
+                    ? '<span class="status-tag ok">ATTUALE</span>' 
+                    : '<span class="status-tag" style="background:rgba(255,255,255,0.1); color:#fff;">COMPLETATO</span>';
+                html += `
+                    <tr>
+                        <td>${t.city}</td>
+                        <td>${t.location}</td>
+                        <td>${t.days} giorni</td>
+                        <td>${statusTag}</td>
+                    </tr>
+                `;
+            });
+            document.getElementById('piazze-table-body').innerHTML = html;
         }
 
         function savePrices() {
